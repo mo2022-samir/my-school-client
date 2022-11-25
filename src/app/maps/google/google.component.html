@@ -1,0 +1,75 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    <!-- Google Maps -->
+    <div class="alert alert-warning">
+      You need to get
+      <b>Google Map API Key</b> for display maps with
+      <a href="https://developers.google.com/maps/documentation/javascript/get-api-key" class="alert-link"
+        target="_blank">this link</a> (Also you can find documentation on same page).
+    </div>
+    <!-- Basic Example -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="header">
+            <h4>Cursor Positon</h4>
+          </div>
+          <div class="card-body">
+            <google-map height="400px" width="750px" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
+              (mapMousemove)="move($event)">
+            </google-map>
+
+            <div>Latitude: {{display?.lat}}</div>
+            <div>Longitude: {{display?.lng}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="header">
+            <h4>Add Marker</h4>
+          </div>
+          <div class="card-body">
+            <google-map height="400px" width="750px" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+              <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+                [options]="markerOptions"></map-marker>
+            </google-map>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="header">
+            <h4>MapPolyline</h4>
+          </div>
+          <div class="card-body">
+            <!-- google-maps-demo.component.html -->
+            <google-map height="400px" width="750px" [center]="center" [zoom]="zoom">
+              <map-polyline [path]="vertices"></map-polyline>
+            </google-map>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="header">
+            <h4>MapRectangle</h4>
+          </div>
+          <div class="card-body">
+            <!-- google-maps-demo.component.html -->
+            <google-map height="400px" width="750px" [center]="center" [zoom]="zoom">
+              <map-rectangle [bounds]="bounds"></map-rectangle>
+            </google-map>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
