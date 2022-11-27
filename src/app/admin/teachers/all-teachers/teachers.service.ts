@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 @Injectable()
 export class TeachersService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = 'assets/data/teachers.json';
+  private readonly API_URL = 'http://localhost:8080/testSecure';
   isTblLoading = true;
   dataChange: BehaviorSubject<Teachers[]> = new BehaviorSubject<Teachers[]>([]);
   // Temporarily stores data from dialogs
