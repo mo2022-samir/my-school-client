@@ -48,9 +48,6 @@
                       <mat-option [value]="'female'">
                         Female
                       </mat-option>
-                      <mat-option [value]="'other'">
-                        Other
-                      </mat-option>
                     </mat-select>
                     <mat-error *ngIf="stdForm.get('gender').hasError('required')">
                       Gender is required
@@ -166,14 +163,6 @@
                   </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Blood Group</mat-label>
-                    <input matInput formControlName="bGroup">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field class="example-full-width mb-3" appearance="outline">
                     <mat-label>Address</mat-label>
                     <textarea matInput formControlName="address"></textarea>

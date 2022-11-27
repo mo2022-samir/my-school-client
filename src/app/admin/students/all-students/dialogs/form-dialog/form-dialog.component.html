@@ -86,12 +86,9 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" type="number">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="stdForm.get('mobile').hasError('required')">
-              Mobile is required
-            </mat-error>
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" >
+            <mat-icon matSuffix>key</mat-icon>
           </mat-form-field>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
@@ -106,6 +103,16 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput formControlName="mobile" type="number">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="stdForm.get('mobile').hasError('required')">
+              Mobile is required
+            </mat-error>
+          </mat-form-field>
+        </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Joining date</mat-label>
