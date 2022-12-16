@@ -1,7 +1,7 @@
 <section class="content">
-  <div class="content-block">
+  <!-- <div class="content-block">
     <div class="block-header" *ngFor="let breadscrum of breadscrums">
-      <!-- breadcrumb -->
+      
       <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
       </app-breadcrumb>
     </div>
@@ -401,6 +401,18 @@
           </div>
         </div>
       </div>
+    </div>
+  </div> -->
+  <!-- breadcrumb -->
+  <div class="content-block">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb
+        [title]="breadscrum.title"
+        [items]="breadscrum.items"
+        [active_item]="breadscrum.active"
+      >
+      </app-breadcrumb>
     </div>
   </div>
 </section>

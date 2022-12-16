@@ -2,7 +2,11 @@
   <div class="content-block">
     <div class="block-header" *ngFor="let breadscrum of breadscrums">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      <app-breadcrumb
+        [title]="breadscrum.title"
+        [items]="breadscrum.items"
+        [active_item]="breadscrum.active"
+      >
       </app-breadcrumb>
     </div>
     <div class="row">
@@ -24,31 +28,71 @@
                             <ul class="header-buttons-left ml-0">
                               <li class="dropdown">
                                 <h2>
-                                  <strong>Students</strong></h2>
+                                  <strong>Students</strong>
+                                </h2>
                               </li>
                               <li class="dropdown m-l-20">
-                                <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                                <input placeholder="Search" type="text" #filter class="browser-default search-field"
-                                  aria-label="Search box">
+                                <label for="search-input"
+                                  ><i class="material-icons search-icon"
+                                    >search</i
+                                  ></label
+                                >
+                                <input
+                                  placeholder="Search by name..."
+                                  type="text"
+                                  #filter
+                                  class="browser-default search-field"
+                                  aria-label="Search box"
+                                />
                               </li>
-                              <!-- <li>
-                                <div class="export-button m-l-10" matTooltip="ADD">
-                                  <button mat-mini-fab color="primary" (click)="addNew()">
+                              <li class="dropdown m-l-20">
+                                <label for="search-input"
+                                  ><i class="material-icons search-icon"
+                                    >search</i
+                                  ></label
+                                >
+                                <input
+                                  placeholder="Search by class..."
+                                  type="text"
+                                  #filter
+                                  class="browser-default search-field"
+                                  aria-label="Search box"
+                                />
+                              </li>
+                              <li>
+                                <div
+                                  class="export-button m-l-10"
+                                  matTooltip="ADD"
+                                >
+                                  <button
+                                    mat-mini-fab
+                                    color="primary"
+                                    (click)="addNew()"
+                                  >
                                     <mat-icon class="col-white">add</mat-icon>
                                   </button>
                                 </div>
-                              </li> -->
-                              <li>
+                              </li>
+                              <!-- <li>
                                 <div class="export-button m-l-10" matTooltip="REFRESH">
                                   <button mat-mini-fab color="primary" (click)="refresh()">
                                     <mat-icon class="col-white">refresh</mat-icon>
                                   </button>
                                 </div>
-                              </li>
+                              </li> -->
                               <li>
-                                <div class="export-button m-l-10" [hidden]=!selection.hasValue() matTooltip="DELETE">
-                                  <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
-                                    <mat-icon class="col-white">delete
+                                <div
+                                  class="export-button m-l-10"
+                                  [hidden]="!selection.hasValue()"
+                                  matTooltip="DELETE"
+                                >
+                                  <button
+                                    mat-mini-fab
+                                    color="warn"
+                                    (click)="removeSelectedRows()"
+                                  >
+                                    <mat-icon class="col-white"
+                                      >delete
                                     </mat-icon>
                                   </button>
                                 </div>
@@ -58,147 +102,277 @@
                           <div class="col-4">
                             <ul class="header-buttons">
                               <li>
-                                <div class="export-button m-l-10" matTooltip="XLSX">
-                                  <img src="assets/images/icons/xlsx.png" alt=""
-                                    (click)="exporter.exportTable('xlsx', {fileName:'assets-list', sheet: 'sheet1'})" />
+                                <div
+                                  class="export-button m-l-10"
+                                  matTooltip="XLSX"
+                                >
+                                  <img
+                                    src="assets/images/icons/xlsx.png"
+                                    alt=""
+                                    (click)="
+                                      exporter.exportTable('xlsx', {
+                                        fileName: 'assets-list',
+                                        sheet: 'sheet1'
+                                      })
+                                    "
+                                  />
                                 </div>
                               </li>
                               <li>
-                                <div class="export-button m-l-10" matTooltip="CSV">
-                                  <img src="assets/images/icons/csv.png" alt="" (click)="exporter.exportTable('csv')" />
+                                <div
+                                  class="export-button m-l-10"
+                                  matTooltip="CSV"
+                                >
+                                  <img
+                                    src="assets/images/icons/csv.png"
+                                    alt=""
+                                    (click)="exporter.exportTable('csv')"
+                                  />
                                 </div>
                               </li>
                               <li>
-                                <div class="export-button m-l-10" matTooltip="JSON">
-                                  <img src="assets/images/icons/json.png" alt=""
-                                    (click)="exporter.exportTable('json')" />
+                                <div
+                                  class="export-button m-l-10"
+                                  matTooltip="JSON"
+                                >
+                                  <img
+                                    src="assets/images/icons/json.png"
+                                    alt=""
+                                    (click)="exporter.exportTable('json')"
+                                  />
                                 </div>
                               </li>
                               <li>
-                                <div class="export-button m-l-10" matTooltip="TXT">
-                                  <img src="assets/images/icons/txt.png" alt="" (click)="exporter.exportTable('txt')" />
+                                <div
+                                  class="export-button m-l-10"
+                                  matTooltip="TXT"
+                                >
+                                  <img
+                                    src="assets/images/icons/txt.png"
+                                    alt=""
+                                    (click)="exporter.exportTable('txt')"
+                                  />
                                 </div>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                      <mat-table #table matTableExporter [dataSource]="dataSource" matSort class="mat-cell"
-                        #exporter="matTableExporter">
+                      <mat-table
+                        #table
+                        matTableExporter
+                        [dataSource]="dataSource"
+                        matSort
+                        class="mat-cell"
+                        #exporter="matTableExporter"
+                      >
                         <!-- Checkbox Column -->
                         <ng-container matColumnDef="select">
-                          <mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'">
-                            <mat-checkbox (change)="$event ? masterToggle() : null"
-                              [checked]="selection.hasValue() && isAllSelected()"
-                              [indeterminate]="selection.hasValue() && !isAllSelected()" [ngClass]="'tbl-checkbox'">
+                          <mat-header-cell
+                            *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'"
+                          >
+                            <mat-checkbox
+                              (change)="$event ? masterToggle() : null"
+                              [checked]="
+                                selection.hasValue() && isAllSelected()
+                              "
+                              [indeterminate]="
+                                selection.hasValue() && !isAllSelected()
+                              "
+                              [ngClass]="'tbl-checkbox'"
+                            >
                             </mat-checkbox>
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" [ngClass]="'tbl-col-width-per-6'">
-                            <mat-checkbox (click)="$event.stopPropagation()"
-                              (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                              [ngClass]="'tbl-checkbox'">
+                          <mat-cell
+                            *matCellDef="let row"
+                            [ngClass]="'tbl-col-width-per-6'"
+                          >
+                            <mat-checkbox
+                              (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [ngClass]="'tbl-checkbox'"
+                            >
                             </mat-checkbox>
                           </mat-cell>
                         </ng-container>
                         <!-- ID Column -->
                         <ng-container matColumnDef="id">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Id
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Id
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                          <mat-cell *matCellDef="let row">{{
+                            row.id
+                          }}</mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="img">
-                          <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'"> Image
+                          <mat-header-cell
+                            mat-header-cell
+                            *matHeaderCellDef
+                            [ngClass]="'tbl-col-width-per-6'"
+                          >
+                            Image
                           </mat-header-cell>
-                          <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6"> <img
-                              [src]="row.img" />
+                          <mat-cell
+                            mat-cell
+                            *matCellDef="let row"
+                            class="table-img tbl-col-width-per-6"
+                          >
+                            <img [src]="row.img" />
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="rollNo">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Roll No
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Roll No
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.rollNo}}
+                          <mat-cell
+                            *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)"
+                          >
+                            {{ row.rollNo }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="name">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Name
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Name
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.name}}
+                          <mat-cell
+                            *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)"
+                          >
+                            {{ row.name }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="department">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Department
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Department
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                            {{row.department}}</mat-cell>
+                          <mat-cell
+                            *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)"
+                          >
+                            {{ row.department }}</mat-cell
+                          >
                         </ng-container>
                         <ng-container matColumnDef="gender">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header> Gender
+                          <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Gender
                           </mat-header-cell>
                           <mat-cell mat-cell *matCellDef="let row">
-                            <div *ngIf="row.gender=='male'">
+                            <div *ngIf="row.gender == 'male'">
                               <span class="badge badge-solid-green">
-                                {{row.gender}}</span>
+                                {{ row.gender }}</span
+                              >
                             </div>
-                            <div *ngIf="row.gender=='female'">
+                            <div *ngIf="row.gender == 'female'">
                               <span class="badge badge-solid-purple">
-                                {{row.gender}}</span>
+                                {{ row.gender }}</span
+                              >
                             </div>
-                            <div *ngIf="row.gender=='other'">
+                            <div *ngIf="row.gender == 'other'">
                               <span class="badge badge-solid-orange">
-                                {{row.gender}}</span>
+                                {{ row.gender }}</span
+                              >
                             </div>
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="mobile">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Mobile
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Mobile
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.mobile}}
+                          <mat-cell
+                            *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)"
+                          >
+                            {{ row.mobile }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="email">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Email
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Email
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"> {{row.email}}
+                          <mat-cell
+                            *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)"
+                          >
+                            {{ row.email }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="date">
-                          <mat-header-cell *matHeaderCellDef mat-sort-header>Admission
-                            Date
+                          <mat-header-cell *matHeaderCellDef mat-sort-header
+                            >Admission Date
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)">
-                            {{row.date | date: 'MM/dd/yyyy'}}</mat-cell>
+                          <mat-cell
+                            *matCellDef="let row"
+                            (contextmenu)="onContextMenu($event, row)"
+                          >
+                            {{ row.date | date : 'MM/dd/yyyy' }}</mat-cell
+                          >
                         </ng-container>
                         <!-- actions -->
                         <ng-container matColumnDef="actions">
-                          <mat-header-cell class="pr-0" *matHeaderCellDef>Actions
+                          <mat-header-cell class="pr-0" *matHeaderCellDef
+                            >Actions
                           </mat-header-cell>
-                          <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                            <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)"
-                              class="tbl-action-btn">
-                              <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                          <mat-cell
+                            *matCellDef="let row; let i = index"
+                            class="pr-0"
+                          >
+                            <button
+                              mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="editCall(row)"
+                              class="tbl-action-btn"
+                            >
+                              <app-feather-icons
+                                [icon]="'edit'"
+                                [class]="'tbl-fav-edit'"
+                              ></app-feather-icons>
                             </button>
-                            <button mat-icon-button (click)="$event.stopPropagation()" (click)="deleteItem(row)"
-                              class="tbl-action-btn">
-                              <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                            <button
+                              mat-icon-button
+                              (click)="$event.stopPropagation()"
+                              (click)="deleteItem(row)"
+                              class="tbl-action-btn"
+                            >
+                              <app-feather-icons
+                                [icon]="'trash-2'"
+                                [class]="'tbl-fav-delete'"
+                              ></app-feather-icons>
                             </button>
                           </mat-cell>
                         </ng-container>
                         <mat-header-row *matHeaderRowDef="displayedColumns">
                         </mat-header-row>
                         <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
-                        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editCall(row)"
-                          [style.cursor]="'pointer'" matRipple>
+                        <mat-row
+                          *matRowDef="let row; columns: displayedColumns"
+                          (click)="editCall(row)"
+                          [style.cursor]="'pointer'"
+                          matRipple
+                        >
                         </mat-row>
                       </mat-table>
                       <!-- Loading spinner -->
-                      <div *ngIf="exampleDatabase.isTblLoading" class="tbl-spinner">
-                        <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
+                      <div
+                        *ngIf="exampleDatabase.isTblLoading"
+                        class="tbl-spinner"
+                      >
+                        <mat-progress-spinner
+                          color="primary"
+                          [diameter]="40"
+                          mode="indeterminate"
+                        >
                         </mat-progress-spinner>
                       </div>
                       <!-- context menu start -->
-                      <div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
-                        [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
-                      </div>
+                      <div
+                        style="visibility: hidden; position: fixed"
+                        [style.left]="contextMenuPosition.x"
+                        [style.top]="contextMenuPosition.y"
+                        [matMenuTriggerFor]="contextMenu"
+                      ></div>
                       <mat-menu #contextMenu="matMenu">
                         <ng-template matMenuContent let-item="item">
                           <button mat-menu-item (click)="addNew()">
@@ -221,7 +395,10 @@
                             <mat-icon>no_encryption</mat-icon>
                             <span>Disable</span>
                           </button>
-                          <button mat-menu-item [matMenuTriggerFor]="nestedmenu">
+                          <button
+                            mat-menu-item
+                            [matMenuTriggerFor]="nestedmenu"
+                          >
                             <mat-icon>list_alt</mat-icon>
                             <span> Nested Menu</span>
                           </button>
@@ -242,12 +419,22 @@
                         </button>
                       </mat-menu>
                       <!-- context menu end -->
-                      <div *ngIf="!exampleDatabase.isTblLoading" class="no-results"
-                        [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+                      <div
+                        *ngIf="!exampleDatabase.isTblLoading"
+                        class="no-results"
+                        [style.display]="
+                          dataSource.renderedData.length == 0 ? '' : 'none'
+                        "
+                      >
                         No results
                       </div>
-                      <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0"
-                        [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+                      <mat-paginator
+                        #paginator
+                        [length]="dataSource.filteredData.length"
+                        [pageIndex]="0"
+                        [pageSize]="10"
+                        [pageSizeOptions]="[5, 10, 25, 100]"
+                      >
                       </mat-paginator>
                     </div>
                   </div>
@@ -269,17 +456,24 @@
                         <div class="user-name">Pooja Patel</div>
                         <div class="name-center">Mathematics</div>
                       </div>
-                      <img src="assets/images/user/usrbig1.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig1.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         A-103, shyam gokul flats, Mahatma Road
                         <br />Mumbai
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -293,17 +487,24 @@
                         <div class="user-name">Cara Stevens</div>
                         <div class="name-center">Science</div>
                       </div>
-                      <img src="assets/images/user/usrbig2.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig2.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         45, Krishna Tower, Near Bus Stop, Satellite,
                         <br />Ahmedabad
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -317,17 +518,24 @@
                         <div class="user-name">Megha Trivedi</div>
                         <div class="name-center">Computer</div>
                       </div>
-                      <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig3.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         456, Estern evenue, Courtage area,
                         <br />New York
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -341,17 +549,24 @@
                         <div class="user-name">Sarah Smith</div>
                         <div class="name-center">Engineering</div>
                       </div>
-                      <img src="assets/images/user/usrbig4.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig4.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         A-103, shyam gokul flats, Mahatma Road
                         <br />Mumbai
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -365,17 +580,24 @@
                         <div class="user-name">Smita Patil</div>
                         <div class="name-center">Music</div>
                       </div>
-                      <img src="assets/images/user/usrbig5.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig5.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         45, Krishna Tower, Near Bus Stop, Satellite,
                         <br />Ahmedabad
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -389,17 +611,24 @@
                         <div class="user-name">Airi Satou</div>
                         <div class="name-center">Commerce</div>
                       </div>
-                      <img src="assets/images/user/usrbig6.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig6.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         456, Estern evenue, Courtage area,
                         <br />New York
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -413,17 +642,24 @@
                         <div class="user-name">Jayesh Patel</div>
                         <div class="name-center">Mechanical</div>
                       </div>
-                      <img src="assets/images/user/usrbig7.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig7.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         A-103, shyam gokul flats, Mahatma Road
                         <br />Mumbai
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -437,17 +673,24 @@
                         <div class="user-name">Angelica Ramos</div>
                         <div class="name-center">Science</div>
                       </div>
-                      <img src="assets/images/user/usrbig8.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig8.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         45, Krishna Tower, Near Bus Stop, Satellite,
                         <br />Ahmedabad
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -461,17 +704,24 @@
                         <div class="user-name">John Smith</div>
                         <div class="name-center">Computer</div>
                       </div>
-                      <img src="assets/images/user/usrbig9.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig9.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         456, Estern evenue, Courtage area,
                         <br />New York
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -485,17 +735,24 @@
                         <div class="user-name">Suraj Patel</div>
                         <div class="name-center">Mathematics</div>
                       </div>
-                      <img src="assets/images/user/usrbig10.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig10.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         A-103, shyam gokul flats, Mahatma Road
                         <br />Mumbai
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -509,17 +766,24 @@
                         <div class="user-name">Ashton Cox</div>
                         <div class="name-center">Science</div>
                       </div>
-                      <img src="assets/images/user/usrbig2.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig2.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         45, Krishna Tower, Near Bus Stop, Satellite,
                         <br />Ahmedabad
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -533,17 +797,24 @@
                         <div class="user-name">Jacob Ryan</div>
                         <div class="name-center">Engineering</div>
                       </div>
-                      <img src="assets/images/user/usrbig7.jpg" class="user-img" alt="">
+                      <img
+                        src="assets/images/user/usrbig7.jpg"
+                        class="user-img"
+                        alt=""
+                      />
                       <p>
                         456, Estern evenue, Courtage area,
                         <br />New York
                       </p>
                       <div>
                         <span class="phone">
-                          <i class="material-icons">phone</i>264-625-2583</span>
+                          <i class="material-icons">phone</i>264-625-2583</span
+                        >
                       </div>
                       <div class="profile-userbuttons">
-                        <button mat-flat-button color="primary">Read More</button>
+                        <button mat-flat-button color="primary">
+                          Read More
+                        </button>
                       </div>
                     </div>
                   </div>

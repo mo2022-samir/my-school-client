@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import { AuthService } from 'src/app/core/service/auth.service';
 import { Role } from 'src/app/core/models/role';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { query } from '@angular/animations';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -18,6 +23,7 @@ export class SigninComponent
   loading = false;
   error = '';
   hide = true;
+  btnLoginColor = 'primary';
   constructor(
     private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
@@ -39,14 +45,17 @@ export class SigninComponent
   adminSet() {
     this.authForm.get('username').setValue('admin@school.org');
     this.authForm.get('password').setValue('admin@123');
+    this.btnLoginColor = 'primary';
   }
   teacherSet() {
     this.authForm.get('username').setValue('teacher@school.org');
     this.authForm.get('password').setValue('teacher@123');
+    this.btnLoginColor = 'accent';
   }
   studentSet() {
     this.authForm.get('username').setValue('student@school.org');
     this.authForm.get('password').setValue('student@123');
+    this.btnLoginColor = 'warn';
   }
   onSubmit() {
     this.submitted = true;
