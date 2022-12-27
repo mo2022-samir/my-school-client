@@ -43,18 +43,18 @@ export class SigninComponent
     return this.authForm.controls;
   }
   adminSet() {
-    this.authForm.get('username').setValue('admin@school.org');
-    this.authForm.get('password').setValue('admin@123');
+    this.authForm.get('username').setValue('A0001');
+    this.authForm.get('password').setValue('000000');
     this.btnLoginColor = 'primary';
   }
   teacherSet() {
-    this.authForm.get('username').setValue('teacher@school.org');
-    this.authForm.get('password').setValue('teacher@123');
+    this.authForm.get('username').setValue('T00001');
+    this.authForm.get('password').setValue('000000');
     this.btnLoginColor = 'accent';
   }
   studentSet() {
-    this.authForm.get('username').setValue('student@school.org');
-    this.authForm.get('password').setValue('student@123');
+    this.authForm.get('username').setValue('S0001');
+    this.authForm.get('password').setValue('000000');
     this.btnLoginColor = 'warn';
   }
   onSubmit() {

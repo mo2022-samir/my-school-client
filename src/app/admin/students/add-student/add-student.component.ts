@@ -1,9 +1,11 @@
+import { AddStudentService } from './../../../core/service/add-student.service';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+
 @Component({
   selector: 'app-add-student',
   templateUrl: './add-student.component.html',
@@ -18,30 +20,32 @@ export class AddStudentComponent {
       active: 'Add Student',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private addStudentService: AddStudentService
+  ) {
     this.stdForm = this.fb.group({
-      first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      last: [''],
-      rollNo: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      lastName: [''],
       gender: ['', [Validators.required]],
       email: [
         '',
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      password: ['', [Validators.required]],
-      conformPassword: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
-      rDate: ['', [Validators.required]],
-      department: [''],
+      registerDate: ['', [Validators.required]],
+      educationType: [''],
       parentName: ['', [Validators.required]],
-      parentNo: [''],
-      dob: ['', [Validators.required]],
-      bGroup: [''],
+      parentPhonenumber: [''],
+      dateOfBirth: ['', [Validators.required]],
+      bloodGroup: [''],
       address: [''],
       uploadFile: [''],
     });
   }
   onSubmit() {
-    console.log('Form Value', this.stdForm.value);
+    let formData = this.stdForm.value;
+    console.log(formData);
+    this.addStudentService.adduser(formData);
   }
 }
