@@ -16,8 +16,8 @@ const users: User[] = [
   {
     id: 1,
     img: 'assets/images/user/admin.jpg',
-    username: 'admin@school.org',
-    password: 'admin@123',
+    username: 'A0001',
+    password: '000000',
     firstName: 'Sarah',
     lastName: 'Smith',
     role: Role.Admin,

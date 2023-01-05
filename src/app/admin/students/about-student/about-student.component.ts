@@ -1,4 +1,6 @@
+import { StudentService } from './../../../core/service/student.service';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-about-student',
@@ -6,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-student.component.sass'],
 })
 export class AboutStudentComponent implements OnInit {
+  i = 0;
+  selectedStudent: any;
+  studentsData:any;
+  studentsList: Observable<{id:number, name:string}>;
   breadscrums = [
     {
       title: 'Profile',
@@ -13,7 +19,25 @@ export class AboutStudentComponent implements OnInit {
       active: 'Profile',
     },
   ];
-  constructor() {}
+  constructor(private studentService:StudentService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getList();
+  }
+  
+  onChange(){
+
+    this.getStudentDetails(this.selectedStudent)
+  
+  }
+  getStudentDetails(id:number){
+    this.studentService.getStudentById(id).subscribe(
+      (res)=> {this.studentsData = res;
+        
+      console.log(this.studentsData)}
+    );
+    }
+    getList(){
+      this.studentsList= this.studentService.getStudentsList();
+     }
 }

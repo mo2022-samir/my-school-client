@@ -8,11 +8,23 @@
     <div class="row clearfix">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card">
-          <div class="header">
+          <div class="header" style="display: flex; justify-content: space-between;">
             <h2>Edit Student</h2>
 
+            <div class="col-xl-3 col-lg-6 col-md-12 col-sm-12 mb-2">
+              <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <mat-label>Student</mat-label>
+                <mat-select #students [(value)]="selectedStudent" [(ngModel)]="selectedStudent" (selectionChange)="onChange()">
+                  <mat-option *ngFor="let item of studentsList|async" [value]="item.id">
+                   {{item.firstName}} {{item.lastName}}
+                  </mat-option>
+
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="body">
+
+          <div *ngIf="students.value" class="body">
             <form class="m-4" [formGroup]="stdForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
@@ -47,9 +59,6 @@
                       </mat-option>
                       <mat-option [value]="'female'">
                         Female
-                      </mat-option>
-                      <mat-option [value]="'other'">
-                        Other
                       </mat-option>
                     </mat-select>
                     <mat-error *ngIf="stdForm.get('gender').hasError('required')">

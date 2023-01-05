@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { StudentService } from './../../../core/service/student.service';
+import { Component, OnInit } from '@angular/core';
 import {
+  FormBuilder,
+  FormGroup,
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
@@ -10,11 +14,14 @@ import {
   templateUrl: './edit-student.component.html',
   styleUrls: ['./edit-student.component.sass'],
 })
-export class EditStudentComponent {
+export class EditStudentComponent implements OnInit{
   stdForm: UntypedFormGroup;
+  selectedStudent;
+  studentsList: Observable<{id:number, name:string}>;
+  studentsDetails:any;
   formdata = {
-    first: 'Pooja',
-    last: 'Sarma',
+    fName: 'Pooja',
+    lName: 'Sarma',
     rollNo: '12',
     gender: 'male',
     email: 'test@example.com',
@@ -35,34 +42,57 @@ export class EditStudentComponent {
       active: 'Edit Student',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
-    this.stdForm = this.createContactForm();
+  constructor(private fb: FormBuilder, private studentService: StudentService) {
+   
   }
+
+ngOnInit(): void {
+  this.getList();
+  this.stdForm = this.createContactForm();
+}
+
   onSubmit() {
     console.log('Form Value', this.stdForm.value);
   }
-  createContactForm(): UntypedFormGroup {
+getList(){
+ this.studentsList= this.studentService.getStudentsList();
+}
+getStudentDetails(id:number){
+this.studentService.getStudentById(id).subscribe(
+  (res)=> {this.studentsDetails = res;
+    this.createContactForm();
+    
+  this.stdForm = this.createContactForm();
+  console.log(this.studentsDetails)}
+);
+}
+onChange(){
+
+  this.getStudentDetails(this.selectedStudent)
+
+}
+  createContactForm(): FormGroup {
     return this.fb.group({
       first: [
-        this.formdata.first,
+        this.studentsDetails?.firstName,
         [Validators.required, Validators.pattern('[a-zA-Z]+')],
       ],
-      last: [this.formdata.last],
-      rollNo: [this.formdata.rollNo],
-      gender: [this.formdata.gender, [Validators.required]],
-      mobile: [this.formdata.mobile, [Validators.required]],
-      rDate: [this.formdata.rDate, [Validators.required]],
+      last: [this.studentsDetails?.lastName],
+      rollNo: [this.studentsDetails?.id],
+      gender: [this.studentsDetails?.gender, [Validators.required]],
+      mobile: [this.studentsDetails?.mobile, [Validators.required]],
+      rDate: [this.studentsDetails?.registerDate, [Validators.required]],
       email: [
-        this.formdata.email,
+        this.studentsDetails?.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      department: [this.formdata.department],
-      parentName: [this.formdata.parentName, [Validators.required]],
-      parentNo: [this.formdata.parentNo],
-      dob: [this.formdata.dob, [Validators.required]],
-      bGroup: [this.formdata.bGroup],
-      address: [this.formdata.address],
-      uploadFile: [this.formdata.uploadFile],
+      department: [this.studentsDetails?.educationType],
+      parentName: [this.studentsDetails?.parentName, [Validators.required]],
+      parentNo: [this.studentsDetails?.parentPhonenumber],
+      dob: [this.studentsDetails?.dateOfBirth, [Validators.required]],
+      bGroup: [this.studentsDetails?.bloodGroup],
+      address: [this.studentsDetails?.address],
+      uploadFile: [this.studentsDetails?.uploadFile],
     });
   }
 }

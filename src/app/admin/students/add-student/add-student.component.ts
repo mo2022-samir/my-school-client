@@ -1,4 +1,4 @@
-import { AddStudentService } from './../../../core/service/add-student.service';
+import { StudentService } from './../../../core/service/student.service';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -22,7 +22,7 @@ export class AddStudentComponent {
   ];
   constructor(
     private fb: UntypedFormBuilder,
-    private addStudentService: AddStudentService
+    private studentService: StudentService
   ) {
     this.stdForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
@@ -46,6 +46,6 @@ export class AddStudentComponent {
   onSubmit() {
     let formData = this.stdForm.value;
     console.log(formData);
-    this.addStudentService.adduser(formData);
+    this.studentService.addNewStudent(formData).subscribe();
   }
 }
