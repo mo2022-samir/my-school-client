@@ -63,6 +63,7 @@ export class EditTeacherComponent implements OnInit {
       this.teachersDetails = res;
       this.createContactForm();
       this.proForm = this.createContactForm();
+      console.log(res);
     });
   }
 
@@ -77,22 +78,23 @@ export class EditTeacherComponent implements OnInit {
         [Validators.required, Validators.pattern('[a-zA-Z]+')],
       ],
       last: [this.teachersDetails?.user.lastName],
-      rollNo: [this.teachersDetails?.user.id],
       gender: [this.teachersDetails?.user.gender, [Validators.required]],
       mobile: [this.teachersDetails?.user.mobile, [Validators.required]],
-      rDate: [this.teachersDetails?.user.registerDate, [Validators.required]],
+      password: [
+        this.teachersDetails?.user.password,
+        [Validators.required, Validators.minLength(5)],
+      ],
+      conformPassword: [
+        this.teachersDetails?.user.password,
+        [Validators.required, Validators.minLength(5)],
+      ],
       email: [
         this.teachersDetails?.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      department: [this.teachersDetails?.user.educationType],
-      parentName: [
-        this.teachersDetails?.user.parentName,
-        [Validators.required],
-      ],
-      parentNo: [this.teachersDetails?.user.parentPhonenumber],
+      department: [this.teachersDetails?.department, [Validators.required]],
       dob: [this.teachersDetails?.user.dateOfBirth, [Validators.required]],
-      bGroup: [this.teachersDetails?.user.bloodGroup],
+      education: [this.teachersDetails?.education, [Validators.required]],
       address: [this.teachersDetails?.user.address],
       uploadFile: [this.teachersDetails?.user.uploadFile],
     });

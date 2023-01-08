@@ -72,9 +72,8 @@
                   >
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender" required>
-                      <mat-option [value]="'male'"> Male </mat-option>
-                      <mat-option [value]="'female'"> Female </mat-option>
-                      <mat-option [value]="'other'"> Other </mat-option>
+                      <mat-option [value]="'Male'"> Male </mat-option>
+                      <mat-option [value]="'Female'"> Female </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="proForm.get('gender').hasError('required')"
@@ -108,7 +107,7 @@
                     <input
                       matInput
                       formControlName="password"
-                      type="password"
+                      type="text"
                       required
                     />
                     <mat-error
@@ -127,7 +126,7 @@
                     <input
                       matInput
                       formControlName="conformPassword"
-                      type="password"
+                      type="text"
                       required
                     />
                     <mat-error
@@ -146,26 +145,13 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Title</mat-label>
-                    <input matInput formControlName="designation" />
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
                     <mat-label>Select Department</mat-label>
                     <mat-select formControlName="department" required>
-                      <mat-option [value]="'mechanical'">
-                        Mechanical
+                      <mat-option [value]="'Elementary'">
+                        Elementary
                       </mat-option>
-                      <mat-option [value]="'science'"> Science </mat-option>
-                      <mat-option [value]="'mathematics'">
-                        Mathematics
-                      </mat-option>
-                      <mat-option [value]="'computer'"> Computer </mat-option>
-                      <mat-option [value]="'civil'"> Civil </mat-option>
+                      <mat-option [value]="'Middle'"> Middle </mat-option>
+                      <mat-option [value]="'High'"> High </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="proForm.get('department').hasError('required')"
