@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./about-student.component.sass'],
 })
 export class AboutStudentComponent implements OnInit {
-  i = 0;
+  num: number = 0;
   selectedStudent: any;
-  studentsData:any;
-  studentsList: Observable<{id:number, name:string}>;
+  studentsData: any;
+  studentsList: Observable<{ id: number; name: string }>;
   breadscrums = [
     {
       title: 'Profile',
@@ -19,25 +19,23 @@ export class AboutStudentComponent implements OnInit {
       active: 'Profile',
     },
   ];
-  constructor(private studentService:StudentService) {}
+  constructor(private studentService: StudentService) {}
 
   ngOnInit(): void {
     this.getList();
   }
-  
-  onChange(){
 
-    this.getStudentDetails(this.selectedStudent)
-  
+  onChange() {
+    this.getStudentDetails(this.selectedStudent);
   }
-  getStudentDetails(id:number){
-    this.studentService.getStudentById(id).subscribe(
-      (res)=> {this.studentsData = res;
-        
-      console.log(this.studentsData)}
-    );
-    }
-    getList(){
-      this.studentsList= this.studentService.getStudentsList();
-     }
+  getStudentDetails(id: number) {
+    this.studentService.getStudentById(id).subscribe((res) => {
+      this.studentsData = res;
+
+      console.log(this.studentsData);
+    });
+  }
+  getList() {
+    this.studentsList = this.studentService.getStudentsList();
+  }
 }

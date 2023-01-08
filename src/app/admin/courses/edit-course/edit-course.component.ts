@@ -13,15 +13,11 @@ import {
 export class EditCourseComponent {
   courseForm: UntypedFormGroup;
   formdata = {
-    cName: 'PHP Development',
-    cCode: 'IR43234',
-    cDetails: 'Basic php course from beginning.',
-    sDate: '2020-02-17T14:22:18Z',
-    cTyme: '10:30',
-    cPrice: '12.4$',
-    pName: '2',
-    maxStds: '130',
-    contactNo: '1234567890',
+    cName: '',
+    cCode: '',
+    cDetails: '',
+    specitailty: '',
+    year: '',
     uploadFile: '',
   };
   breadscrums = [
@@ -42,12 +38,8 @@ export class EditCourseComponent {
       cName: [this.formdata.cName, [Validators.required]],
       cCode: [this.formdata.cCode],
       cDetails: [this.formdata.cDetails, [Validators.required]],
-      sDate: [this.formdata.sDate, [Validators.required]],
-      cTyme: [this.formdata.cTyme, [Validators.required]],
-      cPrice: [this.formdata.cPrice, [Validators.required]],
-      pName: [this.formdata.pName, [Validators.required]],
-      maxStds: [this.formdata.maxStds],
-      contactNo: [this.formdata.contactNo, [Validators.required]],
+      specitailty: [this.formdata.specitailty, [Validators.required]],
+      year: [this.formdata.year, [Validators.required]],
       uploadFile: [this.formdata.uploadFile],
     });
   }

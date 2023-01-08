@@ -1,3 +1,4 @@
+import { TeacherService } from './../../../core/service/teacher.service';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -19,27 +20,29 @@ export class AddTeacherComponent {
       active: 'Add Teacher',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private teacherService: TeacherService
+  ) {
     this.proForm = this.fb.group({
-      first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      last: [''],
+      firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+      lastName: [''],
       gender: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      conformPassword: ['', [Validators.required]],
-      designation: [''],
       department: [''],
       address: [''],
       email: [
         '',
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      dob: ['', [Validators.required]],
+      registerDate: ['', [Validators.required]],
+      dateOfBirth: ['', [Validators.required]],
       education: [''],
       uploadFile: [''],
     });
   }
   onSubmit() {
-    console.log('Form Value', this.proForm.value);
+    let formData = this.proForm.value;
+    this.teacherService.addTeacher(formData).subscribe();
   }
 }

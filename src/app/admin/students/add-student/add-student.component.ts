@@ -45,7 +45,6 @@ export class AddStudentComponent {
   }
   onSubmit() {
     let formData = this.stdForm.value;
-    console.log(formData);
     this.studentService.addNewStudent(formData).subscribe();
   }
 }

@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { TeacherService } from './../../../core/service/teacher.service';
+import { Component, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-edit-teacher',
   templateUrl: './edit-teacher.component.html',
   styleUrls: ['./edit-teacher.component.sass'],
 })
-export class EditTeacherComponent {
+export class EditTeacherComponent implements OnInit {
   proForm: UntypedFormGroup;
+  selectedTeacher;
+  teacherList: any;
+  teachersDetails: any;
   formdata = {
     first: 'Pooja',
     last: 'Sarma',
@@ -34,33 +39,62 @@ export class EditTeacherComponent {
       active: 'Edit Teacher',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private teacherService: TeacherService
+  ) {}
+
+  ngOnInit(): void {
     this.proForm = this.createContactForm();
+    this.getList();
   }
   onSubmit() {
-    console.log('Form Value', this.proForm.value);
+    // console.log('Form Value', this.proForm.value);
   }
+
+  getList() {
+    this.teacherService.getTeachersList().subscribe((res) => {
+      this.teacherList = res;
+    });
+  }
+
+  getTeacherDetails(id: number) {
+    this.teacherService.getTeacherById(id).subscribe((res) => {
+      this.teachersDetails = res;
+      this.createContactForm();
+      this.proForm = this.createContactForm();
+    });
+  }
+
+  onChange() {
+    this.getTeacherDetails(this.selectedTeacher);
+  }
+
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       first: [
-        this.formdata.first,
+        this.teachersDetails?.user.firstName,
         [Validators.required, Validators.pattern('[a-zA-Z]+')],
       ],
-      last: [this.formdata.last],
-      gender: [this.formdata.gender, [Validators.required]],
-      mobile: [this.formdata.mobile, [Validators.required]],
-      password: [this.formdata.password],
-      conformPassword: [this.formdata.conformPassword],
+      last: [this.teachersDetails?.user.lastName],
+      rollNo: [this.teachersDetails?.user.id],
+      gender: [this.teachersDetails?.user.gender, [Validators.required]],
+      mobile: [this.teachersDetails?.user.mobile, [Validators.required]],
+      rDate: [this.teachersDetails?.user.registerDate, [Validators.required]],
       email: [
-        this.formdata.email,
+        this.teachersDetails?.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      designation: [this.formdata.designation],
-      department: [this.formdata.department],
-      address: [this.formdata.address],
-      dob: [this.formdata.dob, [Validators.required]],
-      education: [this.formdata.education],
-      uploadFile: [this.formdata.uploadFile],
+      department: [this.teachersDetails?.user.educationType],
+      parentName: [
+        this.teachersDetails?.user.parentName,
+        [Validators.required],
+      ],
+      parentNo: [this.teachersDetails?.user.parentPhonenumber],
+      dob: [this.teachersDetails?.user.dateOfBirth, [Validators.required]],
+      bGroup: [this.teachersDetails?.user.bloodGroup],
+      address: [this.teachersDetails?.user.address],
+      uploadFile: [this.teachersDetails?.user.uploadFile],
     });
   }
 }

@@ -43,12 +43,6 @@
                 </div>
               </div>
               <div class="row">
-                <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Roll No</mat-label>
-                    <input matInput formControlName="rollNo">
-                  </mat-form-field>
-                </div> -->
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
                     class="example-full-width mb-3"
@@ -66,8 +60,6 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
                     class="example-full-width mb-3"
@@ -85,7 +77,8 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-
+              </div>
+              <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
                     class="example-full-width mb-3"
@@ -95,33 +88,36 @@
                     <input
                       matInput
                       formControlName="mobile"
-                      type="number"
+                      type="text"
                       required
                     />
                   </mat-form-field>
                 </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Date Of Birth</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      formControlName="dateOfBirth"
+                      required
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error
+                      *ngIf="stdForm.get('dateOfBirth').hasError('required')"
+                    >
+                      Please select date
+                    </mat-error>
+                  </mat-form-field>
+                </div>
               </div>
-
-              <!-- <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" type="password" required>
-                    <mat-error *ngIf="stdForm.get('password').hasError('required')">
-                      password is required
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Re-Enter Password</mat-label>
-                    <input matInput formControlName="conformPassword" type="password" required>
-                    <mat-error *ngIf="stdForm.get('conformPassword').hasError('required')">
-                      Re-Enter password is required
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div> -->
 
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
@@ -197,37 +193,13 @@
                     <input
                       matInput
                       formControlName="parentPhonenumber"
-                      type="number"
+                      type="text"
                     />
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
-                    <mat-label>Date Of Birth</mat-label>
-                    <input
-                      matInput
-                      [matDatepicker]="picker"
-                      formControlName="dateOfBirth"
-                      required
-                    />
-                    <mat-datepicker-toggle
-                      matSuffix
-                      [for]="picker"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-error
-                      *ngIf="stdForm.get('dateOfBirth').hasError('required')"
-                    >
-                      Please select date
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
                     class="example-full-width mb-3"
                     appearance="outline"

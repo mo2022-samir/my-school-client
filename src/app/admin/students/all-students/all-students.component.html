@@ -45,20 +45,6 @@
                                   aria-label="Search box"
                                 />
                               </li>
-                              <li class="dropdown m-l-20">
-                                <label for="search-input"
-                                  ><i class="material-icons search-icon"
-                                    >search</i
-                                  ></label
-                                >
-                                <input
-                                  placeholder="Search by class..."
-                                  type="text"
-                                  #filter
-                                  class="browser-default search-field"
-                                  aria-label="Search box"
-                                />
-                              </li>
                               <li>
                                 <div
                                   class="export-button m-l-10"
@@ -73,13 +59,22 @@
                                   </button>
                                 </div>
                               </li>
-                              <!-- <li>
-                                <div class="export-button m-l-10" matTooltip="REFRESH">
-                                  <button mat-mini-fab color="primary" (click)="refresh()">
-                                    <mat-icon class="col-white">refresh</mat-icon>
+                              <li>
+                                <div
+                                  class="export-button m-l-10"
+                                  matTooltip="REFRESH"
+                                >
+                                  <button
+                                    mat-mini-fab
+                                    color="primary"
+                                    (click)="refresh()"
+                                  >
+                                    <mat-icon class="col-white"
+                                      >refresh</mat-icon
+                                    >
                                   </button>
                                 </div>
-                              </li> -->
+                              </li>
                               <li>
                                 <div
                                   class="export-button m-l-10"

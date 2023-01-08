@@ -16,6 +16,8 @@ import { EditCourseComponent } from './edit-course/edit-course.component';
 import { AboutCourseComponent } from './about-course/about-course.component';
 import { AllCourseComponent } from './all-course/all-course.component';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ComponentsModule } from 'src/app/shared/components/components.module';
     MatCheckboxModule,
     CoursesRoutingModule,
     ComponentsModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
 })
 export class CoursesModule {}

@@ -22,14 +22,10 @@ export class AddCourseComponent {
   constructor(private fb: UntypedFormBuilder) {
     this.courseForm = this.fb.group({
       cName: ['', [Validators.required]],
-      cCode: [''],
+      cCode: ['', [Validators.required]],
       cDetails: ['', [Validators.required]],
-      sDate: ['', [Validators.required]],
-      cTyme: ['', [Validators.required]],
-      cPrice: ['', [Validators.required]],
-      pName: ['', [Validators.required]],
-      maxStds: [''],
-      contactNo: ['', [Validators.required]],
+      specitailty: ['', [Validators.required]],
+      year: ['', [Validators.required]],
       uploadFile: [''],
     });
   }
