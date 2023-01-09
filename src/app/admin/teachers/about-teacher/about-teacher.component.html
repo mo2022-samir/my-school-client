@@ -10,7 +10,7 @@
       </app-breadcrumb>
     </div>
     <!-- Your content goes here  -->
-    <div class="row clearfix" *ngIf="num == 0">
+    <div class="row clearfix" >
       <div class="col-lg-12 col-md-12">
         <div class="card w-60">
           <div class="header" style="display: flex; flex-direction: column">
@@ -30,9 +30,9 @@
                 >
                   <mat-option
                     *ngFor="let item of teacherList | async"
-                    [value]="item.id"
+                    [value]="item.userId"
                   >
-                    {{ item.firstName }} {{ item.lastName }}
+                    {{ item.user.firstName }} {{ item.user.lastName }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -48,10 +48,10 @@
               <div class="contact-grid">
                 <div class="profile-header bg-dark">
                   <div class="user-name">
-                    {{ teacherData?.firstName + ' ' + teacherData?.lastName }}
+                    {{ teacherData?.user.firstName + ' ' + teacherData?.user.lastName }}
                   </div>
                   <div class="name-center">
-                    {{ teacherData?.educationType }}
+                    {{ teacherData?.department }}
                   </div>
                 </div>
                 <img
@@ -60,12 +60,12 @@
                   alt=""
                 />
                 <p>
-                  {{ teacherData?.address }}
+                  {{ teacherData?.user.address }}
                 </p>
                 <div>
                   <span class="phone">
                     <i class="material-icons">phone</i
-                    >{{ teacherData?.mobile }}</span
+                    >{{ teacherData?.user.mobile }}</span
                   >
                 </div>
               </div>

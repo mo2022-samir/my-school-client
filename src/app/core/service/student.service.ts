@@ -19,4 +19,7 @@ export class StudentService {
   addNewStudent(student: any) {
     return this.http.post(`${environment.apiUrl}student/`, student);
   }
+  editStudent(id: string,changes: any){
+    return this.http.put(environment.apiUrl + 'student/'+id, changes)
+  }
 }

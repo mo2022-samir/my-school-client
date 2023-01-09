@@ -38,7 +38,8 @@ export class AddStudentComponent {
       parentName: ['', [Validators.required]],
       parentPhonenumber: [''],
       dateOfBirth: ['', [Validators.required]],
-      bloodGroup: [''],
+      bloodGroup: ['O+'],
+      studyYear:[''],
       address: [''],
       uploadFile: [''],
     });

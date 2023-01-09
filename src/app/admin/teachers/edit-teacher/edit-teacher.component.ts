@@ -5,7 +5,6 @@ import {
   UntypedFormGroup,
   Validators,
 } from '@angular/forms';
-import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-edit-teacher',
@@ -49,7 +48,7 @@ export class EditTeacherComponent implements OnInit {
     this.getList();
   }
   onSubmit() {
-    // console.log('Form Value', this.proForm.value);
+    this.teacherService.editTeacher(this.teachersDetails?.userId,this.proForm.value).subscribe();
   }
 
   getList() {
@@ -58,7 +57,7 @@ export class EditTeacherComponent implements OnInit {
     });
   }
 
-  getTeacherDetails(id: number) {
+  getTeacherDetails(id: string) {
     this.teacherService.getTeacherById(id).subscribe((res) => {
       this.teachersDetails = res;
       this.createContactForm();
@@ -69,10 +68,12 @@ export class EditTeacherComponent implements OnInit {
 
   onChange() {
     this.getTeacherDetails(this.selectedTeacher);
+    console.log(this.selectedTeacher)
   }
 
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
+      // userId:[this.teachersDetails?.userId],
       first: [
         this.teachersDetails?.user.firstName,
         [Validators.required, Validators.pattern('[a-zA-Z]+')],

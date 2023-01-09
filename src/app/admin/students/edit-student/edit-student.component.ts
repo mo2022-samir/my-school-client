@@ -54,6 +54,7 @@ export class EditStudentComponent implements OnInit {
 
   onSubmit() {
     // console.log('Form Value', this.stdForm.value);
+    this.studentService.editStudent(this.studentsDetails?.userId,this.stdForm.value).subscribe();
   }
   getList() {
     this.studentsList = this.studentService.getStudentsList();
@@ -72,25 +73,26 @@ export class EditStudentComponent implements OnInit {
   }
   createContactForm(): FormGroup {
     return this.fb.group({
-      first: [
-        this.studentsDetails?.firstName,
+      firstName: [
+        this.studentsDetails?.user.firstName,
         [Validators.required, Validators.pattern('[a-zA-Z]+')],
       ],
-      last: [this.studentsDetails?.lastName],
-      rollNo: [this.studentsDetails?.id],
-      gender: [this.studentsDetails?.gender, [Validators.required]],
-      mobile: [this.studentsDetails?.mobile, [Validators.required]],
-      rDate: [this.studentsDetails?.registerDate, [Validators.required]],
+      lastName: [this.studentsDetails?.user.lastName],
+      rollNo: [this.studentsDetails?.serial],
+      gender: [this.studentsDetails?.user.gender, [Validators.required]],
+      mobile: [this.studentsDetails?.user.mobile, [Validators.required]],
+      registerDate: [this.studentsDetails?.user.registerDate, [Validators.required]],
       email: [
-        this.studentsDetails?.email,
+        this.studentsDetails?.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      department: [this.studentsDetails?.educationType],
+      educationType: [this.studentsDetails?.educationType],
       parentName: [this.studentsDetails?.parentName, [Validators.required]],
-      parentNo: [this.studentsDetails?.parentPhonenumber],
-      dob: [this.studentsDetails?.dateOfBirth, [Validators.required]],
-      bGroup: [this.studentsDetails?.bloodGroup],
-      address: [this.studentsDetails?.address],
+      parentPhonenumber: [this.studentsDetails?.parentPhonenumber],
+      dateOfBirth: [this.studentsDetails?.user.dateOfBirth, [Validators.required]],
+      bloodGroup: [this.studentsDetails?.user.bloodGroup],
+      studyYear:[this.studentsDetails?.studyYear],
+      address: [this.studentsDetails?.user.address],
       uploadFile: [this.studentsDetails?.uploadFile],
     });
   }

@@ -50,8 +50,8 @@
                   >
                     <mat-label>Gender</mat-label>
                     <mat-select formControlName="gender" required>
-                      <mat-option [value]="'male'"> Male </mat-option>
-                      <mat-option [value]="'female'"> Female </mat-option>
+                      <mat-option [value]="'Male'"> Male </mat-option>
+                      <mat-option [value]="'Female'"> Female </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="stdForm.get('gender').hasError('required')"
@@ -88,6 +88,34 @@
                     <input
                       matInput
                       formControlName="mobile"
+                      type="text"
+                      required
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Blood Group</mat-label>
+                    <input
+                      matInput
+                      formControlName="bloodGroup"
+                      type="text"
+                      required
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Study Year</mat-label>
+                    <input
+                      matInput
+                      formControlName="studyYear"
                       type="text"
                       required
                     />
@@ -154,7 +182,7 @@
                       <mat-option [value]="'mechanical'">
                         Mechanical
                       </mat-option>
-                      <mat-option [value]="'science'"> Science </mat-option>
+                      <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
                       <mat-option [value]="'mathematics'">
                         Mathematics
                       </mat-option>

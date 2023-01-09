@@ -29,7 +29,7 @@
                 >
                   <mat-option
                     *ngFor="let item of teacherList"
-                    [value]="item.user.id"
+                    [value]="item.user.userId"
                   >
                     {{ item.user.firstName }} {{ item.user.lastName }}
                   </mat-option>

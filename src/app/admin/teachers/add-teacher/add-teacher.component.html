@@ -125,15 +125,15 @@
                     <mat-label>Date Of Birth</mat-label>
                     <input
                       matInput
-                      [matDatepicker]="picker"
+                      [matDatepicker]="picker2"
                       formControlName="dateOfBirth"
                       required
                     />
                     <mat-datepicker-toggle
                       matSuffix
-                      [for]="picker"
+                      [for]="picker2"
                     ></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-datepicker #picker2></mat-datepicker>
                     <mat-error
                       *ngIf="proForm.get('dateOfBirth').hasError('required')"
                     >

@@ -30,9 +30,9 @@
                 >
                   <mat-option
                     *ngFor="let item of studentsList | async"
-                    [value]="item.id"
+                    [value]="item.userId"
                   >
-                    {{ item.firstName }} {{ item.lastName }}
+                    {{ item.user.firstName }} {{ item.user.lastName }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -48,7 +48,7 @@
               <div class="contact-grid">
                 <div class="profile-header bg-dark">
                   <div class="user-name">
-                    {{ studentsData?.firstName + ' ' + studentsData?.lastName }}
+                    {{ studentsData?.user.firstName + ' ' + studentsData?.user.lastName }}
                   </div>
                   <div class="name-center">
                     {{ studentsData?.educationType }}
@@ -60,12 +60,12 @@
                   alt=""
                 />
                 <p>
-                  {{ studentsData?.address }}
+                  {{ studentsData?.user.address }}
                 </p>
                 <div>
                   <span class="phone">
                     <i class="material-icons">phone</i
-                    >{{ studentsData?.mobile }}</span
+                    >{{ studentsData?.user.mobile }}</span
                   >
                 </div>
               </div>

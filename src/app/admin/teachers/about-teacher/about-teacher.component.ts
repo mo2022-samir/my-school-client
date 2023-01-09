@@ -26,8 +26,9 @@ export class AboutTeacherComponent implements OnInit {
   }
   onChange() {
     this.getTeacherDetails(this.selectedTeacher);
+  
   }
-  getTeacherDetails(id: number) {
+  getTeacherDetails(id: string) {
     this.teacherService.getTeacherById(id).subscribe((res) => {
       this.teacherData = res;
     });
