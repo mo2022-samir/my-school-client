@@ -1,25 +1,43 @@
 import { formatDate } from '@angular/common';
 export class Teachers {
-  id: number;
-  img: string;
-  name: string;
-  email: string;
-  date: string;
-  gender: string;
-  mobile: string;
+  serial: number;
+  userId: string;
+  education: string;
   department: string;
-  degree: string;
+  img: string;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    mobile: string;
+    registerDate: string;
+    dateOfBirth: string;
+    address: string;
+    bloodGroup: any;
+    email: string;
+    username: string;
+    password: string;
+    role: string;
+    isVerified: boolean;
+    isReset: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
+
   constructor(teachers) {
     {
-      this.id = teachers.id || this.getRandomID();
+      this.serial = teachers.serial || this.getRandomID();
       this.img = teachers.avatar || 'assets/images/user/user1.jpg';
-      this.name = teachers.name || '';
-      this.email = teachers.email || '';
-      this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.gender = teachers.gender || '';
-      this.mobile = teachers.mobile || '';
+      this.user.firstName = teachers.firstName || '';
+      this.user.lastName = teachers.lastName || '';
+      this.user.email = teachers.email || '';
+      this.user.dateOfBirth = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
+      this.user.createdAt = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
+      this.user.gender = teachers.gender || '';
+      this.user.mobile = teachers.mobile || '';
       this.department = teachers.department || '';
-      this.degree = teachers.degree || '';
+      this.education = teachers.education || '';
     }
   }
   public getRandomID(): string {

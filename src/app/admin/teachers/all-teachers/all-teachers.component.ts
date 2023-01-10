@@ -119,7 +119,7 @@ export class AllTeachersComponent
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x.serial === this.id
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
@@ -136,7 +136,7 @@ export class AllTeachersComponent
     });
   }
   deleteItem(row) {
-    this.id = row.id;
+    this.id = row.serial;
     let tempDirection;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -150,7 +150,7 @@ export class AllTeachersComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x.serial === this.id
         );
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
@@ -270,13 +270,16 @@ export class ExampleDataSource extends DataSource<Teachers> {
           .slice()
           .filter((teachers: Teachers) => {
             const searchStr = (
-              teachers.name +
+              teachers.user.firstName +
+              teachers.user.lastName+
               teachers.department +
-              teachers.gender +
-              teachers.degree +
-              teachers.email +
-              teachers.mobile
-            ).toLowerCase();
+              teachers.user.gender +
+              teachers.education +
+              teachers.user.email +
+              teachers.user.mobile+
+              teachers.user.createdAt
+            ).toString().toLowerCase()
+            // console.log(searchStr)
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
         // Sort filtered data
@@ -302,22 +305,22 @@ export class ExampleDataSource extends DataSource<Teachers> {
       let propertyB: number | string = '';
       switch (this._sort.active) {
         case 'id':
-          [propertyA, propertyB] = [a.id, b.id];
+          [propertyA, propertyB] = [a.serial, b.serial];
           break;
         case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+          [propertyA, propertyB] = [a.user.firstName + a.user.lastName, b.user.firstName + b.user.lastName];
           break;
         case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
+          [propertyA, propertyB] = [a.user.email, b.user.email];
           break;
         case 'date':
-          [propertyA, propertyB] = [a.date, b.date];
+          [propertyA, propertyB] = [a.user.dateOfBirth, b.user.dateOfBirth];
           break;
         case 'time':
           [propertyA, propertyB] = [a.department, b.department];
           break;
         case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
+          [propertyA, propertyB] = [a.user.mobile, b.user.mobile];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Teachers } from './teachers.model';
@@ -21,7 +22,7 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllTeacherss(): void {
-    this.subs.sink = this.httpClient.get<Teachers[]>(this.API_URL).subscribe(
+    this.subs.sink = this.httpClient.get<Teachers[]>(environment.apiUrl+ 'teacher').subscribe(
       (data) => {
         this.isTblLoading = false;
         this.dataChange.next(data);
@@ -54,14 +55,14 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   );*/
   }
   deleteTeachers(id: number): void {
-    console.log(id);
+    // console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
+     this.httpClient.delete(environment.apiUrl+ 'teacher/' + id).subscribe(data => {
       console.log(id);
       },
       (err: HttpErrorResponse) => {
          // error code here
       }
-    );*/
+    );
   }
 }
