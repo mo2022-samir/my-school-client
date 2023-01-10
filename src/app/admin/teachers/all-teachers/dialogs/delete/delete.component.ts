@@ -16,6 +16,6 @@ export class DeleteDialogComponent {
     this.dialogRef.close();
   }
   confirmDelete(): void {
-    this.teachersService.deleteTeachers(this.data.id);
+    this.teachersService.deleteTeachers(this.data.userId);
   }
 }
