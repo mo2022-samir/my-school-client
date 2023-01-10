@@ -14,8 +14,29 @@
         <div class="card">
           <div class="header">
             <h2>Edit Course</h2>
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-2">
+              <mat-form-field
+                class="example-full-width mb-3"
+                appearance="outline"
+              >
+                <mat-label>Course Name</mat-label>
+                <mat-select
+                  #courses
+                  [(value)]="selectedCourse"
+                  [(ngModel)]="selectedCourse"
+                  (selectionChange)="onChange()"
+                >
+                  <mat-option
+                    *ngFor="let item of coursesList"
+                    [value]="item.subjectId"
+                  >
+                    {{ item.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="body">
+          <div *ngIf="courses.value" class="body">
             <form class="m-4" [formGroup]="courseForm" (ngSubmit)="onSubmit()">
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
@@ -24,9 +45,9 @@
                     appearance="outline"
                   >
                     <mat-label>Course name</mat-label>
-                    <input matInput formControlName="cName" required />
+                    <input matInput formControlName="name" required />
                     <mat-error
-                      *ngIf="courseForm.get('cName').hasError('required')"
+                      *ngIf="courseForm.get('name').hasError('required')"
                     >
                       Course name is required
                     </mat-error>
@@ -38,9 +59,9 @@
                     appearance="outline"
                   >
                     <mat-label>Course code</mat-label>
-                    <input matInput formControlName="cCode" required />
+                    <input matInput formControlName="subjectId" required />
                     <mat-error
-                      *ngIf="courseForm.get('cCode').hasError('required')"
+                      *ngIf="courseForm.get('subjectId').hasError('required')"
                     >
                       Course code is required
                     </mat-error>
@@ -55,9 +76,11 @@
                     appearance="outline"
                   >
                     <mat-label>Specitailty</mat-label>
-                    <input matInput formControlName="specitailty" required />
+                    <input matInput formControlName="educationType" required />
                     <mat-error
-                      *ngIf="courseForm.get('specitailty').hasError('required')"
+                      *ngIf="
+                        courseForm.get('educationType').hasError('required')
+                      "
                     >
                       Course specitailty is required
                     </mat-error>
@@ -69,9 +92,9 @@
                     appearance="outline"
                   >
                     <mat-label>Year</mat-label>
-                    <input matInput formControlName="year" required />
+                    <input matInput formControlName="studyYear" required />
                     <mat-error
-                      *ngIf="courseForm.get('year').hasError('required')"
+                      *ngIf="courseForm.get('studyYear').hasError('required')"
                     >
                       Course Year is required
                     </mat-error>

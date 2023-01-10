@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { CoursesService } from 'src/app/core/service/courses.service';
+import { Component, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormGroup,
@@ -10,16 +11,12 @@ import {
   templateUrl: './edit-course.component.html',
   styleUrls: ['./edit-course.component.sass'],
 })
-export class EditCourseComponent {
+export class EditCourseComponent implements OnInit {
   courseForm: UntypedFormGroup;
-  formdata = {
-    cName: '',
-    cCode: '',
-    cDetails: '',
-    specitailty: '',
-    year: '',
-    uploadFile: '',
-  };
+  selectedCourse;
+  coursesList;
+  courseDetails;
+
   breadscrums = [
     {
       title: 'Edit Course',
@@ -27,20 +24,49 @@ export class EditCourseComponent {
       active: 'Edit Course',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private courseService: CoursesService
+  ) {
     this.courseForm = this.createContactForm();
   }
+
+  ngOnInit(): void {
+    this.courseForm = this.createContactForm();
+    this.getList();
+  }
+
+  getList() {
+    this.courseService.getCoursesList().subscribe((res) => {
+      this.coursesList = res;
+    });
+  }
+
+  getCourseDetails(id: string) {
+    this.courseService.getCourseById(id).subscribe((res) => {
+      this.courseDetails = res;
+      this.createContactForm();
+      this.courseForm = this.createContactForm();
+    });
+  }
+
+  onChange() {
+    this.getCourseDetails(this.selectedCourse);
+  }
+
   onSubmit() {
-    console.log('Form Value', this.courseForm.value);
+    this.courseService
+      .editCourse(this.courseDetails?.subjectId, this.courseForm.value)
+      .subscribe();
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      cName: [this.formdata.cName, [Validators.required]],
-      cCode: [this.formdata.cCode],
-      cDetails: [this.formdata.cDetails, [Validators.required]],
-      specitailty: [this.formdata.specitailty, [Validators.required]],
-      year: [this.formdata.year, [Validators.required]],
-      uploadFile: [this.formdata.uploadFile],
+      name: [this.courseDetails?.name, [Validators.required]],
+      subjectId: [this.courseDetails?.subjectId],
+      cDetails: [this.courseDetails?.cDetails, [Validators.required]],
+      educationType: [this.courseDetails?.educationType, [Validators.required]],
+      studyYear: [this.courseDetails?.studyYear, [Validators.required]],
+      uploadFile: [this.courseDetails?.uploadFile],
     });
   }
 }

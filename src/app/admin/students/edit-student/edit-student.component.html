@@ -158,15 +158,11 @@
                   >
                     <mat-label>Select Department</mat-label>
                     <mat-select formControlName="educationType" required>
-                      <mat-option [value]="'mechanical'">
-                        Mechanical
+                      <mat-option [value]="'elementary'">
+                        Elementary
                       </mat-option>
-                      <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
-                      <mat-option [value]="'mathematics'">
-                        Mathematics
-                      </mat-option>
-                      <mat-option [value]="'computer'"> Computer </mat-option>
-                      <mat-option [value]="'civil'"> Civil </mat-option>
+                      <mat-option [value]="'middle'"> Middle</mat-option>
+                      <mat-option [value]="'high'"> High </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="stdForm.get('educationType').hasError('required')"
@@ -197,7 +193,11 @@
                     appearance="outline"
                   >
                     <mat-label>Parents Mobile Number</mat-label>
-                    <input matInput formControlName="parentPhonenumber" type="text" />
+                    <input
+                      matInput
+                      formControlName="parentPhonenumber"
+                      type="text"
+                    />
                   </mat-form-field>
                 </div>
               </div>
@@ -221,7 +221,6 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                  
                     <mat-label>Date Of Birth</mat-label>
                     <input
                       matInput
@@ -234,7 +233,9 @@
                       [for]="picker"
                     ></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="stdForm.get('dateOfBirth').hasError('required')">
+                    <mat-error
+                      *ngIf="stdForm.get('dateOfBirth').hasError('required')"
+                    >
                       Please select date
                     </mat-error>
                   </mat-form-field>

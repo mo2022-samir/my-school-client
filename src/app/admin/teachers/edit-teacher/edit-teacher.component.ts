@@ -13,24 +13,10 @@ import {
 })
 export class EditTeacherComponent implements OnInit {
   proForm: UntypedFormGroup;
-  selectedTeacher;
+  selectedTeacher: any;
   teacherList: any;
   teachersDetails: any;
-  formdata = {
-    first: 'Pooja',
-    last: 'Sarma',
-    gender: 'female',
-    mobile: '123456789',
-    password: '123',
-    conformPassword: '123',
-    email: 'test@example.com',
-    designation: 'Sr. Teacher',
-    department: 'science',
-    address: '101, Elanxa, New Yourk',
-    dob: '1987-02-17T14:22:18Z',
-    education: 'M.Sc.,P.H.D.',
-    uploadFile: '',
-  };
+
   breadscrums = [
     {
       title: 'Edit Teacher',
@@ -48,7 +34,9 @@ export class EditTeacherComponent implements OnInit {
     this.getList();
   }
   onSubmit() {
-    this.teacherService.editTeacher(this.teachersDetails?.userId,this.proForm.value).subscribe();
+    this.teacherService
+      .editTeacher(this.teachersDetails?.userId, this.proForm.value)
+      .subscribe();
   }
 
   getList() {
@@ -62,18 +50,15 @@ export class EditTeacherComponent implements OnInit {
       this.teachersDetails = res;
       this.createContactForm();
       this.proForm = this.createContactForm();
-      console.log(res);
     });
   }
 
   onChange() {
     this.getTeacherDetails(this.selectedTeacher);
-    console.log(this.selectedTeacher)
   }
 
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      // userId:[this.teachersDetails?.userId],
       first: [
         this.teachersDetails?.user.firstName,
         [Validators.required, Validators.pattern('[a-zA-Z]+')],

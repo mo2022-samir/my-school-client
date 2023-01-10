@@ -17,9 +17,12 @@ export class TeacherService {
   addTeacher(teacher: any) {
     return this.http.post(environment.apiUrl + 'teacher/', teacher);
   }
-  editTeacher(id: string,changes: any){
-    return this.http.put(environment.apiUrl + 'teacher/'+id, changes).pipe(
-      shareReplay()
-    )
+  editTeacher(id: string, changes: any) {
+    return this.http
+      .put(environment.apiUrl + 'teacher/' + id, changes)
+      .pipe(shareReplay());
+  }
+  deleteTeacher(id: string) {
+    return this.http.delete(environment.apiUrl + 'teacher/' + id);
   }
 }

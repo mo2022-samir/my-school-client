@@ -1,3 +1,4 @@
+import { CoursesService } from '../../../core/service/courses.service';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -19,17 +20,21 @@ export class AddCourseComponent {
       active: 'Add Course',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private courseService: CoursesService
+  ) {
     this.courseForm = this.fb.group({
-      cName: ['', [Validators.required]],
-      cCode: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      subjectId: ['', [Validators.required]],
       cDetails: ['', [Validators.required]],
-      specitailty: ['', [Validators.required]],
-      year: ['', [Validators.required]],
+      educationType: ['', [Validators.required]],
+      studyYear: ['', [Validators.required]],
       uploadFile: [''],
     });
   }
   onSubmit() {
-    console.log('Form Value', this.courseForm.value);
+    let formData = this.courseForm.value;
+    this.courseService.addNewCourse(formData).subscribe();
   }
 }

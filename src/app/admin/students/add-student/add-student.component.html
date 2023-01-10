@@ -179,15 +179,11 @@
                   >
                     <mat-label>Select Department</mat-label>
                     <mat-select formControlName="educationType" required>
-                      <mat-option [value]="'mechanical'">
-                        Mechanical
+                      <mat-option [value]="'elementary'">
+                        Elementary
                       </mat-option>
-                      <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
-                      <mat-option [value]="'mathematics'">
-                        Mathematics
-                      </mat-option>
-                      <mat-option [value]="'computer'"> Computer </mat-option>
-                      <mat-option [value]="'civil'"> Civil </mat-option>
+                      <mat-option [value]="'middle'"> Middle </mat-option>
+                      <mat-option [value]="'high'"> High </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="stdForm.get('educationType').hasError('required')"

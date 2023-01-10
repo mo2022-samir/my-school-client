@@ -19,22 +19,7 @@ export class EditStudentComponent implements OnInit {
   selectedStudent;
   studentsList: Observable<{ id: number; name: string }>;
   studentsDetails: any;
-  formdata = {
-    fName: 'Pooja',
-    lName: 'Sarma',
-    rollNo: '12',
-    gender: 'male',
-    email: 'test@example.com',
-    mobile: '123456789',
-    rDate: '2020-02-05T14:22:18Z',
-    department: 'mathematics',
-    bGroup: 'O+',
-    dob: '1987-02-17T14:22:18Z',
-    parentName: 'Sanjay Shukla',
-    parentNo: '1234567890',
-    address: '101, Elanxa, New Yourk',
-    uploadFile: '',
-  };
+
   breadscrums = [
     {
       title: 'Edit Student',
@@ -54,7 +39,9 @@ export class EditStudentComponent implements OnInit {
 
   onSubmit() {
     // console.log('Form Value', this.stdForm.value);
-    this.studentService.editStudent(this.studentsDetails?.userId,this.stdForm.value).subscribe();
+    this.studentService
+      .editStudent(this.studentsDetails?.userId, this.stdForm.value)
+      .subscribe();
   }
   getList() {
     this.studentsList = this.studentService.getStudentsList();
@@ -81,7 +68,10 @@ export class EditStudentComponent implements OnInit {
       rollNo: [this.studentsDetails?.serial],
       gender: [this.studentsDetails?.user.gender, [Validators.required]],
       mobile: [this.studentsDetails?.user.mobile, [Validators.required]],
-      registerDate: [this.studentsDetails?.user.registerDate, [Validators.required]],
+      registerDate: [
+        this.studentsDetails?.user.registerDate,
+        [Validators.required],
+      ],
       email: [
         this.studentsDetails?.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
@@ -89,9 +79,12 @@ export class EditStudentComponent implements OnInit {
       educationType: [this.studentsDetails?.educationType],
       parentName: [this.studentsDetails?.parentName, [Validators.required]],
       parentPhonenumber: [this.studentsDetails?.parentPhonenumber],
-      dateOfBirth: [this.studentsDetails?.user.dateOfBirth, [Validators.required]],
+      dateOfBirth: [
+        this.studentsDetails?.user.dateOfBirth,
+        [Validators.required],
+      ],
       bloodGroup: [this.studentsDetails?.user.bloodGroup],
-      studyYear:[this.studentsDetails?.studyYear],
+      studyYear: [this.studentsDetails?.studyYear],
       address: [this.studentsDetails?.user.address],
       uploadFile: [this.studentsDetails?.uploadFile],
     });
