@@ -198,7 +198,7 @@
                             >Id
                           </mat-header-cell>
                           <mat-cell *matCellDef="let row">{{
-                            row.id
+                            row.serial
                           }}</mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="img">
@@ -207,14 +207,15 @@
                             *matHeaderCellDef
                             [ngClass]="'tbl-col-width-per-6'"
                           >
-                            Image
+                            Serial
                           </mat-header-cell>
                           <mat-cell
                             mat-cell
                             *matCellDef="let row"
                             class="table-img tbl-col-width-per-6"
                           >
-                            <img [src]="row.img" />
+                            <!-- <img [src]="row.img" /> -->
+                            {{row.serial}}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="name">
@@ -225,7 +226,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.name }}
+                            {{ row.user.firstName +' '+ row.user.lastName}}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="department">
@@ -244,14 +245,14 @@
                             Gender
                           </mat-header-cell>
                           <mat-cell mat-cell *matCellDef="let row">
-                            <div *ngIf="row.gender == 'male'">
+                            <div *ngIf="row.user.gender == 'Male'">
                               <span class="badge badge-solid-green">
-                                {{ row.gender }}</span
+                                {{ row.user.gender }}</span
                               >
                             </div>
-                            <div *ngIf="row.gender == 'female'">
+                            <div *ngIf="row.user.gender == 'Female'">
                               <span class="badge badge-solid-purple">
-                                {{ row.gender }}</span
+                                {{ row.user.gender }}</span
                               >
                             </div>
                             <div *ngIf="row.gender == 'other'">
@@ -269,7 +270,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.degree }}
+                            {{ row.education }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="mobile">
@@ -280,7 +281,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.mobile }}
+                            {{ row.user.mobile }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="email">
@@ -291,7 +292,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.email }}
+                            {{ row.user.email }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="date">
@@ -302,7 +303,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.date | date : 'MM/dd/yyyy' }}</mat-cell
+                            {{ row.user.createdAt | date : 'MM/dd/yyyy' }}</mat-cell
                           >
                         </ng-container>
                         <!-- actions -->

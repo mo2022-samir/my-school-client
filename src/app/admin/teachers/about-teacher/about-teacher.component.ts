@@ -34,6 +34,6 @@ export class AboutTeacherComponent implements OnInit {
     });
   }
   getList() {
-    this.teacherList = this.teacherService.getTeachersList();
+    this.teacherList = this.teacherService.getTeachers();
   }
 }

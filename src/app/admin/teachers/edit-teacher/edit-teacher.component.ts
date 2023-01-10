@@ -40,7 +40,7 @@ export class EditTeacherComponent implements OnInit {
   }
 
   getList() {
-    this.teacherService.getTeachersList().subscribe((res) => {
+    this.teacherService.getTeachers().subscribe((res) => {
       this.teacherList = res;
     });
   }

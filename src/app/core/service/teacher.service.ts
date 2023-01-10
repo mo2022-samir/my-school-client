@@ -8,7 +8,7 @@ import { shareReplay } from 'rxjs';
 export class TeacherService {
   constructor(private http: HttpClient) {}
 
-  getTeachersList() {
+  getTeachers() {
     return this.http.get(environment.apiUrl + 'teacher/');
   }
   getTeacherById(id: string) {
