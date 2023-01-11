@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { HolidayService } from 'src/app/core/service/holiday.service';
+import { Component, OnInit } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-edit-holiday',
   templateUrl: './edit-holiday.component.html',
   styleUrls: ['./edit-holiday.component.sass'],
 })
-export class EditHolidayComponent {
+export class EditHolidayComponent implements OnInit {
   holidayForm: UntypedFormGroup;
+  selectedHoliday: any;
+  holidayList: any;
+  holidayDetials: any;
   formdata = {
     no: '99',
     title: 'christmas Holiday',
@@ -23,20 +31,46 @@ export class EditHolidayComponent {
       active: 'Edit Holiday',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private holidayService: HolidayService
+  ) {
     this.holidayForm = this.createContactForm();
   }
-  onSubmit() {
-    console.log('Form Value', this.holidayForm.value);
+  ngOnInit(): void {
+    this.holidayForm;
+    this.getList();
   }
+  getList() {
+    this.holidayService.getHolidaysList().subscribe((res) => {
+      this.holidayList = res;
+    });
+  }
+  onSubmit() {
+    this.holidayService
+      .editHoliday(this.holidayDetials?.serial, this.holidayForm.value)
+      .subscribe();
+  }
+
+  getHolidayDetials(id: string) {
+    this.holidayService.getHolidayById(id).subscribe((res) => {
+      this.holidayDetials = res;
+      this.createContactForm();
+      this.holidayForm = this.createContactForm();
+    });
+  }
+
+  onChange() {
+    this.getHolidayDetials(this.selectedHoliday);
+  }
+
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      no: [this.formdata.no, [Validators.required]],
-      title: [this.formdata.title, [Validators.required]],
-      sDate: [this.formdata.sDate, [Validators.required]],
-      eDate: [this.formdata.eDate, [Validators.required]],
-      type: [this.formdata.type, [Validators.required]],
-      details: [this.formdata.details],
+      title: [this.holidayDetials?.name, [Validators.required]],
+      sDate: [this.holidayDetials?.startDate, [Validators.required]],
+      eDate: [this.holidayDetials?.endDate, [Validators.required]],
+      type: [this.holidayDetials?.type, [Validators.required]],
+      details: [this.holidayDetials?.details],
     });
   }
 }

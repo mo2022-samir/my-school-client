@@ -1,5 +1,10 @@
+import { FeeService } from '../../../core/service/fee.service';
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-fees',
@@ -15,13 +20,13 @@ export class AddFeesComponent {
       active: 'Add Fees',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(private fb: UntypedFormBuilder, private feeService: FeeService) {
     this.feesForm = this.fb.group({
-      rollNo: ['', [Validators.required]],
+      studentId: ['', [Validators.required]],
       sName: ['', [Validators.required]],
-      fType: ['', [Validators.required]],
+      feeType: ['', [Validators.required]],
       department: ['', [Validators.required]],
-      date: ['', [Validators.required]],
+      dueDate: ['', [Validators.required]],
       invoiceNo: ['', [Validators.required]],
       pType: ['', [Validators.required]],
       status: ['', [Validators.required]],
@@ -31,6 +36,7 @@ export class AddFeesComponent {
     });
   }
   onSubmit() {
-    console.log('Form Value', this.feesForm.value);
+    let formData = this.feesForm.value;
+    this.feeService.addNewFee(formData).subscribe();
   }
 }
