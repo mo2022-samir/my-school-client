@@ -28,7 +28,7 @@
                   (selectionChange)="onChange()"
                 >
                   <mat-option
-                    *ngFor="let item of coursesList"
+                    *ngFor="let item of coursesList | async"
                     [value]="item.subjectId"
                   >
                     {{ item.name }}
@@ -50,19 +50,19 @@
                 <li class="list-group-item">
                   <b>Course code </b>
                   <div class="profile-desc-item float-end">
-                    <!-- {{ courseData.subjectId }} -->
+                    {{ courseData?.subjectId }}
                   </div>
                 </li>
                 <li class="list-group-item">
                   <b>educationType </b>
                   <div class="profile-desc-item float-end">
-                    <!-- {{courseData.educationType} -->
+                    {{courseData?.educationType}}
                   </div>
                 </li>
                 <li class="list-group-item">
                   <b>studyYear </b>
                   <div class="profile-desc-item float-end">
-                    <!-- {{ courseData.studyYear }} -->
+                    {{ courseData?.studyYear }}
                   </div>
                 </li>
                 <li class="list-group-item">
