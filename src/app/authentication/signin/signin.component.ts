@@ -73,7 +73,7 @@ export class SigninComponent
               setTimeout(() => {
                 const role = this.authService.currentUserValue.role;
                 if (role === Role.All || role === Role.Admin) {
-                  this.router.navigate(['/admin/dashboard/main']);
+                  this.router.navigate(['admin/teachers/all-teachers']);
                 } else if (role === Role.Teacher) {
                   this.router.navigate(['/teacher/dashboard']);
                 } else if (role === Role.Student) {

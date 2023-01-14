@@ -26,10 +26,9 @@ export class AllStudentsComponent
 {
   displayedColumns = [
     'select',
-    'img',
     'rollNo',
     'name',
-    'department',
+    'studyYear',
     'gender',
     'mobile',
     'email',
@@ -136,7 +135,7 @@ export class AllStudentsComponent
     });
   }
   deleteItem(row) {
-    this.id = row.id;
+    this.id = row.serial;
     let tempDirection;
     if (localStorage.getItem('isRtl') === 'true') {
       tempDirection = 'rtl';
@@ -150,7 +149,7 @@ export class AllStudentsComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x.serial === this.id
         );
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
@@ -274,7 +273,9 @@ export class ExampleDataSource extends DataSource<Students> {
               students.name +
               students.email +
               students.mobile
-            ).toLowerCase();
+            )
+              .toString()
+              .toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
         // Sort filtered data

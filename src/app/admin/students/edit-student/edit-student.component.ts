@@ -76,16 +76,23 @@ export class EditStudentComponent implements OnInit {
         this.studentsDetails?.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      educationType: [this.studentsDetails?.educationType],
+      classId: [this.studentsDetails?.educationType],
       parentName: [this.studentsDetails?.parentName, [Validators.required]],
       parentPhonenumber: [this.studentsDetails?.parentPhonenumber],
       dateOfBirth: [
         this.studentsDetails?.user.dateOfBirth,
         [Validators.required],
       ],
-      bloodGroup: [this.studentsDetails?.user.bloodGroup],
-      studyYear: [this.studentsDetails?.studyYear],
-      address: [this.studentsDetails?.user.address],
+      bloodGroup: [
+        this.studentsDetails?.user.bloodGroup,
+        [Validators.required],
+      ],
+      studyYear: [this.studentsDetails?.studyYear, [Validators.required]],
+      educationType: [
+        this.studentsDetails?.educationType,
+        [Validators.required],
+      ],
+      address: [this.studentsDetails?.user.address, [Validators.required]],
       uploadFile: [this.studentsDetails?.uploadFile],
     });
   }

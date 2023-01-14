@@ -1,5 +1,7 @@
 import { formatDate } from '@angular/common';
 export class Students {
+  serial: number;
+  userId: string;
   id: number;
   img: string;
   name: string;

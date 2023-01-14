@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Students } from './students.model';
@@ -21,47 +22,55 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllStudentss(): void {
-    this.subs.sink = this.httpClient.get<Students[]>(this.API_URL).subscribe(
-      (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+    this.subs.sink = this.httpClient
+      .get<Students[]>(environment.apiUrl + 'student/')
+      .subscribe(
+        (data) => {
+          this.isTblLoading = false;
+          this.dataChange.next(data);
+        },
+        (error: HttpErrorResponse) => {
+          this.isTblLoading = false;
+          console.log(error.name + ' ' + error.message);
+        }
+      );
   }
   addStudents(students: Students): void {
     this.dialogData = students;
 
-    /*  this.httpClient.post(this.API_URL, students).subscribe(data => {
-      this.dialogData = students;
+    this.httpClient.post(environment.apiUrl + 'student/', students).subscribe(
+      (data) => {
+        this.dialogData = students;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+        // error code here
+      }
+    );
   }
   updateStudents(students: Students): void {
     this.dialogData = students;
 
-    /* this.httpClient.put(this.API_URL + students.id, students).subscribe(data => {
-      this.dialogData = students;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+    this.httpClient
+      .put(environment.apiUrl + 'student/' + students.id, students)
+      .subscribe(
+        (data) => {
+          this.dialogData = students;
+        },
+        (err: HttpErrorResponse) => {
+          // error code here
+        }
+      );
   }
-  deleteStudents(id: number): void {
+  deleteStudents(id: string): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(environment.apiUrl + 'student/' + id).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
-    );*/
+    );
   }
 }

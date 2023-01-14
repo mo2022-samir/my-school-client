@@ -215,7 +215,7 @@
                             class="table-img tbl-col-width-per-6"
                           >
                             <!-- <img [src]="row.img" /> -->
-                            {{row.serial}}
+                            {{ row.serial }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="name">
@@ -226,7 +226,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.user.firstName +' '+ row.user.lastName}}
+                            {{ row.user.firstName + ' ' + row.user.lastName }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="department">
@@ -253,11 +253,6 @@
                             <div *ngIf="row.user.gender == 'Female'">
                               <span class="badge badge-solid-purple">
                                 {{ row.user.gender }}</span
-                              >
-                            </div>
-                            <div *ngIf="row.gender == 'other'">
-                              <span class="badge badge-solid-orange">
-                                {{ row.gender }}</span
                               >
                             </div>
                           </mat-cell>
@@ -303,7 +298,9 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.user.createdAt | date : 'MM/dd/yyyy' }}</mat-cell
+                            {{
+                              row.user.createdAt | date : 'MM/dd/yyyy'
+                            }}</mat-cell
                           >
                         </ng-container>
                         <!-- actions -->
@@ -438,7 +435,7 @@
               </div>
             </div>
           </mat-tab>
-          <mat-tab>
+          <!-- <mat-tab>
             <ng-template mat-tab-label>
               <i class="material-icons-two-tone psr-3">grid_on</i>
               Grid View
@@ -817,7 +814,7 @@
                 </div>
               </div>
             </div>
-          </mat-tab>
+          </mat-tab> -->
         </mat-tab-group>
       </div>
     </div>

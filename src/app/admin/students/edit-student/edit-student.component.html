@@ -156,8 +156,8 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Select Department</mat-label>
-                    <mat-select formControlName="educationType" required>
+                    <mat-label>Select Level</mat-label>
+                    <mat-select formControlName="classId" required>
                       <mat-option [value]="'elementary'">
                         Elementary
                       </mat-option>
@@ -165,7 +165,7 @@
                       <mat-option [value]="'high'"> High </mat-option>
                     </mat-select>
                     <mat-error
-                      *ngIf="stdForm.get('educationType').hasError('required')"
+                      *ngIf="stdForm.get('classId').hasError('required')"
                     >
                       Select Any Department
                     </mat-error>
@@ -200,6 +200,24 @@
                     />
                   </mat-form-field>
                 </div>
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                <mat-form-field
+                  class="example-full-width mb-3"
+                  appearance="outline"
+                >
+                  <mat-label>Select Education Type</mat-label>
+                  <mat-select formControlName="educationType" required>
+                    <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
+                    <mat-option [value]="'Literature'"> Literature</mat-option>
+                    <mat-option [value]="'Other'"> Other </mat-option>
+                  </mat-select>
+                  <mat-error
+                    *ngIf="stdForm.get('educationType').hasError('required')"
+                  >
+                    Select Education Type
+                  </mat-error>
+                </mat-form-field>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                 <mat-form-field
