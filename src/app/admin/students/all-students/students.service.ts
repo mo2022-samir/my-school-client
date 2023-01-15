@@ -47,11 +47,11 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
       }
     );
   }
-  updateStudents(students: Students): void {
+  updateStudents(id:string, students: Students): void {
     this.dialogData = students;
 
     this.httpClient
-      .put(environment.apiUrl + 'student/' + students.id, students)
+      .put(environment.apiUrl + `student/${id}`, students)
       .subscribe(
         (data) => {
           this.dialogData = students;

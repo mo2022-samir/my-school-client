@@ -3,14 +3,14 @@
     <div mat-dialog-content>
         <ul class="clearfix">
             <li>
-                <p><span class="font-weight-bold"> Name: </span>{{data.name}}</p>
+                <p><span class="font-weight-bold"> Name: </span>{{data.user.firstName + ' ' + data.user.lastName}}</p>
             </li>
             <li>
-                <p><span class="font-weight-bold"> Department: </span>{{ data.department }}</p>
+                <p><span class="font-weight-bold"> Department: </span>{{ data.educationType }}</p>
             </li>
             <li>
                 <p>
-                    <span class="font-weight-bold">Mobile: </span>{{data.mobile}}
+                    <span class="font-weight-bold">Mobile: </span>{{data.user.mobile}}
                 </p>
             </li>
         </ul>
