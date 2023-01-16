@@ -11,30 +11,6 @@
       "status": "in stock"
     },
     {
-      "id": "003",
-      "no": "B123453",
-      "title": "Parallel Computing",
-      "subject": "networking",
-      "date": "2019-02-13T14:22:18Z",
-      "department": "computer",
-      "type": "dvd",
-      "status": "out of stock"
-    },
-    {
-      "no": "B123454",
-      "title": "Politics Science",
-      "subject": "politics",
-      "authorName": "Ahmed",
-      "publisher": "Nahdet misr",
-      "department": "computer",
-      "aType": "book",
-      "date": "2019-02-01T14:22:18Z",
-      "price": "200",
-      "status": "in stock",
-      "details": "greate book",
-      "id": "004"
-    },
-    {
       "id": "005",
       "no": "B123455",
       "title": "networking",
