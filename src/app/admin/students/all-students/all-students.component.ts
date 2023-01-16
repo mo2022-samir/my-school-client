@@ -270,12 +270,11 @@ export class ExampleDataSource extends DataSource<Students> {
           .slice()
           .filter((students: Students) => {
             const searchStr = (
+              students.user.id +
               students.user.firstName +
               students.user.lastName +
-              students.user.username +
-              students.user.mobile +
-              students.user.gender +
-              students.studyYear
+              students.user.email +
+              students.user.mobile
             )
               .toString()
               .toLowerCase();
@@ -303,7 +302,7 @@ export class ExampleDataSource extends DataSource<Students> {
       let propertyA: number | string = '';
       let propertyB: number | string = '';
       switch (this._sort.active) {
-        case 'id':
+        case 'rollNo':
           [propertyA, propertyB] = [a.serial, b.serial];
           break;
         case 'name':
@@ -312,14 +311,14 @@ export class ExampleDataSource extends DataSource<Students> {
             b.user.firstName + b.user.lastName,
           ];
           break;
-        case 'username':
-          [propertyA, propertyB] = [a.user.username, b.user.username];
-          break;
-        case 'date':
-          [propertyA, propertyB] = [a.user.password, b.user.password];
+        case 'email':
+          [propertyA, propertyB] = [a.user.email, b.user.email];
           break;
         case 'studyYear':
           [propertyA, propertyB] = [a.studyYear, b.studyYear];
+          break;
+        case 'gender':
+          [propertyA, propertyB] = [a.user.gender, b.user.gender];
           break;
         case 'mobile':
           [propertyA, propertyB] = [a.user.mobile, b.user.mobile];

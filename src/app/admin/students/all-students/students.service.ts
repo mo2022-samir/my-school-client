@@ -47,7 +47,7 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
       }
     );
   }
-  updateStudents(students: Students): void {
+  updateStudents(id: string, students: Students): void {
     this.dialogData = students;
 
     this.httpClient

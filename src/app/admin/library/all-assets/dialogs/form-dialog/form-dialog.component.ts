@@ -72,6 +72,10 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.libraryService.addLibrary(this.libraryForm.getRawValue());
+    if(this.action === "edit"){
+    this.libraryService.updateLibrary(this.libraryForm.getRawValue());
+    }else{
+      this.libraryService.addLibrary(this.libraryForm.getRawValue());
+    }
   }
 }

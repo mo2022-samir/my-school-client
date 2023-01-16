@@ -50,17 +50,31 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.students.user.id],
-      password: [this.students.user.password],
       name: [this.students.user.firstName + this.students.user.lastName],
+      firstName: [
+        this.students.user.firstName,
+        [Validators.required, Validators.pattern('[a-zA-Z]+')],
+      ],
+      lastName: [this.students.user.lastName],
+      rollNo: [this.students.serial],
+      gender: [this.students.user.gender, [Validators.required]],
+      mobile: [this.students.user.mobile, [Validators.required]],
+      createdAt: [this.students.user.registerDate, [Validators.required]],
       email: [
         this.students.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
+        this.students.user.email,
+        [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-
-      gender: [this.students.user.gender],
-      mobile: [this.students.user.mobile],
-      studyYear: [this.students.studyYear],
-      rollNo: [this.students.serial],
+      username: [this.students.user.username, [Validators.required]],
+      password: [this.students.user.password, [Validators.required]],
+      parentName: [this.students.parentName, [Validators.required]],
+      parentPhonenumber: [this.students.parentPhonenumber],
+      dateOfBirth: [this.students.user.dateOfBirth, [Validators.required]],
+      bloodGroup: [this.students.user.bloodGroup, [Validators.required]],
+      studyYear: [this.students.studyYear, [Validators.required]],
+      educationType: [this.students.educationType, [Validators.required]],
+      address: [this.students.user.address, [Validators.required]],
     });
   }
   submit() {
