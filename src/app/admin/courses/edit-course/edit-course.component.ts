@@ -63,7 +63,7 @@ export class EditCourseComponent implements OnInit {
     return this.fb.group({
       name: [this.courseDetails?.name, [Validators.required]],
       subjectId: [this.courseDetails?.subjectId],
-      cDetails: [this.courseDetails?.cDetails, [Validators.required]],
+      description: [this.courseDetails?.description, [Validators.required]],
       educationType: [this.courseDetails?.educationType, [Validators.required]],
       studyYear: [this.courseDetails?.studyYear, [Validators.required]],
       uploadFile: [this.courseDetails?.uploadFile],
