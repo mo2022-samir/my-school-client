@@ -27,7 +27,7 @@ export class AddCourseComponent {
     this.courseForm = this.fb.group({
       name: ['', [Validators.required]],
       subjectId: ['', [Validators.required]],
-      cDetails: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       educationType: ['', [Validators.required]],
       studyYear: ['', [Validators.required]],
       uploadFile: [''],

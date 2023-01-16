@@ -32,7 +32,7 @@ export class FormDialogComponent {
       this.teachers = data.teachers;
     } else {
       this.dialogTitle = 'New Teachers';
-      this.teachers = new Teachers({});
+      // this.teachers = new Teachers({});
     }
     this.proForm = this.createContactForm();
   }
@@ -49,16 +49,17 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      password: [this.teachers.user.password, Validators.required],
-      name: [this.teachers.user.firstName + this.teachers.user.lastName],
+      password: [this.teachers?.user.password, Validators.required],
+      firstName: [this.teachers?.user.firstName],
+      lastName:[this.teachers?.user.lastName],
       email: [
-        this.teachers.user.email,
+        this.teachers?.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      gender: [this.teachers.user.gender],
-      mobile: [this.teachers.user.mobile],
-      department: [this.teachers.department],
-      education: [this.teachers.education],
+      gender: [this.teachers?.user.gender],
+      mobile: [this.teachers?.user.mobile],
+      department: [this.teachers?.department],
+      education: [this.teachers?.education],
     });
   }
   submit() {}

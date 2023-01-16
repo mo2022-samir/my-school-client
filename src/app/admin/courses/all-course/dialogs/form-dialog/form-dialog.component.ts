@@ -50,6 +50,7 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       subjectId: [this.courses.subjectId],
+      description: [''],
       name: [this.courses.name],
       studyYear: [this.courses.studyYear],
       educationType: [
@@ -59,12 +60,20 @@ export class FormDialogComponent {
     });
   }
   submit() {
-    this.courseService.updateCourses(this.courses.subjectId,this.proForm.value);
+    // this.courseService.updateCourses(this.courses.subjectId,this.proForm.value);
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.courseService.addCourses(this.proForm.getRawValue());
+    if (this.action === 'edit') {
+      this.courseService.updateCourses(
+        this.courses.subjectId,
+        this.proForm.getRawValue()
+      );
+    } else {
+      this.courseService.addCourses(this.proForm.getRawValue());
+    }
   }
-}
+  }
+

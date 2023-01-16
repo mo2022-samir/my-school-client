@@ -26,17 +26,18 @@ export class Teachers {
   };
 
   constructor(teachers) {
+    debugger
     {
       this.serial = teachers.serial || this.getRandomID();
       this.img = teachers.avatar || 'assets/images/user/user1.jpg';
-      this.user.firstName = teachers.firstName || '';
-      this.user.lastName = teachers.lastName || '';
-      this.user.email = teachers.email || '';
-      this.user.password = teachers.password || '';
-      this.user.gender = teachers.gender || '';
-      this.user.mobile = teachers.mobile || '';
-      this.department = teachers.department || '';
-      this.education = teachers.education || '';
+      this.user.firstName = teachers?.firstName || '';
+      this.user.lastName = teachers?.lastName || '';
+      this.user.email = teachers?.email || '';
+      this.user.password = teachers?.password || '';
+      this.user.gender = teachers?.gender || '';
+      this.user.mobile = teachers?.mobile || '';
+      this.department = teachers?.department || '';
+      this.education = teachers?.education || '';
     }
   }
   public getRandomID(): string {
