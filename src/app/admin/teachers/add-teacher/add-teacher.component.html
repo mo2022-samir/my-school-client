@@ -23,7 +23,7 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>firstName name</mat-label>
+                    <mat-label>firstName</mat-label>
                     <input matInput formControlName="firstName" required />
                     <mat-error
                       *ngIf="proForm.get('firstName').hasError('required')"
@@ -39,6 +39,11 @@
                   >
                     <mat-label>last name</mat-label>
                     <input matInput formControlName="lastName" />
+                    <mat-error
+                      *ngIf="proForm.get('lastName').hasError('required')"
+                    >
+                      lastName name is required
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
@@ -127,7 +132,6 @@
                       matInput
                       [matDatepicker]="picker2"
                       formControlName="dateOfBirth"
-                      required
                     />
                     <mat-datepicker-toggle
                       matSuffix

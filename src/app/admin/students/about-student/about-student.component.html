@@ -48,7 +48,11 @@
               <div class="contact-grid">
                 <div class="profile-header bg-dark">
                   <div class="user-name">
-                    {{ studentsData?.user.firstName + ' ' + studentsData?.user.lastName }}
+                    {{
+                      studentsData?.user.firstName +
+                        ' ' +
+                        studentsData?.user.lastName
+                    }}
                   </div>
                   <div class="name-center">
                     {{ studentsData?.educationType }}
@@ -59,10 +63,18 @@
                   class="user-img"
                   alt=""
                 />
-                <p>
-                  {{ studentsData?.user.address }}
-                </p>
+
                 <div>
+                  <span class="home">
+                    <i class="material-icons">home</i>
+                    {{ studentsData?.user.address }}
+                  </span>
+                  <br />
+                  <span class="mail">
+                    <i class="material-icons">mail</i
+                    >{{ studentsData?.user.email }}</span
+                  >
+                  <br />
                   <span class="phone">
                     <i class="material-icons">phone</i
                     >{{ studentsData?.user.mobile }}</span

@@ -322,7 +322,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: '',
-    title: 'MENUITEMS.DEPARTMENTS.TEXT',
+    title: 'Classes',
     iconType: 'material-icons-two-tone',
     icon: 'business',
     class: 'menu-toggle',
@@ -333,7 +333,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: [
       {
         path: '/admin/departments/all-departments',
-        title: 'MENUITEMS.DEPARTMENTS.LIST.ALL-DEPARTMENT',
+        title: 'All CLasses',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -345,7 +345,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/admin/departments/add-department',
-        title: 'MENUITEMS.DEPARTMENTS.LIST.ADD-DEPARTMENT',
+        title: 'Add CLass',
         iconType: '',
         icon: '',
         class: 'ml-menu',
@@ -357,7 +357,7 @@ export const ROUTES: RouteInfo[] = [
       },
       {
         path: '/admin/departments/edit-department',
-        title: 'MENUITEMS.DEPARTMENTS.LIST.EDIT-DEPARTMENT',
+        title: 'Edit CLass',
         iconType: '',
         icon: '',
         class: 'ml-menu',

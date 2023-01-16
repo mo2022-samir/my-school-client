@@ -25,9 +25,8 @@ export class AddTeacherComponent {
     private teacherService: TeacherService
   ) {
     this.proForm = this.fb.group({
-   
       firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-      lastName: [''],
+      lastName: ['', [Validators.required]],
       gender: ['', [Validators.required]],
       mobile: ['', [Validators.required]],
       department: [''],

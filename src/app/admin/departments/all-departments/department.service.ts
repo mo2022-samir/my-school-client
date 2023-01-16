@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Department } from './department.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class DepartmentService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/department.json';
@@ -23,47 +24,36 @@ export class DepartmentService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllDepartments(): void {
-    this.subs.sink = this.httpClient.get<Department[]>(this.API_URL).subscribe(
-      (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+    this.subs.sink = this.httpClient
+      .get<Department[]>(environment.apiUrl + 'studyClass/')
+      .subscribe(
+        (data) => {
+          this.isTblLoading = false;
+          this.dataChange.next(data);
+        },
+        (error: HttpErrorResponse) => {
+          this.isTblLoading = false;
+          console.log(error.name + ' ' + error.message);
+        }
+      );
   }
   addDepartment(department: Department): void {
     this.dialogData = department;
 
-    /*  this.httpClient.post(this.API_URL, department).subscribe(data => {
-      this.dialogData = department;
-      },
-      (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+    this.httpClient
+      .post(environment.apiUrl + 'studyClass/', department)
+      .subscribe();
   }
   updateDepartment(department: Department): void {
     this.dialogData = department;
 
-    /* this.httpClient.put(this.API_URL + department.id, department).subscribe(data => {
-      this.dialogData = department;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+    this.httpClient
+      .put(environment.apiUrl + 'studyClass/' + department.classId, department)
+      .subscribe();
   }
-  deleteDepartment(id: number): void {
-    console.log(id);
-
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(id);
-      },
-      (err: HttpErrorResponse) => {
-         // error code here
-      }
-    );*/
+  deleteDepartment(classId: string): void {
+    this.httpClient
+      .delete(environment.apiUrl + 'studyClass/' + classId)
+      .subscribe();
   }
 }

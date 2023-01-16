@@ -1,27 +1,40 @@
 import { formatDate } from '@angular/common';
 export class Students {
+  classId: string;
+  educationType: string;
+  parentName: string;
+  parentPhonenumber: string;
   serial: number;
-  userId: string;
-  id: number;
-  img: string;
-  name: string;
-  email: string;
-  date: string;
-  gender: string;
-  mobile: string;
-  department: string;
-  rollNo: string;
+  studyYear: string;
+  user: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    address: string;
+    bloodGroup: string;
+    createdAt: string;
+    dateOfBirth: string;
+    email: string;
+    isReset: boolean;
+    isVerified: boolean;
+    mobile: string;
+    password: string;
+    registerDate: string;
+    role: string;
+    updatedAt: string;
+    username: string;
+    userId: '813c228a-88ed-470c-a38e-ee6deca0004f';
+  };
   constructor(students) {
     {
-      this.id = students.id || this.getRandomID();
-      this.img = students.avatar || 'assets/images/user/user1.jpg';
-      this.name = students.name || '';
-      this.email = students.email || '';
-      this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.gender = students.gender || '';
-      this.mobile = students.mobile || '';
-      this.department = students.department || '';
-      this.rollNo = students.rollNo || '';
+      this.serial = students.rollNo || this.getRandomID();
+      this.user.password = students.password || '';
+      this.user.firstName = students.firstName || '';
+      this.user.lastName = students.lastName || '';
+      this.user.email = students.email || '';
+      this.user.gender = students.gender || '';
+      this.user.mobile = students.mobile || '';
     }
   }
   public getRandomID(): string {

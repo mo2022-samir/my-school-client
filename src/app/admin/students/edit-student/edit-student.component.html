@@ -208,9 +208,10 @@
                 >
                   <mat-label>Select Education Type</mat-label>
                   <mat-select formControlName="educationType" required>
-                    <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
+                    <mat-option [value]="'Elementary'"> Elementary </mat-option>
+                    <mat-option [value]="'Middle'"> Middle </mat-option>
+                    <mat-option [value]="'Sciences'"> Sciences </mat-option>
                     <mat-option [value]="'Literature'"> Literature</mat-option>
-                    <mat-option [value]="'Other'"> Other </mat-option>
                   </mat-select>
                   <mat-error
                     *ngIf="stdForm.get('educationType').hasError('required')"
@@ -277,14 +278,6 @@
                     <mat-label>Address</mat-label>
                     <textarea matInput formControlName="address"></textarea>
                   </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
-                  <label>Upload</label>
-                  <app-file-upload
-                    formControlName="uploadFile"
-                  ></app-file-upload>
                 </div>
               </div>
               <div class="row">

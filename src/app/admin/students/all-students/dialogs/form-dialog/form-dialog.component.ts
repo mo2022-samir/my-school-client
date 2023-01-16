@@ -5,14 +5,14 @@ import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Students } from '../../students.model';
 import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.sass']
+  styleUrls: ['./form-dialog.component.sass'],
 })
 export class FormDialogComponent {
   action: string;
@@ -37,7 +37,7 @@ export class FormDialogComponent {
     this.stdForm = this.createContactForm();
   }
   formControl = new UntypedFormControl('', [
-    Validators.required
+    Validators.required,
     // Validators.email,
   ]);
   getErrorMessage() {
@@ -49,21 +49,18 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.students.id],
-      img: [this.students.img],
-      name: [this.students.name],
+      id: [this.students.user.id],
+      password: [this.students.user.password],
+      name: [this.students.user.firstName + this.students.user.lastName],
       email: [
-        this.students.email,
-        [Validators.required, Validators.email, Validators.minLength(5)]
+        this.students.user.email,
+        [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      date: [
-        formatDate(this.students.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
-      ],
-      gender: [this.students.gender],
-      mobile: [this.students.mobile],
-      department: [this.students.department],
-      rollNo: [this.students.rollNo]
+
+      gender: [this.students.user.gender],
+      mobile: [this.students.user.mobile],
+      studyYear: [this.students.studyYear],
+      rollNo: [this.students.serial],
     });
   }
   submit() {

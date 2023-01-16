@@ -41,7 +41,6 @@ export class AddStudentComponent {
       bloodGroup: [''],
       studyYear: [''],
       address: [''],
-      uploadFile: [''],
     });
   }
   onSubmit() {

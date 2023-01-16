@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { ClassesService } from 'src/app/core/service/classes.service';
 
 @Component({
   selector: 'app-edit-department',
@@ -8,15 +13,10 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 export class EditDepartmentComponent {
   departmentForm: UntypedFormGroup;
-  formdata = {
-    dName: 'mathematics',
-    hod: 'Sanjay Shah',
-    phone: '123456789',
-    email: 'test@example.com',
-    sYear: '1987-02-17T14:22:18Z',
-    sCapacity: '230',
-    details: 'Learn fashion designing course with proper guideline.',
-  };
+  selectedClass: any;
+  ClassList: any;
+  ClasssDetails: any;
+
   breadscrums = [
     {
       title: 'Edit Department',
@@ -24,24 +24,48 @@ export class EditDepartmentComponent {
       active: 'Edit',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+
+  constructor(
+    private fb: UntypedFormBuilder,
+    private classService: ClassesService
+  ) {}
+
+  ngOnInit(): void {
     this.departmentForm = this.createContactForm();
+    this.getList();
   }
   onSubmit() {
-    console.log('Form Value', this.departmentForm.value);
+    this.classService
+      .editClass(this.ClasssDetails?.userId, this.departmentForm.value)
+      .subscribe();
   }
+
+  getList() {
+    this.classService.getClassesList().subscribe((res) => {
+      this.ClassList = res;
+    });
+  }
+
+  getClassDetails(id: string) {
+    this.classService.getClassById(id).subscribe((res) => {
+      this.ClasssDetails = res;
+      this.createContactForm();
+      this.departmentForm = this.createContactForm();
+    });
+  }
+
+  onChange() {
+    this.getClassDetails(this.selectedClass);
+  }
+
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      dName: [this.formdata.dName, [Validators.required]],
-      hod: [this.formdata.hod],
-      phone: [this.formdata.phone, [Validators.required]],
-      email: [
-        this.formdata.email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
+      educationType: [this.ClasssDetails?.educationType, [Validators.required]],
+      educationlevel: [
+        this.ClasssDetails?.educationlevel,
+        [Validators.required],
       ],
-      sYear: [this.formdata.sYear],
-      sCapacity: [this.formdata.sCapacity],
-      details: [this.formdata.details],
+      classId: [this.ClasssDetails?.classId, [Validators.required]],
     });
   }
 }

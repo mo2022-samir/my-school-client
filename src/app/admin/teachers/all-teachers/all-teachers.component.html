@@ -290,17 +290,15 @@
                             {{ row.user.email }}
                           </mat-cell>
                         </ng-container>
-                        <ng-container matColumnDef="date">
+                        <ng-container matColumnDef="password">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
-                            >Joining Date
+                            >Password
                           </mat-header-cell>
                           <mat-cell
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{
-                              row.user.createdAt | date : 'MM/dd/yyyy'
-                            }}</mat-cell
+                            {{ row.user.password }}</mat-cell
                           >
                         </ng-container>
                         <!-- actions -->

@@ -49,30 +49,30 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.teachers.serial],
-      img: [this.teachers.img],
+      password: [this.teachers.user.password, Validators.required],
       name: [this.teachers.user.firstName + this.teachers.user.lastName],
       email: [
         this.teachers.user.email,
         [Validators.required, Validators.email, Validators.minLength(5)],
       ],
-      date: [
-        formatDate(this.teachers.user.dateOfBirth, 'yyyy-MM-dd', 'en'),
-        [Validators.required],
-      ],
       gender: [this.teachers.user.gender],
       mobile: [this.teachers.user.mobile],
       department: [this.teachers.department],
-      degree: [this.teachers.education],
+      education: [this.teachers.education],
     });
   }
-  submit() {
-    // emppty stuff
-  }
+  submit() {}
   onNoClick(): void {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.teachersService.addTeachers(this.proForm.getRawValue());
+    if (this.action === 'edit') {
+      this.teachersService.updateTeachers(
+        this.teachers.userId,
+        this.proForm.getRawValue()
+      );
+    } else {
+      this.teachersService.addTeachers(this.proForm.getRawValue());
+    }
   }
 }

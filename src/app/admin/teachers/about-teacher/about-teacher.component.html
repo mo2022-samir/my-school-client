@@ -10,7 +10,7 @@
       </app-breadcrumb>
     </div>
     <!-- Your content goes here  -->
-    <div class="row clearfix" >
+    <div class="row clearfix">
       <div class="col-lg-12 col-md-12">
         <div class="card w-60">
           <div class="header" style="display: flex; flex-direction: column">
@@ -48,7 +48,11 @@
               <div class="contact-grid">
                 <div class="profile-header bg-dark">
                   <div class="user-name">
-                    {{ teacherData?.user.firstName + ' ' + teacherData?.user.lastName }}
+                    {{
+                      teacherData?.user.firstName +
+                        ' ' +
+                        teacherData?.user.lastName
+                    }}
                   </div>
                   <div class="name-center">
                     {{ teacherData?.department }}
@@ -59,13 +63,20 @@
                   class="user-img"
                   alt=""
                 />
-                <p>
-                  {{ teacherData?.user.address }}
-                </p>
                 <div>
+                  <span class="homw">
+                    <i class="material-icons">home</i
+                    >{{ teacherData?.user.address }}</span
+                  >
+                  <br />
                   <span class="phone">
                     <i class="material-icons">phone</i
                     >{{ teacherData?.user.mobile }}</span
+                  >
+
+                  <span class="school">
+                    <i class="material-icons">school</i>
+                    {{ teacherData?.education }}</span
                   >
                 </div>
               </div>

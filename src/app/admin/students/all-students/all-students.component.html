@@ -193,7 +193,7 @@
                           </mat-cell>
                         </ng-container>
                         <!-- ID Column -->
-                        <ng-container matColumnDef="id">
+                        <ng-container matColumnDef="rollNo">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
                             >Id
                           </mat-header-cell>
@@ -201,23 +201,8 @@
                             row.serial
                           }}</mat-cell>
                         </ng-container>
-                        <!-- <ng-container matColumnDef="img">
-                          <mat-header-cell
-                            mat-header-cell
-                            *matHeaderCellDef
-                            [ngClass]="'tbl-col-width-per-6'"
-                          >
-                            Image
-                          </mat-header-cell>
-                          <mat-cell
-                            mat-cell
-                            *matCellDef="let row"
-                            class="table-img tbl-col-width-per-6"
-                          >
-                            <img [src]="row.img" />
-                          </mat-cell>
-                        </ng-container> -->
-                        <ng-container matColumnDef="rollNo">
+
+                        <!-- <ng-container matColumnDef="rollNo">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
                             >Roll No
                           </mat-header-cell>
@@ -227,7 +212,7 @@
                           >
                             {{ row.serial }}
                           </mat-cell>
-                        </ng-container>
+                        </ng-container> -->
                         <ng-container matColumnDef="name">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
                             >Name
@@ -278,28 +263,26 @@
                             {{ row.user.mobile }}
                           </mat-cell>
                         </ng-container>
-                        <ng-container matColumnDef="email">
+                        <ng-container matColumnDef="username">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
-                            >Email
+                            >Username
                           </mat-header-cell>
                           <mat-cell
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.user.email }}
+                            {{ row.user.username }}
                           </mat-cell>
                         </ng-container>
-                        <ng-container matColumnDef="date">
+                        <ng-container matColumnDef="password">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
-                            >Admission Date
+                            >Password
                           </mat-header-cell>
                           <mat-cell
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{
-                              row.user.createdAt | date : 'MM/dd/yyyy'
-                            }}</mat-cell
+                            {{ row.user.password }}</mat-cell
                           >
                         </ng-container>
                         <!-- actions -->
@@ -425,7 +408,7 @@
                         [length]="dataSource.filteredData.length"
                         [pageIndex]="0"
                         [pageSize]="10"
-                        [pageSizeOptions]="[5, 10, 25, 100]"
+                        [pageSizeOptions]="[5, 10, 25]"
                       >
                       </mat-paginator>
                     </div>

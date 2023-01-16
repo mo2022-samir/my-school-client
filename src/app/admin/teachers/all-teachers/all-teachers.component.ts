@@ -26,14 +26,13 @@ export class AllTeachersComponent
 {
   displayedColumns = [
     'select',
-    'img',
     'name',
     'department',
     'gender',
     'degree',
     'mobile',
     'email',
-    'date',
+    'password',
     'actions',
   ];
   exampleDatabase: TeachersService | null;
@@ -271,14 +270,16 @@ export class ExampleDataSource extends DataSource<Teachers> {
           .filter((teachers: Teachers) => {
             const searchStr = (
               teachers.user.firstName +
-              teachers.user.lastName+
+              teachers.user.lastName +
               teachers.department +
               teachers.user.gender +
               teachers.education +
               teachers.user.email +
-              teachers.user.mobile+
-              teachers.user.createdAt
-            ).toString().toLowerCase()
+              teachers.user.mobile +
+              teachers.user.password
+            )
+              .toString()
+              .toLowerCase();
             // console.log(searchStr)
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -308,15 +309,18 @@ export class ExampleDataSource extends DataSource<Teachers> {
           [propertyA, propertyB] = [a.serial, b.serial];
           break;
         case 'name':
-          [propertyA, propertyB] = [a.user.firstName + a.user.lastName, b.user.firstName + b.user.lastName];
+          [propertyA, propertyB] = [
+            a.user.firstName + a.user.lastName,
+            b.user.firstName + b.user.lastName,
+          ];
           break;
         case 'email':
           [propertyA, propertyB] = [a.user.email, b.user.email];
           break;
-        case 'date':
-          [propertyA, propertyB] = [a.user.dateOfBirth, b.user.dateOfBirth];
+        case 'password':
+          [propertyA, propertyB] = [a.user.password, b.user.password];
           break;
-        case 'time':
+        case 'department':
           [propertyA, propertyB] = [a.department, b.department];
           break;
         case 'mobile':

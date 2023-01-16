@@ -32,8 +32,7 @@ export class Teachers {
       this.user.firstName = teachers.firstName || '';
       this.user.lastName = teachers.lastName || '';
       this.user.email = teachers.email || '';
-      this.user.dateOfBirth = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.user.createdAt = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
+      this.user.password = teachers.password || '';
       this.user.gender = teachers.gender || '';
       this.user.mobile = teachers.mobile || '';
       this.department = teachers.department || '';

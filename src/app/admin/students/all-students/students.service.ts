@@ -51,7 +51,7 @@ export class StudentsService extends UnsubscribeOnDestroyAdapter {
     this.dialogData = students;
 
     this.httpClient
-      .put(environment.apiUrl + 'student/' + students.id, students)
+      .put(environment.apiUrl + 'student/' + students.user.id, students)
       .subscribe(
         (data) => {
           this.dialogData = students;

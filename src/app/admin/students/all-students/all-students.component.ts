@@ -1,3 +1,4 @@
+import { StudyYear } from './../../../../../../my-school-server/src/validator/general.validator';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { StudentsService } from './students.service';
 import { HttpClient } from '@angular/common/http';
@@ -31,8 +32,8 @@ export class AllStudentsComponent
     'studyYear',
     'gender',
     'mobile',
-    'email',
-    'date',
+    'username',
+    'password',
     'actions',
   ];
   exampleDatabase: StudentsService | null;
@@ -118,7 +119,7 @@ export class AllStudentsComponent
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
+          (x) => x.serial === this.id
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
@@ -269,10 +270,12 @@ export class ExampleDataSource extends DataSource<Students> {
           .slice()
           .filter((students: Students) => {
             const searchStr = (
-              students.id +
-              students.name +
-              students.email +
-              students.mobile
+              students.user.firstName +
+              students.user.lastName +
+              students.user.username +
+              students.user.mobile +
+              students.user.gender +
+              students.studyYear
             )
               .toString()
               .toLowerCase();
@@ -301,22 +304,25 @@ export class ExampleDataSource extends DataSource<Students> {
       let propertyB: number | string = '';
       switch (this._sort.active) {
         case 'id':
-          [propertyA, propertyB] = [a.id, b.id];
+          [propertyA, propertyB] = [a.serial, b.serial];
           break;
         case 'name':
-          [propertyA, propertyB] = [a.name, b.name];
+          [propertyA, propertyB] = [
+            a.user.firstName + a.user.lastName,
+            b.user.firstName + b.user.lastName,
+          ];
           break;
-        case 'email':
-          [propertyA, propertyB] = [a.email, b.email];
+        case 'username':
+          [propertyA, propertyB] = [a.user.username, b.user.username];
           break;
         case 'date':
-          [propertyA, propertyB] = [a.date, b.date];
+          [propertyA, propertyB] = [a.user.password, b.user.password];
           break;
-        case 'time':
-          [propertyA, propertyB] = [a.department, b.department];
+        case 'studyYear':
+          [propertyA, propertyB] = [a.studyYear, b.studyYear];
           break;
         case 'mobile':
-          [propertyA, propertyB] = [a.mobile, b.mobile];
+          [propertyA, propertyB] = [a.user.mobile, b.user.mobile];
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

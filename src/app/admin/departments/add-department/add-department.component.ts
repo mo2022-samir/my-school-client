@@ -1,5 +1,12 @@
+import { TeacherService } from './../../../core/service/teacher.service';
+import { ClassesService } from './../../../core/service/classes.service';
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-department',
@@ -15,21 +22,20 @@ export class AddDepartmentComponent {
       active: 'Add',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private classService: ClassesService,
+    private teacherService: TeacherService
+  ) {
     this.departmentForm = this.fb.group({
-      dName: ['', [Validators.required]],
-      hod: ['', [Validators.required]],
-      phone: ['', [Validators.required]],
-      email: [
-        '',
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      sYear: [''],
-      sCapacity: ['', [Validators.required]],
-      details: [''],
+      educationType: ['', [Validators.required]],
+      educationlevel: ['', [Validators.required]],
+      classId: ['', [Validators.required]],
     });
   }
+
   onSubmit() {
-    console.log('Form Value', this.departmentForm.value);
+    let formData = this.departmentForm.value;
+    this.classService.addNewClass(formData).subscribe();
   }
 }

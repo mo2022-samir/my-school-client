@@ -1,20 +1,12 @@
 export class Department {
-  id: number;
-  dName: string;
-  hod: string;
-  phone: string;
-  email: string;
-  sYear: string;
-  sCapacity: string;
+  educationType: string;
+  educationlevel: string;
+  classId: string;
   constructor(department) {
     {
-      this.id = department.id || this.getRandomID();
-      this.dName = department.dName || '';
-      this.hod = department.hod || '';
-      this.phone = department.phone || '';
-      this.email = department.email || '';
-      this.sYear = department.sYear || '';
-      this.sCapacity = department.sCapacity || '';
+      this.educationType = department.educationType || this.getRandomID();
+      this.educationlevel = department.educationlevel || '';
+      this.classId = department.classId || '';
     }
   }
   public getRandomID(): string {

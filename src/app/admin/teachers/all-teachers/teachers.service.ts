@@ -22,46 +22,52 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllTeacherss(): void {
-    this.subs.sink = this.httpClient.get<Teachers[]>(environment.apiUrl+ 'teacher').subscribe(
-      (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
-      }
-    );
+    this.subs.sink = this.httpClient
+      .get<Teachers[]>(environment.apiUrl + 'teacher')
+      .subscribe(
+        (data) => {
+          this.isTblLoading = false;
+          this.dataChange.next(data);
+        },
+        (error: HttpErrorResponse) => {
+          this.isTblLoading = false;
+          console.log(error.name + ' ' + error.message);
+        }
+      );
   }
   addTeachers(teachers: Teachers): void {
     this.dialogData = teachers;
 
-    /*  this.httpClient.post(this.API_URL, teachers).subscribe(data => {
-      this.dialogData = teachers;
+    this.httpClient.post(environment.apiUrl + 'teacher/', teachers).subscribe(
+      (data) => {
+        this.dialogData = teachers;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+        // error code here
+      }
+    );
   }
-  updateTeachers(teachers: Teachers): void {
+  updateTeachers(id, teachers: Teachers): void {
     this.dialogData = teachers;
 
-    /* this.httpClient.put(this.API_URL + teachers.id, teachers).subscribe(data => {
-      this.dialogData = teachers;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+    this.httpClient
+      .put(environment.apiUrl + 'teacher/' + id, teachers)
+      .subscribe(
+        (data) => {
+          this.dialogData = teachers;
+        },
+        (err: HttpErrorResponse) => {
+          // error code here
+        }
+      );
   }
   deleteTeachers(id: number): void {
-    // console.log(id);
-
-     this.httpClient.delete(environment.apiUrl+ 'teacher/' + id).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(environment.apiUrl + 'teacher/' + id).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
     );
   }

@@ -5,7 +5,7 @@ import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Department } from '../../department.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -13,7 +13,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.sass'],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export class FormDialogComponent {
   action: string;
@@ -29,7 +29,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      this.dialogTitle = data.department.dName;
+      this.dialogTitle = data.department.educationType;
       this.department = data.department;
     } else {
       this.dialogTitle = 'New Department';
@@ -37,33 +37,19 @@ export class FormDialogComponent {
     }
     this.departmentForm = this.createContactForm();
   }
-  formControl = new UntypedFormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
+  formControl = new UntypedFormControl('', [Validators.required]);
   getErrorMessage() {
-    return this.formControl.hasError('required')
-      ? 'Required field'
-      : this.formControl.hasError('email')
-        ? 'Not a valid email'
-        : '';
+    return this.formControl.hasError('required') ? 'Required field' : '';
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.department.id],
-      dName: [this.department.dName, [Validators.required]],
-      hod: [this.department.hod, [Validators.required]],
-      phone: [this.department.phone, [Validators.required]],
-      email: [
-        this.department.email,
-        [Validators.required, Validators.email, Validators.minLength(5)]
-      ],
-      sYear: [this.department.sYear, [Validators.required]],
-      sCapacity: [this.department.sCapacity, [Validators.required]]
+      educationType: [this.department.educationType],
+      educationlevel: [this.department.educationlevel, [Validators.required]],
+      classId: [this.department.classId, [Validators.required]],
     });
   }
   submit() {
-    // emppty stuff
+    this.departmentService.addDepartment(this.departmentForm.getRawValue());
   }
   onNoClick(): void {
     this.dialogRef.close();
