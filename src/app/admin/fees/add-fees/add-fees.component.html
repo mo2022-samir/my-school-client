@@ -16,54 +16,37 @@
             <h2>Add Fees Details</h2>
           </div>
           <div class="body">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+              <mat-form-field
+                class="example-full-width mb-3"
+                appearance="outline"
+              >
+                <mat-label>Student Name</mat-label>
+                <mat-select
+                  [(value)]="selectedStudent"
+                  [(ngModel)]="selectedStudent"
+                  (selectionChange)="onChange()"
+                >
+                  <mat-option
+                    *ngFor="let item of studentsList"
+                    [value]="item.userId"
+                  >
+                    {{ item.user.firstName + ' ' + item.user.lastName }}
+                  </mat-option>
+                </mat-select>
+                <mat-icon matSuffix>account_circle</mat-icon>
+                <mat-error
+                  *ngIf="feesForm.get('sName').hasError('required')"
+                >
+                  Please enter student name
+                </mat-error>
+              </mat-form-field>
+            </div>
             <form
               class="register-form m-4"
               [formGroup]="feesForm"
               (ngSubmit)="onSubmit()"
             >
-              <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
-                    <mat-label>Student Name</mat-label>
-                    <mat-select
-                      [(value)]="selectedStudent"
-                      [(ngModel)]="selectedStudent"
-                      (selectionChange)="onChange()"
-                    >
-                      <mat-option
-                        *ngFor="let item of studentsList"
-                        [value]="item.userId"
-                      >
-                        {{ item.user.firstName + ' ' + item.user.lastName }}
-                      </mat-option>
-                    </mat-select>
-                    <mat-icon matSuffix>account_circle</mat-icon>
-                    <mat-error
-                      *ngIf="feesForm.get('sName').hasError('required')"
-                    >
-                      Please enter student name
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
-                    <mat-label>Student Id</mat-label>
-                    <input matInput formControlName="studentId" required />
-                    <mat-icon matSuffix>label</mat-icon>
-                    <mat-error
-                      *ngIf="feesForm.get('studentId').hasError('required')"
-                    >
-                      Please enter Student Id
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field

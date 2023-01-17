@@ -48,21 +48,6 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>studentId</mat-label>
-                    <input matInput formControlName="studentId" required />
-                    <mat-icon matSuffix>label</mat-icon>
-                    <mat-error
-                      *ngIf="feesForm.get('studentId').hasError('required')"
-                    >
-                      Please enter roll no
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
                     <mat-label>Student Name</mat-label>
                     <input matInput formControlName="sName" />
                     <mat-icon matSuffix>account_circle</mat-icon>
@@ -75,29 +60,6 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
-                    <mat-label>Select Department</mat-label>
-                    <mat-select formControlName="department">
-                      <mat-option [value]="'elementary'">
-                        Elementary
-                      </mat-option>
-                      <mat-option [value]="'middle'"> Middle </mat-option>
-                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
-                      <mat-option [value]="'Literature'">
-                        Literature
-                      </mat-option>
-                    </mat-select>
-                    <mat-error
-                      *ngIf="feesForm.get('department').hasError('required')"
-                    >
-                      Select Any Department
-                    </mat-error>
-                  </mat-form-field>
-                </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
                     class="example-full-width"
@@ -196,7 +158,7 @@
                     appearance="outline"
                   >
                     <mat-label>Amount</mat-label>
-                    <input matInput formControlName="amount" required />
+                    <input matInput formControlName="amount" required type="number" />
                     <mat-icon matSuffix>monetization_on</mat-icon>
                     <mat-error
                       *ngIf="feesForm.get('amount').hasError('required')"
@@ -231,6 +193,7 @@
                     <button mat-raised-button color="warn" tabindex="-1">
                       Cancel
                     </button>
+                    {{feesForm.value | json}}
                   </div>
                 </div>
               </div>
