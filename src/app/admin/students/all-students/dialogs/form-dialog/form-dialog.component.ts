@@ -32,7 +32,7 @@ export class FormDialogComponent {
       this.students = data.students;
     } else {
       this.dialogTitle = 'New Students';
-      this.students = new Students({});
+      // this.students = new Students({});
     }
     this.stdForm = this.createContactForm();
   }
@@ -49,32 +49,24 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.students.user.id],
-      name: [this.students.user.firstName + this.students.user.lastName],
-      firstName: [
-        this.students.user.firstName,
-        [Validators.required, Validators.pattern('[a-zA-Z]+')],
+      // userId: [this.students?.userId],
+      firstName: [this.students?.user.firstName ],
+      lastName: [
+        this.students?.user.lastName,
+        [Validators.required,],
       ],
-      lastName: [this.students.user.lastName],
-      rollNo: [this.students.serial],
-      gender: [this.students.user.gender, [Validators.required]],
-      mobile: [this.students.user.mobile, [Validators.required]],
-      createdAt: [this.students.user.registerDate, [Validators.required]],
-      email: [
-        this.students.user.email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-        this.students.user.email,
-        [Validators.required, Validators.email, Validators.minLength(5)],
-      ],
-      username: [this.students.user.username, [Validators.required]],
-      password: [this.students.user.password, [Validators.required]],
-      parentName: [this.students.parentName, [Validators.required]],
-      parentPhonenumber: [this.students.parentPhonenumber],
-      dateOfBirth: [this.students.user.dateOfBirth, [Validators.required]],
-      bloodGroup: [this.students.user.bloodGroup, [Validators.required]],
-      studyYear: [this.students.studyYear, [Validators.required]],
-      educationType: [this.students.educationType, [Validators.required]],
-      address: [this.students.user.address, [Validators.required]],
+      classId:[null],
+      serial: [this.students?.serial],
+      gender: [this.students?.user.gender, [Validators.required]],
+      mobile: [this.students?.user.mobile, [Validators.required]],
+  
+      username: [this.students?.user.username, [Validators.required]],
+      password: [this.students?.user.password, [Validators.required]],
+      parentName: [this.students?.parentName, [Validators.required]],
+      parentPhonenumber: [this.students?.parentPhonenumber],
+      studyYear: [this.students?.studyYear, [Validators.required]],
+      educationType: [this.students?.educationType, [Validators.required]],
+      
     });
   }
   submit() {
@@ -84,6 +76,13 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.studentsService.addStudents(this.stdForm.getRawValue());
+    if (this.action === 'edit') {
+      this.studentsService.updateStudents(
+        this.students.userId,
+        this.stdForm.getRawValue()
+      );
+    } else {
+      this.studentsService.addStudents(this.stdForm.getRawValue());
+    }
   }
 }
