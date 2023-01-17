@@ -273,7 +273,7 @@ export class ExampleDataSource extends DataSource<Fees> {
               fees.rollNo +
               fees.sName +
               fees.fType +
-              fees.date +
+              fees.dueDate +
               fees.invoiceNo +
               fees.pType +
               fees.status

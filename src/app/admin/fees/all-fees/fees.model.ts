@@ -4,7 +4,7 @@ export class Fees {
   rollNo: string;
   sName: string;
   fType: string;
-  date: string;
+  dueDate: any;
   invoiceNo: string;
   pType: string;
   status: string;
@@ -18,7 +18,7 @@ export class Fees {
       this.rollNo = fees.rollNo || '';
       this.sName = fees.sName || '';
       this.fType = fees.fType || '';
-      this.date = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
+      this.dueDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || new Date();
       this.invoiceNo = fees.invoiceNo || '';
       this.pType = fees.pType || '';
       this.status = fees.status || '';

@@ -30,12 +30,11 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      console.log(data.fees.date);
       this.dialogTitle = data.fees.sName;
       this.fees = data.fees;
     } else {
       this.dialogTitle = 'New Fees';
-      this.fees = new Fees({});
+      // this.fees = new Fees({});
     }
     this.feesForm = this.createContactForm();
   }
@@ -52,17 +51,17 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      studentId: [this.fees.studentId],
-      serial: [this.fees.serial, [Validators.required]],
-      feeType: [this.fees.feeType, [Validators.required]],
+      studentId: [this.fees?.studentId],
+      serial: [this.fees?.serial, [Validators.required]],
+      feeType: [this.fees?.feeType, [Validators.required]],
       dueDate: [
-        formatDate(this.fees.dueDate, 'yyyy-MM-dd', 'en'),
+        formatDate(this.fees?.dueDate || new Date(), 'yyyy-MM-dd', 'en'),
         [Validators.required],
       ],
 
-      paymentType: [this.fees.paymentType, [Validators.required]],
-      status: [this.fees.status, [Validators.required]],
-      amount: [this.fees.amount, [Validators.required]],
+      paymentType: [this.fees?.paymentType, [Validators.required]],
+      status: [this.fees?.status, [Validators.required]],
+      amount: [this.fees?.amount, [Validators.required]],
     });
   }
   submit() {
@@ -72,6 +71,13 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.feesService.addFees(this.feesForm.getRawValue());
+    if (this.action === 'edit') {
+      this.feesService.updateFees(
+        this.fees.serial,
+        this.feesForm.getRawValue()
+      );
+    } else {
+      this.feesService.addFees(this.feesForm.getRawValue());
+    }
   }
 }
