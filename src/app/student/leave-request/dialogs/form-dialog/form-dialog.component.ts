@@ -67,8 +67,14 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.leaveRequestService.addLeaveRequest(
-      this.leaveRequestForm.getRawValue()
-    );
+    if (this.action === 'edit') {
+      this.leaveRequestService.updateLeaveRequest(
+        this.leaveRequestForm.getRawValue()
+      );
+    } else {
+      this.leaveRequestService.addLeaveRequest(
+        this.leaveRequestForm.getRawValue()
+      );
+    }
   }
 }

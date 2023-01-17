@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Homework } from './homework.modal';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Injectable()
 export class HomeworkService {
-  private readonly API_URL = 'assets/data/stdHomework.json';
+  private readonly API_URL = 'https://my-school.deta.dev/stdHomework';
 
   dataChange: BehaviorSubject<Homework[]> = new BehaviorSubject<Homework[]>([]);
   // Temporarily stores data from dialogs
@@ -25,38 +25,40 @@ export class HomeworkService {
     return this.httpClient.get<Homework[]>(this.API_URL);
   }
 
-  addIssue(homework: Homework): void {
-    this.dialogData = homework;
+  addLeaveRequest(leaveRequest: Homework): void {
+    this.dialogData = leaveRequest;
 
-    /*  this.httpClient.post(this.API_URL, homework).subscribe(data => {
-      this.dialogData = homework;
+    this.httpClient.post(this.API_URL, leaveRequest).subscribe(
+      (data) => {
+        this.dialogData = leaveRequest;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+        // error code here
+      }
+    );
   }
+  updateLeaveRequest(leaveRequest: Homework): void {
+    this.dialogData = leaveRequest;
 
-  updateIssue(homework: Homework): void {
-    this.dialogData = homework;
-
-    /* this.httpClient.put(this.API_URL + homework.id, homework).subscribe(data => {
-      this.dialogData = homework;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+    this.httpClient.put(this.API_URL + leaveRequest.id, leaveRequest).subscribe(
+      (data) => {
+        this.dialogData = leaveRequest;
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
   }
-
-  deleteIssue(id: number): void {
+  deleteLeaveRequest(id: number): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(this.API_URL + id).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
-    );*/
+    );
   }
 }

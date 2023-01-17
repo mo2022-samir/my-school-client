@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 @Injectable()
 export class LeaveRequestService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = 'assets/data/stdLeaveReq.json';
+  private readonly API_URL = 'https://my-school.deta.dev/stdLeaveReq';
   isTblLoading = true;
   dataChange: BehaviorSubject<LeaveRequest[]> = new BehaviorSubject<
     LeaveRequest[]
@@ -39,33 +39,37 @@ export class LeaveRequestService extends UnsubscribeOnDestroyAdapter {
   addLeaveRequest(leaveRequest: LeaveRequest): void {
     this.dialogData = leaveRequest;
 
-    /*  this.httpClient.post(this.API_URL, leaveRequest).subscribe(data => {
-      this.dialogData = leaveRequest;
+    this.httpClient.post(this.API_URL, leaveRequest).subscribe(
+      (data) => {
+        this.dialogData = leaveRequest;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+        // error code here
+      }
+    );
   }
   updateLeaveRequest(leaveRequest: LeaveRequest): void {
     this.dialogData = leaveRequest;
 
-    /* this.httpClient.put(this.API_URL + leaveRequest.id, leaveRequest).subscribe(data => {
-      this.dialogData = leaveRequest;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+    this.httpClient.put(this.API_URL + leaveRequest.id, leaveRequest).subscribe(
+      (data) => {
+        this.dialogData = leaveRequest;
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
   }
   deleteLeaveRequest(id: number): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(this.API_URL + id).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
-    );*/
+    );
   }
 }

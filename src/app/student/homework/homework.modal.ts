@@ -1,5 +1,5 @@
 export class Homework {
-  id: string;
+  id: number;
   class: string;
   section: string;
   subject: string;

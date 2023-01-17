@@ -2,7 +2,11 @@
   <div class="content-block">
     <div class="block-header" *ngFor="let breadscrum of breadscrums">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      <app-breadcrumb
+        [title]="breadscrum.title"
+        [items]="breadscrum.items"
+        [active_item]="breadscrum.active"
+      >
       </app-breadcrumb>
     </div>
     <div class="row">
@@ -18,88 +22,182 @@
                         <h2>Homework</h2>
                       </li>
                       <li class="dropdown m-l-20">
-                        <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input (keyup)="applyFilter($event)" type="text" class="browser-default search-field"
-                          placeholder="Search">
+                        <label for="search-input"
+                          ><i class="material-icons search-icon"
+                            >search</i
+                          ></label
+                        >
+                        <input
+                          (keyup)="applyFilter($event)"
+                          type="text"
+                          class="browser-default search-field"
+                          placeholder="Search"
+                        />
+                      </li>
+                      <li>
+                        <!-- <div class="export-button m-l-10" matTooltip="ADD">
+                          <button mat-mini-fab color="primary" (click)="addNew()">
+                            <mat-icon class="col-white">add</mat-icon>
+                          </button>
+                        </div> -->
+                      </li>
+                      <li>
+                        <div class="export-button m-l-10" matTooltip="REFRESH">
+                          <button
+                            mat-mini-fab
+                            color="primary"
+                            (click)="refresh()"
+                          >
+                            <mat-icon class="col-white">refresh</mat-icon>
+                          </button>
+                        </div>
                       </li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+              <mat-table
+                #table
+                [dataSource]="dataSource"
+                matSort
+                class="mat-cell"
+              >
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    ID
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
                 </ng-container>
 
                 <!-- Class Column -->
                 <ng-container matColumnDef="class">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Class </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.class}} </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Class
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ row.class }} </mat-cell>
                 </ng-container>
 
                 <!-- Section Column -->
                 <ng-container matColumnDef="section">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Section </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.section}} </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Section
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ row.section }} </mat-cell>
                 </ng-container>
 
                 <!-- Subject Column -->
                 <ng-container matColumnDef="subject">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Subject </mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.subject}} </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Subject
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{ row.subject }} </mat-cell>
                 </ng-container>
 
                 <!-- Homework Date Column -->
                 <ng-container matColumnDef="homeworkDate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Homework Date</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.homeworkDate | date: 'MM/dd/yyyy' }}
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >Homework Date</mat-header-cell
+                  >
+                  <mat-cell *matCellDef="let row">
+                    {{ row.homeworkDate | date : 'MM/dd/yyyy' }}
                   </mat-cell>
                 </ng-container>
 
                 <!-- Submission Date Column -->
                 <ng-container matColumnDef="submissionDate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Submission Date</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.submissionDate | date: 'MM/dd/yyyy' }}
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >Submission Date</mat-header-cell
+                  >
+                  <mat-cell *matCellDef="let row">
+                    {{ row.submissionDate | date : 'MM/dd/yyyy' }}
                   </mat-cell>
                 </ng-container>
 
                 <!-- Evalution Date Column -->
                 <ng-container matColumnDef="evalutionDate">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Evalution Date</mat-header-cell>
-                  <mat-cell *matCellDef="let row"> {{row.evalutionDate | date: 'MM/dd/yyyy' }}
+                  <mat-header-cell *matHeaderCellDef mat-sort-header
+                    >Evalution Date</mat-header-cell
+                  >
+                  <mat-cell *matCellDef="let row">
+                    {{ row.evalutionDate | date : 'MM/dd/yyyy' }}
                   </mat-cell>
                 </ng-container>
 
                 <!-- status Column -->
                 <ng-container matColumnDef="status">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header> Status
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Status
                   </mat-header-cell>
                   <mat-cell mat-cell *matCellDef="let row">
-                    <div *ngIf="row.status=='Complete'">
+                    <div *ngIf="row.status == 'Complete'">
                       <span class="badge badge-solid-green">
-                        {{row.status}}</span>
+                        {{ row.status }}</span
+                      >
                     </div>
-                    <div *ngIf="row.status=='Incomplete'">
+                    <div *ngIf="row.status == 'Incomplete'">
                       <span class="badge badge-solid-orange">
-                        {{row.status}}</span>
+                        {{ row.status }}</span
+                      >
                     </div>
                   </mat-cell>
                 </ng-container>
                 <!-- actions -->
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <ng-container matColumnDef="actions">
+                  <mat-header-cell *matHeaderCellDef class="pr-0"
+                    >Actions</mat-header-cell
+                  >
+                  <mat-cell *matCellDef="let row; let i = index" class="pr-0">
+                    <!-- <button
+                      mat-icon-button
+                      (click)="$event.stopPropagation()"
+                      (click)="editCall(row)"
+                      class="tbl-action-btn"
+                    >
+                      <app-feather-icons
+                        [icon]="'edit'"
+                        [class]="'tbl-fav-edit'"
+                      ></app-feather-icons>
+                    </button> -->
+                    <button
+                      mat-icon-button
+                      (click)="$event.stopPropagation()"
+                      (click)="deleteItem(row)"
+                      class="tbl-action-btn"
+                    >
+                      <app-feather-icons
+                        [icon]="'trash-2'"
+                        [class]="'tbl-fav-delete'"
+                      ></app-feather-icons>
+                    </button>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row
+                  *matHeaderRowDef="displayedColumns"
+                ></mat-header-row>
                 <!-- <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> -->
-                <mat-row *matRowDef="let row; columns: displayedColumns;" [style.cursor]="'pointer'" matRipple>
+                <mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                  [style.cursor]="'pointer'"
+                  matRipple
+                >
                 </mat-row>
               </mat-table>
-              <div class="no-results" [style.display]="dataLength == 0 ? '' : 'none'">
+              <div
+                class="no-results"
+                [style.display]="dataLength == 0 ? '' : 'none'"
+              >
                 No results
               </div>
 
-              <mat-paginator #paginator [length]="dataLength" [pageIndex]="0" [pageSize]="10"
-                [pageSizeOptions]="[5, 10, 25, 100]">
+              <mat-paginator
+                #paginator
+                [length]="dataLength"
+                [pageIndex]="0"
+                [pageSize]="10"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+              >
               </mat-paginator>
             </div>
           </div>

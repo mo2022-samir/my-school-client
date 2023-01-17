@@ -215,7 +215,7 @@
                             class="table-img tbl-col-width-per-6"
                           >
                             <!-- <img [src]="row.img" /> -->
-                            {{row.subjectId}}
+                            {{ row.subjectId }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="name">
@@ -226,7 +226,7 @@
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.name}}
+                            {{ row.name }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="studyYear">
@@ -240,7 +240,7 @@
                             {{ row.studyYear }}</mat-cell
                           >
                         </ng-container>
-                        
+
                         <ng-container matColumnDef="educationType">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
                             >Education Type
@@ -252,7 +252,7 @@
                             {{ row.educationType }}
                           </mat-cell>
                         </ng-container>
-                        
+
                         <!-- actions -->
                         <ng-container matColumnDef="actions">
                           <mat-header-cell class="pr-0" *matHeaderCellDef
@@ -385,7 +385,7 @@
               </div>
             </div>
           </mat-tab>
-          <mat-tab>
+          <!-- <mat-tab>
             <ng-template mat-tab-label>
               <i class="material-icons-two-tone psr-3">grid_on</i>
               Grid View
@@ -764,7 +764,7 @@
                 </div>
               </div>
             </div>
-          </mat-tab>
+          </mat-tab> -->
         </mat-tab-group>
       </div>
     </div>

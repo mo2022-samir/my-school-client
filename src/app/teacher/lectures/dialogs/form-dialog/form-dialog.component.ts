@@ -88,6 +88,10 @@ export class FormDialogComponent implements OnInit {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.lecturesService.addLectures(this.lecturesForm.getRawValue());
+    if (this.action === 'edit') {
+      this.lecturesService.updateLectures(this.lecturesForm.getRawValue());
+    } else {
+      this.lecturesService.addLectures(this.lecturesForm.getRawValue());
+    }
   }
 }
