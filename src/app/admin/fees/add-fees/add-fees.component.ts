@@ -31,7 +31,7 @@ export class AddFeesComponent implements OnInit {
     private studentSerivce: StudentService
   ) {
     this.feesForm = this.fb.group({
-      studentId: ['', [Validators.required]],
+      studentId: [this.selectedStudent, [Validators.required]],
       sName: [''],
       feeType: ['', [Validators.required]],
       department: [''],
@@ -60,6 +60,7 @@ export class AddFeesComponent implements OnInit {
   }
   onChange() {
     this.getFeeDetails(this.selectedStudent);
+    this.feesForm.patchValue({studentId:this.selectedStudent})
   }
   onSubmit() {
     let formData = this.feesForm.value;

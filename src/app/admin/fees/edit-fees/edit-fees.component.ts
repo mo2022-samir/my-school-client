@@ -68,9 +68,8 @@ export class EditFeesComponent implements OnInit {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       studentId: [this.feeDetails?.studentId, [Validators.required]],
-      sName: [this.feeDetails?.sName],
+      sName: [this.feeDetails?.student.user.firstName +' '+ this.feeDetails?.student.user.lastName],
       feeType: [this.feeDetails?.feeType, [Validators.required]],
-      department: [this.feeDetails?.department],
       dueDate: [this.feeDetails?.dueDate, [Validators.required]],
       paymentType: [this.feeDetails?.paymentType, [Validators.required]],
       status: [this.feeDetails?.status, [Validators.required]],
