@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 @Injectable()
 export class StaffService extends UnsubscribeOnDestroyAdapter {
-  private readonly API_URL = 'assets/data/staff.json';
+  private readonly API_URL = 'http://localhost:3000/staff';
   isTblLoading = true;
   dataChange: BehaviorSubject<Staff[]> = new BehaviorSubject<Staff[]>([]);
   // Temporarily stores data from dialogs
@@ -33,36 +33,40 @@ export class StaffService extends UnsubscribeOnDestroyAdapter {
     );
   }
 
-  addStaff(staff: Staff): void {
+  addStaff(staff: Staff): any {
     this.dialogData = staff;
 
-    /*  this.httpClient.post(this.API_URL, staff).subscribe(data => {
-      this.dialogData = staff;
+    this.httpClient.post(this.API_URL, staff).subscribe(
+      (data) => {
+        this.dialogData = staff;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });*/
+        // error code here
+      }
+    );
   }
-  updateStaff(staff: Staff): void {
+  updateStaff(staff: Staff): any {
     this.dialogData = staff;
 
-    /* this.httpClient.put(this.API_URL + staff.id, staff).subscribe(data => {
-      this.dialogData = staff;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+    this.httpClient.put(this.API_URL + `/${staff.id}`, staff).subscribe(
+      (data) => {
+        this.dialogData = staff;
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
   }
   deleteStaff(id: number): void {
     console.log(id);
 
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(this.API_URL + `/${id}`).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
-    );*/
+    );
   }
 }

@@ -50,7 +50,11 @@
                   >
                     <mat-label>Education Type</mat-label>
                     <mat-select formControlName="educationType" required>
-                      <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
+                      <mat-option [value]="'Elementray'">
+                        Elementray
+                      </mat-option>
+                      <mat-option [value]="'Middle'"> Middle </mat-option>
+                      <mat-option [value]="'sciences'"> sciences </mat-option>
                       <mat-option [value]="'Literature'">
                         Literature
                       </mat-option>
@@ -73,18 +77,17 @@
                     appearance="outline"
                   >
                     <mat-label>Education Level</mat-label>
-                    <mat-select formControlName="educationlevel" required>
-                      <mat-option [value]="'Elementray'">
-                        Elementray
-                      </mat-option>
-                      <mat-option [value]="'Middle'"> Middle </mat-option>
-                      <mat-option [value]="'High'"> High </mat-option>
+                    <mat-select formControlName="studyYear" required>
+                      <mat-option [value]="'1'"> 1 </mat-option>
+                      <mat-option [value]="'2'"> 2 </mat-option>
+                      <mat-option [value]="'3'"> 3 </mat-option>
+                      <mat-option [value]="'4'"> 4 </mat-option>
+                      <mat-option [value]="'5'"> 5 </mat-option>
+                      <mat-option [value]="'6'"> 6 </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="
-                        departmentForm
-                          .get('educationlevel')
-                          .hasError('required')
+                        departmentForm.get('studyYear').hasError('required')
                       "
                     >
                       Select Any Education Level

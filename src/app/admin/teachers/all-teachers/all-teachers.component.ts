@@ -30,7 +30,7 @@ export class AllTeachersComponent
     'department',
     'gender',
     'degree',
-    'mobile',
+    'username',
     'email',
     'password',
     'actions',
@@ -84,12 +84,10 @@ export class AllTeachersComponent
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataServicex
         this.exampleDatabase.dataChange.value.unshift(
           this.teachersService.getDialogData()
-         
         );
         this.loadData();
         this.refreshTable();
@@ -121,9 +119,10 @@ export class AllTeachersComponent
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) =>{ x.serial === this.id;
-          this.loadData()}
-
+          (x) => {
+            x.serial === this.id;
+            this.loadData();
+          }
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
@@ -194,7 +193,7 @@ export class AllTeachersComponent
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase.dataChange.value.splice(index, 1);
-      this.exampleDatabase.deleteTeachers(item.userId)
+      this.exampleDatabase.deleteTeachers(item.userId);
       this.refreshTable();
       this.selection = new SelectionModel<Teachers>(true, []);
     });

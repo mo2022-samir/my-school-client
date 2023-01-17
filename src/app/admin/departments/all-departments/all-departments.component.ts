@@ -28,7 +28,7 @@ export class AllDepartmentsComponent
     'select',
     'classId',
     'educationType',
-    'educationlevel',
+    'studyYear',
     'actions',
   ];
   exampleDatabase: DepartmentService | null;

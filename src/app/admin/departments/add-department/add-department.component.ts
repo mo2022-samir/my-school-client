@@ -29,7 +29,7 @@ export class AddDepartmentComponent {
   ) {
     this.departmentForm = this.fb.group({
       educationType: ['', [Validators.required]],
-      educationlevel: ['', [Validators.required]],
+      studyYear: ['', [Validators.required]],
       classId: ['', [Validators.required]],
     });
   }

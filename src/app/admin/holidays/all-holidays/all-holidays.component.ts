@@ -24,16 +24,7 @@ export class AllHolidaysComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
-  displayedColumns = [
-    'select',
-    'no',
-    'title',
-    'sDate',
-    'eDate',
-    'type',
-    'details',
-    'actions',
-  ];
+  displayedColumns = ['select', 'no', 'title', 'sDate', 'eDate', 'actions'];
   exampleDatabase: HolidayService | null;
   dataSource: ExampleDataSource | null;
   selection = new SelectionModel<Holiday>(true, []);
@@ -270,11 +261,9 @@ export class ExampleDataSource extends DataSource<Holiday> {
           .filter((holiday: Holiday) => {
             const searchStr = (
               holiday.no +
-              holiday.title +
-              holiday.sDate +
-              holiday.eDate +
-              holiday.type +
-              holiday.details
+              holiday.name +
+              holiday.startDate +
+              holiday.endDate
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -307,14 +296,9 @@ export class ExampleDataSource extends DataSource<Holiday> {
           [propertyA, propertyB] = [a.no, b.no];
           break;
         case 'title':
-          [propertyA, propertyB] = [a.title, b.title];
+          [propertyA, propertyB] = [a.name, b.name];
           break;
-        // case 'date': [propertyA, propertyB] = [a.date, b.date]; break;
-        case 'type':
-          [propertyA, propertyB] = [a.type, b.type];
-          break;
-        case 'details':
-          [propertyA, propertyB] = [a.details, b.details];
+          // case 'date': [propertyA, propertyB] = [a.date, b.date]; break;
           break;
       }
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

@@ -28,10 +28,8 @@ export class AllFeesComponent
   displayedColumns = [
     'select',
     'rollNo',
-    'sName',
     'fType',
     'date',
-    'invoiceNo',
     'pType',
     'status',
     'amount',

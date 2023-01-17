@@ -4,7 +4,7 @@ import { FeesService } from '../../fees.service';
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.sass']
+  styleUrls: ['./delete.component.sass'],
 })
 export class DeleteDialogComponent {
   constructor(
@@ -16,6 +16,6 @@ export class DeleteDialogComponent {
     this.dialogRef.close();
   }
   confirmDelete(): void {
-    this.feesService.deleteFees(this.data.id);
+    this.feesService.deleteFees(this.data.serial);
   }
 }

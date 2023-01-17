@@ -1,7 +1,12 @@
-
 import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { HttpClient } from '@angular/common/http';
-import { Component, ViewChild, ElementRef, OnInit, DoCheck } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  DoCheck,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,8 +16,8 @@ import { fromEvent, BehaviorSubject, Observable, merge, map } from 'rxjs';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
-import {Courses} from './courses.model';
-import{CourseService} from '../all-course/course.service'
+import { Courses } from './courses.model';
+import { CourseService } from '../all-course/course.service';
 
 export interface PeriodicElement {
   name: string;
@@ -69,7 +74,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AllCourseComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit , DoCheck
+  implements OnInit, DoCheck
 {
   displayedColumns = [
     'select',
@@ -77,7 +82,7 @@ export class AllCourseComponent
     'name',
     'studyYear',
     'educationType',
-    'actions'
+    'actions',
   ];
   exampleDatabase: CourseService | null;
   dataSource: ExampleDataSource | null;
@@ -86,9 +91,9 @@ export class AllCourseComponent
   courses: Courses | null;
   breadscrums = [
     {
-      title: 'All Teacher',
-      items: ['Teacher'],
-      active: 'All Teacher',
+      title: 'All Courese',
+      items: ['Course'],
+      active: 'All Courses',
     },
   ];
   constructor(
@@ -110,7 +115,7 @@ export class AllCourseComponent
     this.loadData();
   }
   ngDoCheck(): void {
-      // this.exampleDatabase.isTblLoading == false? this.loadData() :this.loadData() ;
+    // this.exampleDatabase.isTblLoading == false? this.loadData() :this.loadData() ;
   }
   refresh() {
     this.loadData();
@@ -195,13 +200,12 @@ export class AllCourseComponent
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-       
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           (x) => Number(x.subjectId) === this.id
         );
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-       this.refreshTable()
+        this.refreshTable();
         this.showNotification(
           'snackbar-danger',
           'Delete Record Successfully...!!!',
@@ -319,11 +323,12 @@ export class ExampleDataSource extends DataSource<Courses> {
           .filter((courses: Courses) => {
             const searchStr = (
               courses.subjectId +
-              courses.name+
+              courses.name +
               courses.studyYear +
-              courses.educationType 
-   
-            ).toString().toLowerCase()
+              courses.educationType
+            )
+              .toString()
+              .toLowerCase();
             // console.log(searchStr)
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });

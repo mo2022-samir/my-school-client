@@ -1,3 +1,4 @@
+import { StaffService } from '../../../core/service/staff.service';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -18,7 +19,10 @@ export class AddStaffComponent {
       active: 'Add Staff',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(
+    private fb: UntypedFormBuilder,
+    private staffService: StaffService
+  ) {
     this.staffForm = this.fb.group({
       first: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
       last: [''],
@@ -39,6 +43,6 @@ export class AddStaffComponent {
     });
   }
   onSubmit() {
-    console.log('Form Value', this.staffForm.value);
+    this.staffService.addNewStaff(this.staffForm.value).subscribe();
   }
 }

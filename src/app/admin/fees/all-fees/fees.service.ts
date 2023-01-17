@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Fees } from './fees.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { environment } from 'src/environments/environment';
 @Injectable()
 export class FeesService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/fees.json';
@@ -21,47 +22,51 @@ export class FeesService extends UnsubscribeOnDestroyAdapter {
   }
   /** CRUD METHODS */
   getAllFeess(): void {
-    this.subs.sink = this.httpClient.get<Fees[]>(this.API_URL).subscribe(
+    this.subs.sink = this.httpClient
+      .get<Fees[]>(environment.apiUrl + 'fee')
+      .subscribe(
+        (data) => {
+          this.isTblLoading = false;
+          this.dataChange.next(data);
+        },
+        (error: HttpErrorResponse) => {
+          this.isTblLoading = false;
+          console.log(error.name + ' ' + error.message);
+        }
+      );
+  }
+  addFees(fees: any): void {
+    this.dialogData = fees;
+
+    this.httpClient.post(environment.apiUrl + 'fee/', fees).subscribe(
       (data) => {
-        this.isTblLoading = false;
-        this.dataChange.next(data);
+        this.dialogData = fees;
       },
-      (error: HttpErrorResponse) => {
-        this.isTblLoading = false;
-        console.log(error.name + ' ' + error.message);
+      (err: HttpErrorResponse) => {
+        // error code here
       }
     );
   }
-  addFees(fees: Fees): void {
+  updateFees(id: number, fees: Fees): void {
     this.dialogData = fees;
 
-    /*  this.httpClient.post(this.API_URL, fees).subscribe(data => {
-      this.dialogData = fees;
+    this.httpClient.put(environment.apiUrl + 'fee/' + id, fees).subscribe(
+      (data) => {
+        this.dialogData = fees;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });*/
-  }
-  updateFees(fees: Fees): void {
-    this.dialogData = fees;
-
-    /* this.httpClient.put(this.API_URL + fees.id, fees).subscribe(data => {
-      this.dialogData = fees;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );*/
+        // error code here
+      }
+    );
   }
   deleteFees(id: number): void {
-    console.log(id);
-
-    /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(environment.apiUrl + 'fee/' + id).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
-    );*/
+    );
   }
 }

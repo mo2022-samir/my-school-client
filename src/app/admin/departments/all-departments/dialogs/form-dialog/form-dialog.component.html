@@ -27,13 +27,16 @@
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Education level</mat-label>
-            <mat-select formControlName="educationlevel" required>
-              <mat-option [value]="'Elementary'"> Elementary </mat-option>
-              <mat-option [value]="'Middle'"> Middle </mat-option>
-              <mat-option [value]="'High'"> High </mat-option>
+            <mat-select formControlName="studyYear" required>
+              <mat-option [value]="'1'"> 1 </mat-option>
+              <mat-option [value]="'2'"> 2 </mat-option>
+              <mat-option [value]="'3'"> 3 </mat-option>
+              <mat-option [value]="'4'"> 4 </mat-option>
+              <mat-option [value]="'5'"> 5 </mat-option>
+              <mat-option [value]="'6'"> 6 </mat-option>
             </mat-select>
             <mat-error
-              *ngIf="departmentForm.get('educationlevel').hasError('required')"
+              *ngIf="departmentForm.get('studyYear').hasError('required')"
             >
               Select Any Education level
             </mat-error>
@@ -43,9 +46,10 @@
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Education Type</mat-label>
             <mat-select formControlName="educationType" required>
-              <mat-option [value]="'Sceiences'"> Sceiences </mat-option>
+              <mat-option [value]="'Sciences'"> Sciences </mat-option>
               <mat-option [value]="'Literature'"> Literature </mat-option>
-              <mat-option [value]="'Other'"> Other </mat-option>
+              <mat-option [value]="'Elementary'"> Elementary </mat-option>
+              <mat-option [value]="'Middle'"> Middle </mat-option>
             </mat-select>
             <mat-icon matSuffix>person</mat-icon>
             <mat-error

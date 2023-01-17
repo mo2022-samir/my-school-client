@@ -1,21 +1,19 @@
 import { formatDate } from '@angular/common';
 export class Holiday {
   id: number;
+  serial: number;
   no: string;
-  title: string;
-  sDate: string;
-  eDate: string;
-  type: string;
-  details: string;
+  name: string;
+  startDate: string;
+  endDate: string;
   constructor(holiday) {
     {
       this.id = holiday.id || this.getRandomID();
       this.no = holiday.no || '';
-      this.title = holiday.title || '';
-      this.sDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.eDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-      this.type = holiday.type || '';
-      this.details = holiday.details || '';
+      this.serial = holiday.serial;
+      this.name = holiday.name || '';
+      this.startDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
+      this.endDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
     }
   }
   public getRandomID(): string {

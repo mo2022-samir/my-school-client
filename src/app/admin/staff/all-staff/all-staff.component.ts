@@ -190,6 +190,7 @@ export class AllstaffComponent
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase.dataChange.value.splice(index, 1);
+      this.exampleDatabase.deleteStaff(item.id);
       this.refreshTable();
       this.selection = new SelectionModel<Staff>(true, []);
     });

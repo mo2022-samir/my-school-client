@@ -5,14 +5,14 @@ import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Staff } from '../../staff.model';
 import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.sass']
+  styleUrls: ['./form-dialog.component.sass'],
 })
 export class FormDialogComponent {
   action: string;
@@ -37,7 +37,7 @@ export class FormDialogComponent {
     this.staffForm = this.createContactForm();
   }
   formControl = new UntypedFormControl('', [
-    Validators.required
+    Validators.required,
     // Validators.email,
   ]);
   getErrorMessage() {
@@ -54,15 +54,15 @@ export class FormDialogComponent {
       name: [this.staff.name],
       email: [
         this.staff.email,
-        [Validators.required, Validators.email, Validators.minLength(5)]
+        [Validators.required, Validators.email, Validators.minLength(5)],
       ],
       date: [
         formatDate(this.staff.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
+        [Validators.required],
       ],
       designation: [this.staff.designation],
       address: [this.staff.address],
-      mobile: [this.staff.mobile]
+      mobile: [this.staff.mobile],
     });
   }
   submit() {
@@ -72,6 +72,10 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.staffService.addStaff(this.staffForm.getRawValue());
+    if (this.action === 'edit') {
+      this.staffService.updateStaff(this.staffForm.getRawValue());
+    } else {
+      this.staffService.addStaff(this.staffForm.getRawValue());
+    }
   }
 }

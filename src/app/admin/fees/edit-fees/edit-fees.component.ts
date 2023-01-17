@@ -1,13 +1,21 @@
-import { Component } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
+import { FeeService } from 'src/app/core/service/fee.service';
 
 @Component({
   selector: 'app-edit-fees',
   templateUrl: './edit-fees.component.html',
   styleUrls: ['./edit-fees.component.sass'],
 })
-export class EditFeesComponent {
+export class EditFeesComponent implements OnInit {
   feesForm: UntypedFormGroup;
+  selectedFee;
+  feesList;
+  feeDetails;
   formdata = {
     rollNo: '99',
     sName: 'Jenish Shah	',
@@ -29,25 +37,45 @@ export class EditFeesComponent {
       active: 'Edit Fees',
     },
   ];
-  constructor(private fb: UntypedFormBuilder) {
+  constructor(private fb: UntypedFormBuilder, private feeService: FeeService) {
     this.feesForm = this.createContactForm();
   }
+  ngOnInit(): void {
+    this.feesForm = this.createContactForm();
+    this.getList();
+  }
+  getList() {
+    this.feeService.getFeesList().subscribe((res) => {
+      this.feesList = res;
+    });
+  }
+
+  getFeeDetails(id: string) {
+    this.feeService.getFeeById(id).subscribe((res) => {
+      this.feeDetails = res;
+      this.createContactForm();
+      this.feesForm = this.createContactForm();
+    });
+  }
+  onChange() {
+    this.getFeeDetails(this.selectedFee);
+  }
   onSubmit() {
-    console.log('Form Value', this.feesForm.value);
+    this.feeService
+      .editFee(this.feeDetails?.serial, this.feesForm.value)
+      .subscribe();
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      rollNo: [this.formdata.rollNo, [Validators.required]],
-      sName: [this.formdata.sName, [Validators.required]],
-      fType: [this.formdata.fType, [Validators.required]],
-      department: [this.formdata.department, [Validators.required]],
-      date: [this.formdata.date, [Validators.required]],
-      invoiceNo: [this.formdata.invoiceNo, [Validators.required]],
-      pType: [this.formdata.pType, [Validators.required]],
-      status: [this.formdata.status, [Validators.required]],
-      amount: [this.formdata.amount, [Validators.required]],
-      duration: [this.formdata.duration, [Validators.required]],
-      details: [this.formdata.details],
+      studentId: [this.feeDetails?.studentId, [Validators.required]],
+      sName: [this.feeDetails?.sName],
+      feeType: [this.feeDetails?.feeType, [Validators.required]],
+      department: [this.feeDetails?.department],
+      dueDate: [this.feeDetails?.dueDate, [Validators.required]],
+      paymentType: [this.feeDetails?.paymentType, [Validators.required]],
+      status: [this.feeDetails?.status, [Validators.required]],
+      amount: [this.feeDetails?.amount, [Validators.required]],
+      details: [this.feeDetails?.details],
     });
   }
 }

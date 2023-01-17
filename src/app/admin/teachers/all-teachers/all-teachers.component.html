@@ -268,15 +268,15 @@
                             {{ row.education }}
                           </mat-cell>
                         </ng-container>
-                        <ng-container matColumnDef="mobile">
+                        <ng-container matColumnDef="username">
                           <mat-header-cell *matHeaderCellDef mat-sort-header
-                            >Mobile
+                            >username
                           </mat-header-cell>
                           <mat-cell
                             *matCellDef="let row"
                             (contextmenu)="onContextMenu($event, row)"
                           >
-                            {{ row.user.mobile }}
+                            {{ row.user.username }}
                           </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="email">

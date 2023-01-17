@@ -5,7 +5,7 @@ import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Fees } from '../../fees.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -14,13 +14,13 @@ import { formatDate } from '@angular/common';
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.sass'],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export class FormDialogComponent {
   action: string;
   dialogTitle: string;
   feesForm: UntypedFormGroup;
-  fees: Fees;
+  fees: any;
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -40,7 +40,7 @@ export class FormDialogComponent {
     this.feesForm = this.createContactForm();
   }
   formControl = new UntypedFormControl('', [
-    Validators.required
+    Validators.required,
     // Validators.email,
   ]);
   getErrorMessage() {
@@ -52,18 +52,17 @@ export class FormDialogComponent {
   }
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
-      id: [this.fees.id],
-      rollNo: [this.fees.rollNo, [Validators.required]],
-      sName: [this.fees.sName, [Validators.required]],
-      fType: [this.fees.fType, [Validators.required]],
-      date: [
-        formatDate(this.fees.date, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
+      studentId: [this.fees.studentId],
+      serial: [this.fees.serial, [Validators.required]],
+      feeType: [this.fees.feeType, [Validators.required]],
+      dueDate: [
+        formatDate(this.fees.dueDate, 'yyyy-MM-dd', 'en'),
+        [Validators.required],
       ],
-      invoiceNo: [this.fees.invoiceNo, [Validators.required]],
-      pType: [this.fees.pType, [Validators.required]],
+
+      paymentType: [this.fees.paymentType, [Validators.required]],
       status: [this.fees.status, [Validators.required]],
-      amount: [this.fees.amount, [Validators.required]]
+      amount: [this.fees.amount, [Validators.required]],
     });
   }
   submit() {

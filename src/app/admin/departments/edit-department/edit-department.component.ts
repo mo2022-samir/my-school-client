@@ -1,3 +1,4 @@
+import { StudyYear } from './../../../../../../my-school-server/src/validator/general.validator';
 import { Component } from '@angular/core';
 import {
   UntypedFormBuilder,
@@ -61,10 +62,7 @@ export class EditDepartmentComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       educationType: [this.ClasssDetails?.educationType, [Validators.required]],
-      educationlevel: [
-        this.ClasssDetails?.educationlevel,
-        [Validators.required],
-      ],
+      studyYear: [this.ClasssDetails?.educationlevel, [Validators.required]],
       classId: [this.ClasssDetails?.classId, [Validators.required]],
     });
   }

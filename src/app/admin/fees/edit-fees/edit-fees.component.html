@@ -2,7 +2,11 @@
   <div class="content-block">
     <div class="block-header" *ngFor="let breadscrum of breadscrums">
       <!-- breadcrumb -->
-      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      <app-breadcrumb
+        [title]="breadscrum.title"
+        [items]="breadscrum.items"
+        [active_item]="breadscrum.active"
+      >
       </app-breadcrumb>
     </div>
     <div class="row clearfix">
@@ -10,27 +14,61 @@
         <div class="card">
           <div class="header">
             <h2>Edit Fees Details</h2>
-
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-2">
+              <mat-form-field
+                class="example-full-width mb-3"
+                appearance="outline"
+              >
+                <mat-label>Course Name</mat-label>
+                <mat-select
+                  #fees
+                  [(value)]="selectedFee"
+                  [(ngModel)]="selectedFee"
+                  (selectionChange)="onChange()"
+                >
+                  <mat-option
+                    *ngFor="let item of feesList"
+                    [value]="item.serial"
+                  >
+                    {{ item.amount }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
-          <div class="body">
-            <form class="register-form m-4" [formGroup]="feesForm" (ngSubmit)="onSubmit()">
+          <div *ngIf="fees.value" class="body">
+            <form
+              class="register-form m-4"
+              [formGroup]="feesForm"
+              (ngSubmit)="onSubmit()"
+            >
               <div class="row">
-                <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Roll No</mat-label>
-                    <input matInput formControlName="rollNo" required>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>studentId</mat-label>
+                    <input matInput formControlName="studentId" required />
                     <mat-icon matSuffix>label</mat-icon>
-                    <mat-error *ngIf="feesForm.get('rollNo').hasError('required')">
+                    <mat-error
+                      *ngIf="feesForm.get('studentId').hasError('required')"
+                    >
                       Please enter roll no
                     </mat-error>
                   </mat-form-field>
                 </div>
-                <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-3">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
                     <mat-label>Student Name</mat-label>
-                    <input matInput formControlName="sName" required>
+                    <input matInput formControlName="sName" />
                     <mat-icon matSuffix>account_circle</mat-icon>
-                    <mat-error *ngIf="feesForm.get('sName').hasError('required')">
+                    <mat-error
+                      *ngIf="feesForm.get('sName').hasError('required')"
+                    >
                       Please enter student name
                     </mat-error>
                   </mat-form-field>
@@ -38,135 +76,114 @@
               </div>
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
                     <mat-label>Select Department</mat-label>
-                    <mat-select formControlName="department" required>
-                      <mat-option [value]="'mechanical'">
-                        Mechanical
+                    <mat-select formControlName="department">
+                      <mat-option [value]="'elementary'">
+                        Elementary
                       </mat-option>
-                      <mat-option [value]="'science'">
-                        Science
-                      </mat-option>
-                      <mat-option [value]="'mathematics'">
-                        Mathematics
-                      </mat-option>
-                      <mat-option [value]="'computer'">
-                        Computer
+                      <mat-option [value]="'middle'"> Middle </mat-option>
+                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
+                      <mat-option [value]="'Literature'">
+                        Literature
                       </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="feesForm.get('department').hasError('required')">
+                    <mat-error
+                      *ngIf="feesForm.get('department').hasError('required')"
+                    >
                       Select Any Department
                     </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width " appearance="outline">
+                  <mat-form-field
+                    class="example-full-width"
+                    appearance="outline"
+                  >
                     <mat-label>Fees Type</mat-label>
-                    <mat-select formControlName="fType" required>
-                      <mat-option [value]="'annual'">
-                        Annual
-                      </mat-option>
-                      <mat-option [value]="'tution'">
-                        Tution
-                      </mat-option>
-                      <mat-option [value]="'transport'">
-                        Transport
-                      </mat-option>
-                      <mat-option [value]="'exam'">
-                        Exam
-                      </mat-option>
-                      <mat-option [value]="'library'">
-                        Library
-                      </mat-option>
-                      <mat-option [value]="'other'">
-                        Other
-                      </mat-option>
+                    <mat-select formControlName="feeType" required>
+                      <mat-option [value]="'annual'"> Annual </mat-option>
+                      <mat-option [value]="'tution'"> Tution </mat-option>
+                      <mat-option [value]="'transport'"> Transport </mat-option>
+                      <mat-option [value]="'exam'"> Exam </mat-option>
+                      <mat-option [value]="'library'"> Library </mat-option>
+                      <mat-option [value]="'other'"> Other </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="feesForm.get('fType').hasError('required')">
+                    <mat-error
+                      *ngIf="feesForm.get('feeType').hasError('required')"
+                    >
                       Select Fees Type
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Collection Date</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="picker1"
+                      formControlName="dueDate"
+                      required
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker1"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error
+                      *ngIf="feesForm.get('dueDate').hasError('required')"
+                    >
+                      Please select date
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Payment Type</mat-label>
+                    <mat-select formControlName="paymentType" required>
+                      <mat-option [value]="'Cash'"> Cash </mat-option>
+                      <mat-option [value]="'Cheque'"> Cheque </mat-option>
+                      <mat-option [value]="'Online Transfer'">
+                        Online Transfer
+                      </mat-option>
+                      <mat-option [value]="'Oredit Card'"> Draft </mat-option>
+                      <mat-option [value]="'Other'"> Other </mat-option>
+                    </mat-select>
+                    <mat-error
+                      *ngIf="feesForm.get('paymentType').hasError('required')"
+                    >
+                      Select Status
                     </mat-error>
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                  <div class="m-b-20">
-                    <mat-label class="msr-3">Duration:</mat-label>
-                    <mat-radio-group aria-label="Select duration" formControlName="duration" required>
-                      <mat-radio-button value="monthly">Monthly</mat-radio-button>
-                      <mat-radio-button value="yearly">Yearly</mat-radio-button>
-                      <mat-radio-button value="session">Session</mat-radio-button>
-                      <mat-error *ngIf="feesForm.get('duration').hasError('required')">
-                        Select Duration
-                      </mat-error>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Collection Date</mat-label>
-                    <input matInput [matDatepicker]="picker1" formControlName="date" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                    <mat-error *ngIf="feesForm.get('date').hasError('required')">
-                      Please select date
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Payment Type</mat-label>
-                    <mat-select formControlName="pType" required>
-                      <mat-option [value]="'cash'">
-                        Cash
-                      </mat-option>
-                      <mat-option [value]="'cheque'">
-                        Cheque
-                      </mat-option>
-                      <mat-option [value]="'online transfer'">
-                        Online Transfer
-                      </mat-option>
-                      <mat-option [value]="'credit card'">
-                        Draft
-                      </mat-option>
-                      <mat-option [value]="'other'">
-                        Other
-                      </mat-option>
-                    </mat-select>
-                    <mat-error *ngIf="feesForm.get('pType').hasError('required')">
-                      Select Status
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
-                    <mat-label>Invoice Number</mat-label>
-                    <input matInput formControlName="invoiceNo" required>
-                    <mat-icon matSuffix>receipt</mat-icon>
-                    <mat-error *ngIf="feesForm.get('invoiceNo').hasError('required')">
-                      Enter Invoice Number
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
                     <mat-label>Status</mat-label>
                     <mat-select formControlName="status" required>
-                      <mat-option [value]="'paid'">
-                        Paid
-                      </mat-option>
-                      <mat-option [value]="'unpaid'">
-                        Unpaid
-                      </mat-option>
-                      <mat-option [value]="'pending'">
-                        Pending
-                      </mat-option>
+                      <mat-option [value]="'Paid'"> Paid </mat-option>
+                      <mat-option [value]="'Unpaid'"> Unpaid </mat-option>
+                      <mat-option [value]="'Pending'"> Pending </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="feesForm.get('status').hasError('required')">
+                    <mat-error
+                      *ngIf="feesForm.get('status').hasError('required')"
+                    >
                       Select Status
                     </mat-error>
                   </mat-form-field>
@@ -174,11 +191,16 @@
               </div>
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
                     <mat-label>Amount</mat-label>
-                    <input matInput formControlName="amount" required>
+                    <input matInput formControlName="amount" required />
                     <mat-icon matSuffix>monetization_on</mat-icon>
-                    <mat-error *ngIf="feesForm.get('amount').hasError('required')">
+                    <mat-error
+                      *ngIf="feesForm.get('amount').hasError('required')"
+                    >
                       Enter amount
                     </mat-error>
                   </mat-form-field>
@@ -186,7 +208,10 @@
               </div>
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field class="example-full-width mb-3" appearance="outline">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
                     <mat-label>Details</mat-label>
                     <textarea matInput formControlName="details"></textarea>
                   </mat-form-field>
@@ -195,9 +220,17 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                   <div class="example-button-row">
-                    <button class="btn-space" [disabled]="!feesForm.valid " mat-raised-button
-                      color="primary">Submit</button>
-                    <button mat-raised-button color="warn" tabindex="-1">Cancel</button>
+                    <button
+                      class="btn-space"
+                      [disabled]="!feesForm.valid"
+                      mat-raised-button
+                      color="primary"
+                    >
+                      Submit
+                    </button>
+                    <button mat-raised-button color="warn" tabindex="-1">
+                      Cancel
+                    </button>
                   </div>
                 </div>
               </div>

@@ -5,7 +5,7 @@ import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder
+  UntypedFormBuilder,
 } from '@angular/forms';
 import { Holiday } from '../../holiday.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -14,7 +14,7 @@ import { formatDate } from '@angular/common';
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.sass'],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
 })
 export class FormDialogComponent {
   action: string;
@@ -30,7 +30,7 @@ export class FormDialogComponent {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
-      console.log(data.holiday.date);
+      // console.log(data.holiday.date);
       this.dialogTitle = data.holiday.title;
       this.holiday = data.holiday;
     } else {
@@ -40,7 +40,7 @@ export class FormDialogComponent {
     this.holidayForm = this.createContactForm();
   }
   formControl = new UntypedFormControl('', [
-    Validators.required
+    Validators.required,
     // Validators.email,
   ]);
   getErrorMessage() {
@@ -53,18 +53,16 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       id: [this.holiday.id],
-      no: [this.holiday.no, [Validators.required]],
-      title: [this.holiday.title, [Validators.required]],
-      sDate: [
-        formatDate(this.holiday.sDate, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
+      no: [this.holiday.no],
+      name: [this.holiday.name, [Validators.required]],
+      startDate: [
+        formatDate(this.holiday.startDate, 'yyyy-MM-dd', 'en'),
+        [Validators.required],
       ],
-      eDate: [
-        formatDate(this.holiday.eDate, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
+      endDate: [
+        formatDate(this.holiday.endDate, 'yyyy-MM-dd', 'en'),
+        [Validators.required],
       ],
-      type: [this.holiday.type, [Validators.required]],
-      details: [this.holiday.details]
     });
   }
   submit() {
@@ -74,6 +72,13 @@ export class FormDialogComponent {
     this.dialogRef.close();
   }
   public confirmAdd(): void {
-    this.holidayService.addHoliday(this.holidayForm.getRawValue());
+    if (this.action === 'edit') {
+      this.holidayService.updateHoliday(
+        this.holiday.serial,
+        this.holidayForm.getRawValue()
+      );
+    } else {
+      this.holidayService.addHoliday(this.holidayForm.getRawValue());
+    }
   }
 }

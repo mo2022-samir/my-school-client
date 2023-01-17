@@ -27,13 +27,24 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Student Id</mat-label>
-                    <input matInput formControlName="studentId" required />
-                    <mat-icon matSuffix>label</mat-icon>
-                    <mat-error
-                      *ngIf="feesForm.get('studentId').hasError('required')"
+                    <mat-label>Student Name</mat-label>
+                    <mat-select
+                      [(value)]="selectedStudent"
+                      [(ngModel)]="selectedStudent"
+                      (selectionChange)="onChange()"
                     >
-                      Please enter Student Id
+                      <mat-option
+                        *ngFor="let item of studentsList"
+                        [value]="item.userId"
+                      >
+                        {{ item.user.firstName + ' ' + item.user.lastName }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <mat-error
+                      *ngIf="feesForm.get('sName').hasError('required')"
+                    >
+                      Please enter student name
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -42,13 +53,13 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Student Name</mat-label>
-                    <input matInput formControlName="sName" required />
-                    <mat-icon matSuffix>account_circle</mat-icon>
+                    <mat-label>Student Id</mat-label>
+                    <input matInput formControlName="studentId" required />
+                    <mat-icon matSuffix>label</mat-icon>
                     <mat-error
-                      *ngIf="feesForm.get('sName').hasError('required')"
+                      *ngIf="feesForm.get('studentId').hasError('required')"
                     >
-                      Please enter student name
+                      Please enter Student Id
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -60,12 +71,15 @@
                     appearance="outline"
                   >
                     <mat-label>Select Department</mat-label>
-                    <mat-select formControlName="department" required>
+                    <mat-select formControlName="department">
                       <mat-option [value]="'elementary'">
                         Elementary
                       </mat-option>
                       <mat-option [value]="'middle'"> Middle </mat-option>
-                      <mat-option [value]="'high'"> High </mat-option>
+                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
+                      <mat-option [value]="'Literature'">
+                        Literature
+                      </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="feesForm.get('department').hasError('required')"
@@ -96,31 +110,7 @@
                   </mat-form-field>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
-                  <div class="m-b-20">
-                    <mat-label class="msr-3">Duration:</mat-label>
-                    <mat-radio-group
-                      aria-label="Select duration"
-                      formControlName="duration"
-                      required
-                    >
-                      <mat-radio-button value="monthly"
-                        >Monthly</mat-radio-button
-                      >
-                      <mat-radio-button value="yearly">Yearly</mat-radio-button>
-                      <mat-radio-button value="session"
-                        >Session</mat-radio-button
-                      >
-                      <mat-error
-                        *ngIf="feesForm.get('duration').hasError('required')"
-                      >
-                        Select Duration
-                      </mat-error>
-                    </mat-radio-group>
-                  </div>
-                </div>
-              </div>
+
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
@@ -152,17 +142,17 @@
                     appearance="outline"
                   >
                     <mat-label>Payment Type</mat-label>
-                    <mat-select formControlName="pType" required>
-                      <mat-option [value]="'cash'"> Cash </mat-option>
-                      <mat-option [value]="'cheque'"> Cheque </mat-option>
-                      <mat-option [value]="'online transfer'">
+                    <mat-select formControlName="paymentType" required>
+                      <mat-option [value]="'Cash'"> Cash </mat-option>
+                      <mat-option [value]="'Cheque'"> Cheque </mat-option>
+                      <mat-option [value]="'Online Transfer'">
                         Online Transfer
                       </mat-option>
-                      <mat-option [value]="'credit card'"> Draft </mat-option>
-                      <mat-option [value]="'other'"> Other </mat-option>
+                      <mat-option [value]="'Oredit Card'"> Draft </mat-option>
+                      <mat-option [value]="'Other'"> Other </mat-option>
                     </mat-select>
                     <mat-error
-                      *ngIf="feesForm.get('pType').hasError('required')"
+                      *ngIf="feesForm.get('paymentType').hasError('required')"
                     >
                       Select Status
                     </mat-error>
@@ -175,26 +165,11 @@
                     class="example-full-width mb-3"
                     appearance="outline"
                   >
-                    <mat-label>Invoice Number</mat-label>
-                    <input matInput formControlName="invoiceNo" required />
-                    <mat-icon matSuffix>receipt</mat-icon>
-                    <mat-error
-                      *ngIf="feesForm.get('invoiceNo').hasError('required')"
-                    >
-                      Enter Invoice Number
-                    </mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                  <mat-form-field
-                    class="example-full-width mb-3"
-                    appearance="outline"
-                  >
                     <mat-label>Status</mat-label>
                     <mat-select formControlName="status" required>
-                      <mat-option [value]="'paid'"> Paid </mat-option>
-                      <mat-option [value]="'unpaid'"> Unpaid </mat-option>
-                      <mat-option [value]="'pending'"> Pending </mat-option>
+                      <mat-option [value]="'Paid'"> Paid </mat-option>
+                      <mat-option [value]="'Unpaid'"> Unpaid </mat-option>
+                      <mat-option [value]="'Pending'"> Pending </mat-option>
                     </mat-select>
                     <mat-error
                       *ngIf="feesForm.get('status').hasError('required')"

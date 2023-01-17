@@ -1,3 +1,4 @@
+import { StudyYear } from './../../../../../../../../my-school-server/src/validator/general.validator';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { DepartmentService } from '../../department.service';
@@ -44,7 +45,7 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       educationType: [this.department.educationType],
-      educationlevel: [this.department.educationlevel, [Validators.required]],
+      studyYear: [this.department.educationlevel, [Validators.required]],
       classId: [this.department.classId, [Validators.required]],
     });
   }
