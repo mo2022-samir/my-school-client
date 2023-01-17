@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StaffService {
-  apiURL = 'http://localhost:3000/staff';
+  apiURL = 'https://my-school.deta.dev/staff';
   constructor(private http: HttpClient) {}
 
   getStaffList() {

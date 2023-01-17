@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 @Injectable()
 export class LibraryService extends UnsubscribeOnDestroyAdapter {
-   apiURL = 'http://localhost:3000/libirary';
+  apiURL = 'https://my-school.deta.dev/libirary';
   isTblLoading = true;
   dataChange: BehaviorSubject<Library[]> = new BehaviorSubject<Library[]>([]);
   // Temporarily stores data from dialogs
@@ -32,41 +32,47 @@ export class LibraryService extends UnsubscribeOnDestroyAdapter {
       }
     );
   }
-  getLibiraryById(id:any){
- return this.httpClient.get<Library[]>(this.apiURL + `/${id}`).pipe( shareReplay()).subscribe(
-      (data) => {
+  getLibiraryById(id: any) {
+    return this.httpClient
+      .get<Library[]>(this.apiURL + `/${id}`)
+      .pipe(shareReplay())
+      .subscribe((data) => {
         this.dataChange.next(data);
       });
   }
   addLibrary(library: Library): void {
     this.dialogData = library;
 
-     this.httpClient.post(this.apiURL, library).subscribe(data => {
-      this.dialogData = library;
+    this.httpClient.post(this.apiURL, library).subscribe(
+      (data) => {
+        this.dialogData = library;
       },
       (err: HttpErrorResponse) => {
-     // error code here
-    });
+        // error code here
+      }
+    );
   }
   updateLibrary(library: Library): void {
     this.dialogData = library;
 
-     this.httpClient.put(this.apiURL + `/${library.id}`, library).subscribe(data => {
-      this.dialogData = library;
-    },
-    (err: HttpErrorResponse) => {
-      // error code here
-    }
-  );
+    this.httpClient.put(this.apiURL + `/${library.id}`, library).subscribe(
+      (data) => {
+        this.dialogData = library;
+      },
+      (err: HttpErrorResponse) => {
+        // error code here
+      }
+    );
   }
   deleteLibrary(id: number): void {
     console.log(id);
 
-     this.httpClient.delete(this.apiURL + `/${id}`).subscribe(data => {
-      console.log(id);
+    this.httpClient.delete(this.apiURL + `/${id}`).subscribe(
+      (data) => {
+        console.log(id);
       },
       (err: HttpErrorResponse) => {
-         // error code here
+        // error code here
       }
     );
   }

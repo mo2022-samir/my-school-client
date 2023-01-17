@@ -14,6 +14,9 @@ import { DeleteDialogComponent } from './dialogs/delete/delete.component';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { TeacherService } from 'src/app/core/service/teacher.service';
+import { CoursesService } from 'src/app/core/service/courses.service';
+import { ClassesService } from 'src/app/core/service/classes.service';
 
 @Component({
   selector: 'app-lectures',
@@ -38,6 +41,9 @@ export class LecturesComponent
   selection = new SelectionModel<Lectures>(true, []);
   id: number;
   lectures: Lectures | null;
+  classList: any;
+  teacherList: any;
+  courseList: any;
 
   breadscrums = [
     {
@@ -51,6 +57,9 @@ export class LecturesComponent
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public lecturesService: LecturesService,
+    private teacherService: TeacherService,
+    private coursesService: CoursesService,
+    private classesService: ClassesService,
     private snackBar: MatSnackBar
   ) {
     super();
@@ -64,6 +73,18 @@ export class LecturesComponent
 
   ngOnInit() {
     this.loadData();
+    // this.getListData();
+  }
+  getListData() {
+    this.teacherService
+      .getTeachers()
+      .subscribe((res) => (this.teacherList = res));
+    this.coursesService
+      .getCoursesList()
+      .subscribe((res) => (this.courseList = res));
+    this.classesService
+      .getClassesList()
+      .subscribe((res) => (this.classList = res));
   }
   refresh() {
     this.loadData();
