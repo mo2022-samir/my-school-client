@@ -61,7 +61,7 @@ export class TeachersService extends UnsubscribeOnDestroyAdapter {
         }
       );
   }
-  deleteTeachers(id: number): void {
+  deleteTeachers(id: string): void {
     this.httpClient.delete(environment.apiUrl + 'teacher/' + id).subscribe(
       (data) => {
         console.log(id);

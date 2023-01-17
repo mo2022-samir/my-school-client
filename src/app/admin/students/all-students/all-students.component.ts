@@ -39,7 +39,7 @@ export class AllStudentsComponent
   exampleDatabase: StudentsService | null;
   dataSource: ExampleDataSource | null;
   selection = new SelectionModel<Students>(true, []);
-  id: number;
+  id: any;
   students: Students | null;
   breadscrums = [
     {
@@ -119,7 +119,8 @@ export class AllStudentsComponent
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.serial === this.id
+          (x) =>{ x.serial === this.id;
+          this.loadData();}
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
@@ -190,6 +191,7 @@ export class AllStudentsComponent
       );
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase.dataChange.value.splice(index, 1);
+      this.exampleDatabase.deleteStudents(item.userId);
       this.refreshTable();
       this.selection = new SelectionModel<Students>(true, []);
     });
@@ -270,7 +272,7 @@ export class ExampleDataSource extends DataSource<Students> {
           .slice()
           .filter((students: Students) => {
             const searchStr = (
-              students.user.id +
+              students.serial +
               students.user.firstName +
               students.user.lastName +
               students.user.email +

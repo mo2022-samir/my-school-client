@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 export class Students {
   classId: string;
+  userId: string
   educationType: string;
   parentName: string;
   parentPhonenumber: string;
@@ -28,6 +29,7 @@ export class Students {
   };
   constructor(students) {
     {
+      this.userId = students.userId || '';
       this.serial = students.rollNo || this.getRandomID();
       this.user.password = students.password || '';
       this.user.firstName = students.firstName || '';
