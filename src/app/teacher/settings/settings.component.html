@@ -10,21 +10,21 @@
         <h2>Security Settings</h2>
       </div>
       <div class="body">
-        <div class="example-container">
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput>
-          </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Current Password</mat-label>
-            <input matInput type="password">
-          </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>New Password</mat-label>
-            <input matInput type="password">
-          </mat-form-field>
-        </div>
-        <button mat-raised-button color="primary">Save</button>
+        <form [formGroup]="securityForm" (ngSubmit)="onSubmitForm1()">
+          <div class="example-container">
+          
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="username">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Current Password</mat-label>
+              <input matInput type="text" formControlName="password">
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" type="submit">Save</button>
+        </form>
+
       </div>
     </div>
     <div class="card">
@@ -32,59 +32,46 @@
         <h2>Account Settings</h2>
       </div>
       <div class="body">
-        <div class="row clearfix">
-          <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>First Name</mat-label>
-                <input matInput>
-              </mat-form-field>
+        <form [formGroup]="settingsForm" (ngSubmit)="onSubmitForm2()">
+          <div class="row clearfix">
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>First Name</mat-label>
+                  <input matInput formControlName="firstName">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput formControlName="lastName">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input matInput formControlName="email">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Address</mat-label>
+                  <textarea matInput formControlName="address"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <button mat-raised-button color="primary" type="submit">Save Changes</button>
             </div>
           </div>
-          <div class="col-lg-6 col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input matInput>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>City</mat-label>
-                <input matInput>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Country</mat-label>
-                <input matInput>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <mat-form-field class="example-full-width" appearance="outline">
-                <mat-label>Address</mat-label>
-                <textarea matInput></textarea>
-              </mat-form-field>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <button mat-raised-button color="primary">Save Changes</button>
-          </div>
-        </div>
+        </form>
+      
       </div>
     </div>
   </div>
