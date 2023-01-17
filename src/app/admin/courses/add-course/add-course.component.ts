@@ -1,3 +1,4 @@
+import { SubjectMaterialService } from './../../../core/service/subjectMaterial.service';
 import { CoursesService } from '../../../core/service/courses.service';
 import { Component } from '@angular/core';
 import {
@@ -22,7 +23,8 @@ export class AddCourseComponent {
   ];
   constructor(
     private fb: UntypedFormBuilder,
-    private courseService: CoursesService
+    private courseService: CoursesService,
+    private subjectMaterialService: SubjectMaterialService
   ) {
     this.courseForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -30,11 +32,14 @@ export class AddCourseComponent {
       description: ['', [Validators.required]],
       educationType: ['', [Validators.required]],
       studyYear: ['', [Validators.required]],
-      uploadFile: [''],
+      pdf: [''],
     });
   }
   onSubmit() {
     let formData = this.courseForm.value;
     this.courseService.addNewCourse(formData).subscribe();
+    this.subjectMaterialService
+      .addNewMaterial(formData.subjectId, formData)
+      .subscribe();
   }
 }

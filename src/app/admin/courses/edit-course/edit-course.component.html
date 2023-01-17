@@ -76,7 +76,16 @@
                     appearance="outline"
                   >
                     <mat-label>Specitailty</mat-label>
-                    <input matInput formControlName="educationType" required />
+                    <mat-select formControlName="educationType" required>
+                      <mat-option [value]="'Elementary'">
+                        Elementary
+                      </mat-option>
+                      <mat-option [value]="'Middle'"> Middle</mat-option>
+                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
+                      <mat-option [value]="'Literature'">
+                        Literature</mat-option
+                      >
+                    </mat-select>
                     <mat-error
                       *ngIf="
                         courseForm.get('educationType').hasError('required')

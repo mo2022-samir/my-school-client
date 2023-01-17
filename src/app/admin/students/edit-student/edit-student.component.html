@@ -158,11 +158,14 @@
                   >
                     <mat-label>Select Level</mat-label>
                     <mat-select formControlName="classId" required>
-                      <mat-option [value]="'elementary'">
+                      <mat-option [value]="'Elementary'">
                         Elementary
                       </mat-option>
-                      <mat-option [value]="'middle'"> Middle</mat-option>
-                      <mat-option [value]="'high'"> High </mat-option>
+                      <mat-option [value]="'Middle'"> Middle</mat-option>
+                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
+                      <mat-option [value]="'Literature'">
+                        Literature</mat-option
+                      >
                     </mat-select>
                     <mat-error
                       *ngIf="stdForm.get('classId').hasError('required')"
@@ -171,8 +174,6 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-              </div>
-              <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
                     class="example-full-width mb-3"
@@ -201,38 +202,44 @@
                   </mat-form-field>
                 </div>
               </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                <mat-form-field
-                  class="example-full-width mb-3"
-                  appearance="outline"
-                >
-                  <mat-label>Select Education Type</mat-label>
-                  <mat-select formControlName="educationType" required>
-                    <mat-option [value]="'Elementary'"> Elementary </mat-option>
-                    <mat-option [value]="'Middle'"> Middle </mat-option>
-                    <mat-option [value]="'Sciences'"> Sciences </mat-option>
-                    <mat-option [value]="'Literature'"> Literature</mat-option>
-                  </mat-select>
-                  <mat-error
-                    *ngIf="stdForm.get('educationType').hasError('required')"
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
                   >
-                    Select Education Type
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-                <mat-form-field
-                  class="example-full-width mb-3"
-                  appearance="outline"
-                >
-                  <mat-label>Study Year</mat-label>
-                  <input
-                    matInput
-                    formControlName="studyYear"
-                    type="text"
-                    required
-                  />
-                </mat-form-field>
+                    <mat-label>Select Education Type</mat-label>
+                    <mat-select formControlName="educationType" required>
+                      <mat-option [value]="'Elementary'">
+                        Elementary
+                      </mat-option>
+                      <mat-option [value]="'Middle'"> Middle </mat-option>
+                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
+                      <mat-option [value]="'Literature'">
+                        Literature</mat-option
+                      >
+                    </mat-select>
+                    <mat-error
+                      *ngIf="stdForm.get('educationType').hasError('required')"
+                    >
+                      Select Education Type
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                  <mat-form-field
+                    class="example-full-width mb-3"
+                    appearance="outline"
+                  >
+                    <mat-label>Study Year</mat-label>
+                    <input
+                      matInput
+                      formControlName="studyYear"
+                      type="text"
+                      required
+                    />
+                  </mat-form-field>
+                </div>
               </div>
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">

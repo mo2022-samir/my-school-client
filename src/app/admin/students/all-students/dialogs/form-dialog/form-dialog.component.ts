@@ -50,23 +50,16 @@ export class FormDialogComponent {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       // userId: [this.students?.userId],
-      firstName: [this.students?.user.firstName ],
-      lastName: [
-        this.students?.user.lastName,
-        [Validators.required,],
-      ],
-      classId:[null],
+      firstName: [this.students?.user.firstName],
+      lastName: [this.students?.user.lastName, [Validators.required]],
+      classId: [null],
       serial: [this.students?.serial],
       gender: [this.students?.user.gender, [Validators.required]],
       mobile: [this.students?.user.mobile, [Validators.required]],
-  
-      username: [this.students?.user.username, [Validators.required]],
-      password: [this.students?.user.password, [Validators.required]],
       parentName: [this.students?.parentName, [Validators.required]],
       parentPhonenumber: [this.students?.parentPhonenumber],
       studyYear: [this.students?.studyYear, [Validators.required]],
       educationType: [this.students?.educationType, [Validators.required]],
-      
     });
   }
   submit() {

@@ -4,21 +4,26 @@
       <div class="modalHeader clearfix">
         <div class="modal-about">
           <div class="font-weight-bold p-t-5 font-17">
-            {{dialogTitle}}</div>
+            {{ dialogTitle }}
+          </div>
         </div>
       </div>
     </div>
-    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+    <button
+      mat-icon-button
+      (click)="dialogRef.close()"
+      aria-label="Close dialog"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </div>
   <div mat-dialog-content>
     <form class="register-form m-4" [formGroup]="proForm" (ngSubmit)="submit()">
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Subject Id</mat-label>
-            <input matInput formControlName="subjectId" required>
+            <input matInput formControlName="subjectId" required />
             <mat-icon matSuffix>face</mat-icon>
             <mat-error *ngIf="proForm.get('subjectId').hasError('required')">
               Subject Id is required
@@ -27,10 +32,10 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput formControlName="name" required>
+            <input matInput formControlName="name" required />
             <mat-icon matSuffix>face</mat-icon>
             <mat-error *ngIf="proForm.get('name').hasError('required')">
               Name is required
@@ -39,11 +44,10 @@
         </div>
       </div>
       <div class="row">
-
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Study Year</mat-label>
-            <input matInput formControlName="studyYear" required>
+            <input matInput formControlName="studyYear" required />
             <mat-icon matSuffix>school</mat-icon>
             <mat-error *ngIf="proForm.get('studyYear').hasError('required')">
               Study Year is required
@@ -52,11 +56,10 @@
         </div>
       </div>
       <div class="row">
-        
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+        <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Education Type</mat-label>
-            <input matInput formControlName="educationType" required>
+            <input matInput formControlName="educationType" required />
             <mat-icon matSuffix>email</mat-icon>
           </mat-form-field>
         </div>
@@ -64,10 +67,25 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
-            <button mat-raised-button color="primary" [type]="submit" [disabled]="!proForm.valid" [mat-dialog-close]="1"
-              (click)="confirmAdd()">Save</button>
-            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">Cancel</button>
-          </div>  
+            <button
+              mat-raised-button
+              color="primary"
+              [type]="submit"
+              [disabled]="!proForm.valid"
+              [mat-dialog-close]="1"
+              (click)="confirmAdd()"
+            >
+              Save
+            </button>
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="onNoClick()"
+              tabindex="-1"
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </div>
     </form>

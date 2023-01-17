@@ -11,11 +11,11 @@
     </div>
     <!-- Your content goes here  -->
     <div class="row clearfix">
-      <div class="col-lg-4 col-md-12">
+      <div class="col-lg-8 col-md-12">
         <div class="card">
           <div class="header">
             <h2>About Course</h2>
-            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 mb-2">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 mb-2">
               <mat-form-field
                 class="example-full-width mb-3"
                 appearance="outline"
@@ -39,12 +39,9 @@
           </div>
           <div class="card-body">
             <div class="">
+              <b>Course Description: </b>
               <p class="text-default">
-                <!-- {{ courseData.cDetails }} -->
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime,
-                voluptates? Illum magni nostrum eum fugiat dignissimos.
-                Explicabo eaque quaerat incidunt a similique earum deserunt,
-                laboriosam, ea laudantium at, expedita sequi?
+                {{ courseData?.description }}
               </p>
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
@@ -56,7 +53,7 @@
                 <li class="list-group-item">
                   <b>educationType </b>
                   <div class="profile-desc-item float-end">
-                    {{courseData?.educationType}}
+                    {{ courseData?.educationType }}
                   </div>
                 </li>
                 <li class="list-group-item">
@@ -65,12 +62,12 @@
                     {{ courseData?.studyYear }}
                   </div>
                 </li>
-                <li class="list-group-item">
+                <!-- <li class="list-group-item">
                   <b>Material</b>
                   <div class="profile-desc-item float-end">
-                    <!-- {{ courseData.uploadFile }} -->
+                    {{ courseData.uploadFile }}
                   </div>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>

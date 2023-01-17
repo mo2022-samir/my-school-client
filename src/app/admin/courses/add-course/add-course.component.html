@@ -16,7 +16,12 @@
             <h2>Add Course</h2>
           </div>
           <div class="body">
-            <form class="m-4" [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+            <form
+              enctype="multipart/form-data"
+              class="m-4"
+              [formGroup]="courseForm"
+              (ngSubmit)="onSubmit()"
+            >
               <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
                   <mat-form-field
@@ -55,7 +60,16 @@
                     appearance="outline"
                   >
                     <mat-label>Specitailty</mat-label>
-                    <input matInput formControlName="educationType" required />
+                    <mat-select formControlName="educationType" required>
+                      <mat-option [value]="'Elementary'">
+                        Elementary
+                      </mat-option>
+                      <mat-option [value]="'Middle'"> Middle</mat-option>
+                      <mat-option [value]="'Sciences'"> Sciences </mat-option>
+                      <mat-option [value]="'Literature'">
+                        Literature</mat-option
+                      >
+                    </mat-select>
                     <mat-error
                       *ngIf="
                         courseForm.get('educationType').hasError('required')
@@ -100,9 +114,7 @@
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-5">
                   <label>Upload</label>
-                  <app-file-upload
-                    formControlName="uploadFile"
-                  ></app-file-upload>
+                  <app-file-upload formControlName="pdf"></app-file-upload>
                 </div>
               </div>
               <div class="row">

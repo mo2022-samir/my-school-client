@@ -2,7 +2,6 @@
   <div class="modalHeader">
     <div class="editRowModal">
       <div class="modalHeader clearfix">
-        
         <div class="modal-about">
           <div class="font-weight-bold p-t-5 font-17">
             {{ dialogTitle }}
@@ -30,27 +29,14 @@
               Name is required
             </mat-error>
           </mat-form-field>
-
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Last Name</mat-label>
             <input matInput formControlName="lastName" required />
             <mat-icon matSuffix>face</mat-icon>
             <mat-error *ngIf="proForm.get('lastName').hasError('required')">
               Name is required
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
-          <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Department</mat-label>
-            <mat-select formControlName="department" required>
-              <mat-option [value]="'Elementary'"> Elementary </mat-option>
-              <mat-option [value]="'Middle'"> Middle </mat-option>
-              <mat-option [value]="'Sciences'"> Sciences </mat-option>
-              <mat-option [value]="'Literature'"> Literature </mat-option>
-            </mat-select>
-            <mat-error *ngIf="proForm.get('department').hasError('required')">
-              Department is required
             </mat-error>
           </mat-form-field>
         </div>
@@ -106,6 +92,20 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="department" required>
+              <mat-option [value]="'Elementary'"> Elementary </mat-option>
+              <mat-option [value]="'Middle'"> Middle </mat-option>
+              <mat-option [value]="'Sciences'"> Sciences </mat-option>
+              <mat-option [value]="'Literature'"> Literature </mat-option>
+            </mat-select>
+            <mat-error *ngIf="proForm.get('department').hasError('required')">
+              Department is required
+            </mat-error>
+          </mat-form-field>
+        </div>
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Mobile</mat-label>
